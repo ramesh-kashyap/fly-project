@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import Api from "../../Requests/Api";
 const Login = () => {
 
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
@@ -20,7 +20,7 @@ const Login = () => {
 
     try {
       const response = await Api.post("/login", {
-        username,
+        email,
         password
       });
     
@@ -62,11 +62,11 @@ const Login = () => {
 
                   <uni-view data-v-2b56ecaf="" class="input-layer">
 
-                    <uni-view data-v-2b56ecaf="" class="input-title">Username</uni-view>
+                    <uni-view data-v-2b56ecaf="" class="input-title">Email</uni-view>
                     <uni-view data-v-30449abe="" data-v-2b56ecaf="" class="uni-easyinput" ><uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style={{ borderColor: 'rgba(255, 255, 255, 0.2)', backgroundColor: 'unset' }}><uni-view data-v-30449abe="" class="content-clear-icon"><img data-v-30449abe="" src="/static/img/user.png" alt="" /></uni-view>  <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style={{ paddingLeft: '10px' }}>
                       <div class="uni-input-wrapper">
-                        <div class="uni-input-placeholder uni-easyinput__placeholder-class" data-v-30449abe="" data-v-2b56ecaf="" style={{ display: 'none' }}>Please Enter Username</div>
-                        <input maxLength="140" autoComplete="off" type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} className="uni-input-input" required enterKeyHint="done" />
+                        <div class="uni-input-placeholder uni-easyinput__placeholder-class" data-v-30449abe="" data-v-2b56ecaf="" style={{ display: 'none' }}>Please Enter Email</div>
+                        <input maxLength="140" autoComplete="off" type="text" name="email" value={email} onChange={(e) => setEmail(e.target.value)} className="uni-input-input" required enterKeyHint="done" />
                       </div>
                     </uni-input>
                       <uni-text data-v-45a6b600="" data-v-30449abe="" class="uni-icons content-clear-icon " style={{ color: 'rgb(192, 196, 204)', fontSize: '24px' }}><span></span></uni-text></uni-view></uni-view>

@@ -7,6 +7,7 @@ const Register = () => {
   const [formData, setFormData] = useState({
     sponsor: "",
     email: "",
+    phone: "",
     password: "",
     password_confirmation: "",
   });
@@ -31,8 +32,8 @@ const Register = () => {
       const response = await Api.post("/register", {
         sponsor: formData.sponsor,
         email: formData.email,
-        password: formData.password,
-        password_confirmation: formData.password_confirmation, // 👈 Important!
+        phone: formData.phone,
+        password: formData.password,       
       });
 
       if (response.data.status) {
@@ -128,6 +129,67 @@ const Register = () => {
                               required
                              
                               placeholder="Enter your username"
+                            />
+                          </div>
+                        </uni-input>
+                        <uni-text
+                          data-v-45a6b600=""
+                          data-v-30449abe=""
+                          class="uni-icons content-clear-icon "
+                          style={{
+                            color: "rgb(192, 196, 204)",
+                            fontSize: "24px",
+                          }}
+                        >
+                          <span></span>
+                        </uni-text>
+                      </uni-view>
+                    </uni-view>
+                  </uni-view>
+
+                  <uni-view data-v-2b56ecaf="" class="input-layer">
+                    <uni-view data-v-2b56ecaf="" class="input-title">
+                     Mobile
+                    </uni-view>
+                    <uni-view
+                      data-v-30449abe=""
+                      data-v-2b56ecaf=""
+                      class="uni-easyinput"
+                    >
+                      <uni-view
+                        data-v-30449abe=""
+                        class="uni-easyinput__content is-input-border "
+                        style={{
+                          borderColor: "rgba(255, 255, 255, 0.2)",
+                          backgroundColor: "unset",
+                        }}
+                      >
+                        <uni-view data-v-30449abe="" class="content-clear-icon">
+                          <img
+                            data-v-30449abe=""
+                            src="/static/img/user.png"
+                            alt=""
+                          />
+                        </uni-view>{" "}
+                        <uni-input
+                          data-v-30449abe=""
+                          class="uni-easyinput__content-input"
+                          style={{ paddingLeft: "10px" }}
+                        >
+                          <div class="uni-input-wrapper">
+                            {/* <div class="uni-input-placeholder uni-easyinput__placeholder-class" data-v-30449abe="" data-v-2b56ecaf="" style={{ display: 'none' }}>Please Enter Username</div> */}
+                            <input
+                              maxLength="140"
+                               
+                              type="text"
+                              name="phone"
+                              value={formData.phone}
+                             onChange={handleChange}
+                             
+                              className="uni-input-input"
+                              required
+                             
+                              placeholder="Enter your Phone Number"
                             />
                           </div>
                         </uni-input>
