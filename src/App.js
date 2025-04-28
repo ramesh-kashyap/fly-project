@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 import Dashboard from "./pages/home/Dashboard";
@@ -19,14 +19,28 @@ import { AuthProvider } from "./components/AuthContext";
 import { ProtectedRoute, PublicRoute } from './Helper/helper';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import Api from '../src/Requests/Api';
 function App() {
     const location = useLocation();
     const authRoutes = ["/","/login", "/register"];
     const hideOnNested = location.pathname.includes("/dashboard/TradingChart");
     <Route path="/dashboard/TradingChart/:symbol" element={<TradingChart />} />
-
     const hideFooter = authRoutes.includes(location.pathname) || hideOnNested;
+
+
+    useEffect(() => {
+        // Call the test API when component mounts
+        Api.get('/test')
+          .then(response => {
+            console.log(response.data.message); // ✅ Should log: Frontend is connected to Backend successfully!
+            alert(response.data.message); // Or show it in alert box
+          })
+          .catch(error => {
+            console.error('Error connecting to backend:', error);
+          });
+      }, []);
+
+
     return (
         <AuthProvider>
 
