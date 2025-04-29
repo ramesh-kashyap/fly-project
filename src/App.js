@@ -28,17 +28,17 @@ function App() {
     const hideFooter = authRoutes.includes(location.pathname) || hideOnNested;
 
 
-    useEffect(() => {
-        // Call the test API when component mounts
-        Api.get('/test')
-          .then(response => {
-            console.log(response.data.message); // ✅ Should log: Frontend is connected to Backend successfully!
-            alert(response.data.message); // Or show it in alert box
-          })
-          .catch(error => {
-            console.error('Error connecting to backend:', error);
-          });
-      }, []);
+    // useEffect(() => {
+    //     // Call the test API when component mounts
+    //     Api.get('/test')
+    //       .then(response => {
+    //         console.log(response.data.message); // ✅ Should log: Frontend is connected to Backend successfully!
+    //         alert(response.data.message); // Or show it in alert box
+    //       })
+    //       .catch(error => {
+    //         console.error('Error connecting to backend:', error);
+    //       });
+    //   }, []);
 
 
     return (
