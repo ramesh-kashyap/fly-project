@@ -1,31 +1,20 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import Api from "../../Requests/Api";
 
 const CryptoCard = () => {
     
-  const [cryptoData, setCryptoData] = useState([]);
+  const [teamData, setTeamData] = useState([]);
 
   useEffect(() => {
-    fetchCrypto();
-    const interval = setInterval(fetchCrypto, 10000); // refresh every 10s
+    fetchLevel();
+    const interval = setInterval(fetchLevel, 10000); // refresh every 10s
     return () => clearInterval(interval);
   }, []);
 
-  const fetchCrypto = async () => {
+  const fetchLevel = async () => {
     try {
-      const res = await axios.get(
-        "https://api.coingecko.com/api/v3/coins/markets",
-        {
-          params: {
-            vs_currency: "usd",
-            order: "market_cap_desc",
-            per_page: 10,
-            page: 1,
-            sparkline: false
-          }
-        }
-      );
-      setCryptoData(res.data);
+      const res = await Api.get("/levelteam");
+      setTeamData(res.data.team);
     } catch (error) {
       console.error("Failed to fetch data", error);
     }
@@ -33,38 +22,36 @@ const CryptoCard = () => {
 
   return (
     <div style={{ padding: "16px", background: "#141417", color: "#fff", borderRadius: "10px", maxWidth: "500px" }}>
-      {cryptoData.map((coin) => {
-        const isPositive = coin.price_change_percentage_24h >= 0;
-
+      {teamData.map((user) => {
         return (
-          <div key={coin.id} style={{
+          <div key={user.id} style={{
             display: "flex", alignItems: "center", justifyContent: "space-between",
             background: "#1e1e22", padding: "12px", borderRadius: "10px", marginBottom: "10px"
           }}>
             {/* Left */}
             <div style={{ display: "flex", alignItems: "center" }}>
-              <img src={coin.image} alt={coin.symbol} style={{
+              <img src="/static/img/user.png" alt={user.username} style={{
                 width: "40px", height: "40px", borderRadius: "50%", marginRight: "10px"
               }} />
               <div>
-                <div style={{ fontWeight: "bold" }}>{coin.symbol.toUpperCase()}</div>
+                <div style={{ fontWeight: "bold" }}>{user.phone}</div>
                 <div style={{ fontSize: "12px", color: "#aaa" }}>
-                  {(coin.total_volume / 1_000_000).toFixed(2)}M
+                {user.email}
                 </div>
               </div>
             </div>
 
             {/* Center */}
             <div style={{ textAlign: "right", marginRight: "10px" }}>
-              <div>${coin.current_price.toFixed(2)}</div>
-              <div style={{ fontSize: "12px", color: isPositive ? "#0f0" : "#f44" }}>
-                {coin.price_change_24h.toFixed(3)}
+              <div>{user.name}</div>
+              <div style={{ fontSize: "12px", color: "#f44" }}>
+              {user.status}
               </div>
             </div>
 
             {/* Right */}
             <div style={{
-              backgroundColor: isPositive ? "#00d0aa" : "#f44336",
+              backgroundColor:  "#00d0aa",
               color: "#fff",
               padding: "4px 10px",
               borderRadius: "12px",
@@ -72,8 +59,7 @@ const CryptoCard = () => {
               minWidth: "60px",
               textAlign: "center"
             }}>
-              {isPositive ? "+" : ""}
-              {coin.price_change_percentage_24h.toFixed(2)}%
+              {user.username}
             </div>
           </div>
         );
