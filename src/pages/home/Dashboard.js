@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, Link, Outlet  } from "react-router-dom";
 import axios from "axios";
+import Api from "../../Requests/Api";
+
 import { SlArrowRight } from "react-icons/sl";
 import TradingChart from "./TradingChart";
-
+import { jwtDecode } from 'jwt-decode';
 const symbols = ["dogeusdt", "ethusdt", "dotusdt", "nearusdt"];
 
 
@@ -104,6 +106,25 @@ const Dashboard = () => {
   
     const allCoins = Object.values(cryptoData);
     const coinsToShow = showAll ? allCoins : allCoins.slice(0, 5);
+    const [loading, setLoading] = useState(true);
+
+   
+const getUserData = async () => {
+  try {
+    const token = localStorage.getItem("token"); // or from context/state
+
+    const res = await axios.get("http://localhost:5000/api/user/me", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    console.log("User Data:", res.data);
+  } catch (error) {
+    console.error("Error fetching user:", error.response?.data || error.message);
+  }
+};
+    
   
    return (
 

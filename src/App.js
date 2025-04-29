@@ -5,6 +5,9 @@ import Dashboard from "./pages/home/Dashboard";
 import NodeDetails from "./pages/home/NodeDetails";
 import RechargeFunds from "./pages/invest/RechargeFunds";
 import WithdrawReq from "./pages/Withdraw/WithdrawReq";
+import AddWallet from "./pages/Withdraw/AddWallet";
+import AddWalletAddress from "./pages/Withdraw/AddWalletAddress";
+
 import History from "./pages/Withdraw/History";
 import Trade from "./pages/team/Trade";
 import Assets from "./pages/Withdraw/Assets";
@@ -28,18 +31,7 @@ function App() {
     const hideFooter = authRoutes.includes(location.pathname) || hideOnNested;
 
 
-    useEffect(() => {
-        // Call the test API when component mounts
-        Api.get('/test')
-          .then(response => {
-            console.log(response.data.message); // ✅ Should log: Frontend is connected to Backend successfully!
-            alert(response.data.message); // Or show it in alert box
-          })
-          .catch(error => {
-            console.error('Error connecting to backend:', error);
-          });
-      }, []);
-
+  
 
     return (
         <AuthProvider>
@@ -66,6 +58,8 @@ function App() {
                         <Route path="/History" element={<ProtectedRoute><History /></ProtectedRoute>} />
                         <Route path="/Smartrade" element={<Smartrade />} />
                         <Route path="/RechargeFunds" element={<ProtectedRoute><RechargeFunds /></ProtectedRoute>} />
+                        <Route path="/add-wallet" element={<ProtectedRoute><AddWallet /></ProtectedRoute>} />
+                        <Route path="/Add-WalletAddress" element={<ProtectedRoute><AddWalletAddress /></ProtectedRoute>} />
 
                         {/* Redirect */}
                         

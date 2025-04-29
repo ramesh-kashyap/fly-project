@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 import api from "../../Requests/Api";
 
 const WithdrawComponent = () => {
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/add-wallet'); // Yahan '/add-wallet' ko apne desired path se replace karein
+  };
    return (
+
+    
     <div class="uni-body pages-user-withdrawal" > <uni-app class="uni-app--maxwidth"><uni-page data-page="pages/user/withdrawal">   <uni-page-wrapper><uni-page-body><uni-view data-v-53c5f33f="" class="page"><uni-view data-v-53c5f33f="" class="ellipse"></uni-view><uni-view data-v-53c5f33f="" class="top-box"><uni-view data-v-636c600c="" data-v-53c5f33f="" class="uni-row" style={{marginLeft: '0px', marginRight: '0px'}}><uni-view data-v-35b9a113="" data-v-53c5f33f="" class="uni-col uni-col-6" style={{paddingLeft: '0px', paddingRight: '0px'}}>
       <Link to="/dashboard">
         <uni-view data-v-53c5f33f="" class="back"><img data-v-53c5f33f="" src="/static/img/back.png" alt="" style={{width: '35px'}} /></uni-view>
@@ -22,7 +30,7 @@ const WithdrawComponent = () => {
         <uni-view data-v-53c5f33f="" class="input-layer"><uni-view data-v-53c5f33f="" class="input-title">Select Deposit Type</uni-view><uni-view data-v-53c5f33f="" class="select-box"><uni-view data-v-53c5f33f="" class="item"><img data-v-53c5f33f="" src="/static/img/USDT.png" alt="" />TRC20</uni-view><uni-view data-v-53c5f33f="" class="item"><img data-v-53c5f33f="" src="/static/img/USDT.png" alt="" />ERC20</uni-view>
 
       </uni-view></uni-view>
-      <uni-view data-v-53c5f33f="" class="input-layer" style={{marginTop: '10px'}}><uni-view data-v-53c5f33f="" class="input-title">Wallet or Bank Card<uni-view data-v-53c5f33f="" class="right"><img data-v-53c5f33f="" src="  /static/img/add.png" alt="" />Add New</uni-view></uni-view><uni-view data-v-30449abe="" data-v-53c5f33f="" class="uni-easyinput" style={{color: 'rgb(255, 255, 255)'}}><uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border is-disabled " style={{borderColor: 'rgba(255, 255, 255, 0.2)',backgroundColor: 'unset'}}>   <uni-input data-v-30449abe="" class="uni-easyinput__content-input" >
+      <uni-view data-v-53c5f33f="" class="input-layer" style={{marginTop: '10px'}}><uni-view data-v-53c5f33f="" class="input-title">Wallet or Bank Card<uni-view data-v-53c5f33f="" class="right" onClick={handleClick}><img data-v-53c5f33f="" src="  /static/img/add.png" alt="" />Add New</uni-view></uni-view><uni-view data-v-30449abe="" data-v-53c5f33f="" class="uni-easyinput" style={{color: 'rgb(255, 255, 255)'}}><uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border is-disabled " style={{borderColor: 'rgba(255, 255, 255, 0.2)',backgroundColor: 'unset'}}>   <uni-input data-v-30449abe="" class="uni-easyinput__content-input" >
         <div class="uni-input-wrapper">
           <div class="uni-input-placeholder uni-easyinput__placeholder-class" data-v-30449abe="" data-v-53c5f33f=""> </div><input disabled="disabled" maxlength="140" step="" enterkeyhint="done" autocomplete="off" type="" class="uni-input-input" />
         </div>
