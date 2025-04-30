@@ -9,6 +9,8 @@
   const [amount, setAmount] = useState("");
   const [verificationCode, setVerificationCode] = useState("");
     const [availbal, setAvailableBal] =useState();
+    const [walletType, setWalletType] = useState("");
+
     useEffect(()=>{
       withfatch();
       withreq();
@@ -44,16 +46,22 @@
       // Assuming you have a backend endpoint to process the withdrawal request
       const response = await Api.post("/process-withdrawal", {
         wallet: selectedWallet,
+        type: walletType,
         amount: amount,
         verificationCode: verificationCode,
       });
       if (response) {
-        console.log("Withdrawal request processed successfully:", response.data);
+        toast.success("Withdrawal submitted successfully", response.data);      
+        setSelectedWallet("");
+    setWalletType("");
+    setAmount("");
+    setVerificationCode(""); 
       } else {
         console.warn("Failed to process withdrawal:", response.data.message);
+        
       }
     } catch (error) {
-      console.error("Error processing withdrawal:", error);
+      toast.error("Error processing withdrawal", error);
     }
   };
   
@@ -91,9 +99,9 @@
         <uni-view data-v-53c5f33f="" class="content">
           <uni-view data-v-53c5f33f="" class="input-layer"><uni-view data-v-53c5f33f="" class="input-title">Select Deposit Type</uni-view>
           <uni-view data-v-53c5f33f="" class="select-box">
-            <uni-view data-v-53c5f33f="" class="item" onClick={() => setSelectedWallet(wallets.trc20)}>
+            <uni-view data-v-53c5f33f="" class="item" onClick={() => {setSelectedWallet(wallets.trc20);setWalletType("TRC20");}}>
               <img data-v-53c5f33f="" src="/static/img/USDT.png" alt="" />TRC20</uni-view>
-              <uni-view data-v-53c5f33f="" class="item" onClick={() => setSelectedWallet(wallets.bep20)}>
+              <uni-view data-v-53c5f33f="" class="item"  onClick={() => {setSelectedWallet(wallets.bep20);setWalletType("BEP20");}}>
                 <img data-v-53c5f33f="" src="/static/img/USDT.png" alt="" />ERC20</uni-view>
         </uni-view>
         </uni-view>
@@ -106,7 +114,7 @@
         <uni-view data-v-53c5f33f="" class="input-layer" style={{marginTop: '10px'}}><uni-view data-v-53c5f33f="" class="input-title">Amount</uni-view><uni-view data-v-30449abe="" data-v-53c5f33f="" class="uni-easyinput" style={{color: 'rgb(255, 255, 255)'}}><uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style={{borderColor: 'rgba(255, 255, 255, 0.2)', backgroundColor: 'unset'}}>   <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style={{paddingLeft: '10px'}}>
           <div class="uni-input-wrapper">
             <div class="uni-input-placeholder uni-easyinput__placeholder-class" data-v-30449abe="" data-v-53c5f33f=""></div>
-            <input maxlength="140" step="0.000000000000000001" enterkeyhint="done" placeholder="Please Enter Amount" name="amount" pattern="[0-9]*" type="number" onChange={(e) => setAmount(e.target.value)} class="uni-input-input" />
+            <input value={amount} onChange={(e) => setAmount(e.target.value)} type="number" placeholder="Please Enter Amount" className="uni-input-input"/>
           </div>  
         </uni-input>   </uni-view></uni-view>    </uni-view>
         {/* <uni-view data-v-53c5f33f="" class="input-layer" style={{marginTop: '10px'}}><uni-view data-v-53c5f33f="" class="input-title">Payment Password</uni-view>
@@ -129,7 +137,7 @@
                 <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style={{paddingRight: '10px', paddingLeft: '10px'}}>
           <div class="uni-input-wrapper">
             <div class="uni-input-placeholder uni-easyinput__placeholder-class" data-v-30449abe="" data-v-53c5f33f=""></div>
-            <input maxlength="140" step="" enterkeyhint="done" autocomplete="off" type="text" value={verificationCode} onChange={(e) => setVerificationCode(e.target.value)} class="uni-input-input" />
+            <input value={verificationCode} onChange={(e) => setVerificationCode(e.target.value)} type="text" placeholder="Enter Verification Code" className="uni-input-input"/>
           </div>
         </uni-input>  
         <uni-view data-v-53c5f33f="" class="resend" onClick={handleSendRequest}>Send</uni-view>
@@ -137,7 +145,7 @@
         </uni-view>
         </uni-view>
         
-        <uni-view data-v-53c5f33f="" class="submit"onClick={handleSubmit}>Submit</uni-view></uni-view><uni-view data-v-53c5f33f="" class="tips-box"><uni-view data-v-53c5f33f="" class="title">Withdrawal time</uni-view><uni-view data-v-53c5f33f="" class="text">A maximum of one withdrawal is allowed per day.</uni-view><uni-view data-v-53c5f33f="" class="title">Withdrawal fee</uni-view><uni-view data-v-53c5f33f="" class="text">Bank card cash withdrawal: 10% handling fee is charged.</uni-view><uni-view data-v-53c5f33f="" class="text">Withdrawal of USDT: 8% handling fee will be charged.</uni-view></uni-view></uni-view></uni-page-body></uni-page-wrapper></uni-page>
+        <uni-view data-v-53c5f33f="" class="submit" onClick={handleSubmit}>Submit</uni-view></uni-view><uni-view data-v-53c5f33f="" class="tips-box"><uni-view data-v-53c5f33f="" class="title">Withdrawal time</uni-view><uni-view data-v-53c5f33f="" class="text">A maximum of one withdrawal is allowed per day.</uni-view><uni-view data-v-53c5f33f="" class="title">Withdrawal fee</uni-view><uni-view data-v-53c5f33f="" class="text">Bank card cash withdrawal: 10% handling fee is charged.</uni-view><uni-view data-v-53c5f33f="" class="text">Withdrawal of USDT: 8% handling fee will be charged.</uni-view></uni-view></uni-view></uni-page-body></uni-page-wrapper></uni-page>
       </uni-app>
       </div>
     );
