@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext,useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import axios from "axios";
+
 import { toast } from "react-toastify";
 import { useAuth } from "../../components/AuthContext";
 
@@ -12,16 +12,30 @@ const NodeDetails = () => {
   const handleLogout = () => {
     // Remove the token from localStorage
     localStorage.removeItem("authToken");
-
-    // Optionally, clear any user-related data (if you have more like user info in localStorage)
-    // localStorage.removeItem("userInfo");
-
-    // Redirect to login page
-    navigate("/login"); // Or wherever you want the user to be redirected after logout
+    navigate("/login"); 
   };
       
+   const [userDetails, setUserDetails] = useState(null);
+  const token = localStorage.getItem('authToken'); // Retrieve token from localStorage
 
+  useEffect(() => {
+     const fetchUserDetails = async () => {
+        try {
+           const response = await axios.get('http://localhost:5000/api/auth/user', {
+              headers: {
+                 'Authorization': `Bearer ${token}`
+              }
+           });
+           setUserDetails(response.data); // Save the response data in state
+        } catch (error) {
+           console.error("Error fetching user details:", error);
+        }
+     };
 
+     if (token) {
+        fetchUserDetails(); // Fetch user details if token exists
+     }
+  }, [token]);
 
 
   return (
@@ -51,8 +65,17 @@ const NodeDetails = () => {
                 </uni-view>
                 <uni-view data-v-3dcfa33c="" class="ava-box">
                   <uni-view data-v-3dcfa33c="" class="ava"><img data-v-3dcfa33c="" src="/static/ava/ava4.jpg" alt="" /></uni-view>
-                  <uni-view data-v-3dcfa33c="" class="nickname">Riteshk</uni-view>
-                  <uni-view data-v-3dcfa33c="" class="uid">UID: 2098141</uni-view>
+                
+                  {userDetails ? (
+                              <uni-view >
+                                 <uni-view
+                                    data-v-3dcfa33c="" class="nickname">{userDetails.name}</uni-view>
+                                 <uni-view data-v-3dcfa33c="" class="uid">UID: {userDetails.username}</uni-view>
+
+                              </uni-view>
+                           ) : (
+                              <p>Loading user details...</p>
+                           )}
                 </uni-view>
                 <uni-view data-v-3dcfa33c="" class="two-group">
                   <uni-view data-v-3dcfa33c="" class="item">

@@ -1,5 +1,10 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import React from "react";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    useLocation
+} from "react-router-dom";
 
 import Dashboard from "./pages/home/Dashboard";
 import NodeDetails from "./pages/home/NodeDetails";
@@ -7,8 +12,8 @@ import RechargeFunds from "./pages/invest/RechargeFunds";
 import WithdrawReq from "./pages/Withdraw/WithdrawReq";
 import AddWallet from "./pages/Withdraw/AddWallet";
 import AddWalletAddress from "./pages/Withdraw/AddWalletAddress";
-
-import History from "./pages/Withdraw/History";
+import Whistory from "./pages/Withdraw/Whistory";
+import History from "./pages/invest/History";
 import Trade from "./pages/team/Trade";
 import Assets from "./pages/Withdraw/Assets";
 import Server from "./pages/profile/Server";
@@ -22,67 +27,73 @@ import { AuthProvider } from "./components/AuthContext";
 import { ProtectedRoute, PublicRoute } from './Helper/helper';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Api from '../src/Requests/Api';
-function App() {
+
+function AppContent() {
     const location = useLocation();
-    const authRoutes = ["/","/login", "/register"];
-    const hideOnNested = location.pathname.includes("/dashboard/TradingChart");
-    <Route path="/dashboard/TradingChart/:symbol" element={<TradingChart />} />
-    const hideFooter = authRoutes.includes(location.pathname) || hideOnNested;
+    const hiddenFooterRoutes = [
+        "/",                // Login default
+        "/login",
+        "/register",
+        "/Team",
+        "/History",
+        "/Whistory",
+        "/WithdrawReq",
+        "/Smartrade",
+        "/NodeDetails",
+        "/RechargeFunds",
+        "/AddWalletAddress",
+        "/AddWallet"
+    ];
 
-
-    // useEffect(() => {
-    //     // Call the test API when component mounts
-    //     Api.get('/test')
-    //       .then(response => {
-    //         console.log(response.data.message); // ✅ Should log: Frontend is connected to Backend successfully!
-    //         alert(response.data.message); // Or show it in alert box
-    //       })
-    //       .catch(error => {
-    //         console.error('Error connecting to backend:', error);
-    //       });
-    //   }, []);
-
+    // Check if current path matches any of the above OR dynamic TradingChart route
+    const hideFooter =
+        hiddenFooterRoutes.includes(location.pathname) ||
+        location.pathname.startsWith("/dashboard/TradingChart");
 
     return (
-        <AuthProvider>
+        <div className="uni-body pages-index-index">
+            <div className="uni-app uni-app--showtabbar uni-app--maxwidth">
+                <div className="ellipse" style={{ height: 60 }}></div>
 
-            <div class="uni-body pages-index-index">
-                <uni-app class="uni-app--showtabbar uni-app--maxwidth">
-                    <div class="ellipse" style={{ height: 60 }}></div>
+                <Routes>
+                    {/* Public Routes */}
+                    <Route path="/" element={<PublicRoute><Login /></PublicRoute>} />
+                    <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+                    <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
 
-                    <Routes>
-                        {/* Public Routes */}
-                        <Route path="/" element={<PublicRoute><Login /></PublicRoute>} />
-                        <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
-                        <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
+                    {/* Protected Routes */}
+                    <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+                    <Route path="/trade" element={<ProtectedRoute><Trade /></ProtectedRoute>} />
+                    <Route path="/assets" element={<ProtectedRoute><Assets /></ProtectedRoute>} />
+                    <Route path="/server" element={<ProtectedRoute><Server /></ProtectedRoute>} />
+                    <Route path="/Team" element={<ProtectedRoute><Team /></ProtectedRoute>} />
+                    <Route path="/NodeDetails" element={<ProtectedRoute><NodeDetails /></ProtectedRoute>} />
+                    <Route path="/WithdrawReq" element={<ProtectedRoute><WithdrawReq /></ProtectedRoute>} />
+                    <Route path="/History" element={<ProtectedRoute><History /></ProtectedRoute>} />
+                    <Route path="/Whistory" element={<ProtectedRoute><Whistory /></ProtectedRoute>} />
+                    <Route path="/Smartrade" element={<ProtectedRoute><Smartrade /></ProtectedRoute>} />
+                    <Route path="/RechargeFunds" element={<ProtectedRoute><RechargeFunds /></ProtectedRoute>} />
+                    <Route path="/dashboard/TradingChart/:symbol" element={<ProtectedRoute><TradingChart /></ProtectedRoute>} />
+                    <Route path="/add-wallet" element={<ProtectedRoute><AddWallet /></ProtectedRoute>} />
+                    <Route path="/Add-WalletAddress/:networkType" element={  <ProtectedRoute><AddWalletAddress /></ProtectedRoute>} />
+                </Routes>
 
-                        {/* Protected Routes */}
-                        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-                        {/* </Route> */}
-                        <Route path="/trade" element={<ProtectedRoute><Trade /></ProtectedRoute>} />
-                        <Route path="/assets" element={<ProtectedRoute><Assets /></ProtectedRoute>} />
-                        <Route path="/server" element={<ProtectedRoute><Server /></ProtectedRoute>} />
-                        <Route path="/Team" element={<ProtectedRoute><Team /></ProtectedRoute>} />
-                        <Route path="/NodeDetails" element={<ProtectedRoute><NodeDetails /></ProtectedRoute>} />
-                        <Route path="/WithdrawReq" element={<ProtectedRoute><WithdrawReq /></ProtectedRoute>} />
-                        <Route path="/History" element={<ProtectedRoute><History /></ProtectedRoute>} />
-                        <Route path="/Smartrade" element={<Smartrade />} />
-                        <Route path="/RechargeFunds" element={<ProtectedRoute><RechargeFunds /></ProtectedRoute>} />
-                        <Route path="/add-wallet" element={<ProtectedRoute><AddWallet /></ProtectedRoute>} />
-                        <Route path="/Add-WalletAddress" element={<ProtectedRoute><AddWalletAddress /></ProtectedRoute>} />
-
-                        {/* Redirect */}
-                        
-                        {/* <Route element={<ProtectedRoute><Footer /></ProtectedRoute>} /> */}
-                        <Route path="/dashboard/TradingChart/:symbol" element={<TradingChart />} />
-                        
-                    </Routes>
-                    {!hideFooter && <Footer />}                   
-                </uni-app>
+                {/* Footer only if route not in hidden list */}
+                {!hideFooter && <Footer />}
                 <ToastContainer />
             </div>
+        </div>
+    );
+}
 
+function App() {
+    return (
+        <AuthProvider>
+           
+                <AppContent />
+           
         </AuthProvider>
     );
-} export default App;
+}
+
+export default App;

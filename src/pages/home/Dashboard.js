@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, Link, Outlet  } from "react-router-dom";
+import { useNavigate, Link, Outlet } from "react-router-dom";
 import axios from "axios";
 import Api from "../../Requests/Api";
 
@@ -32,100 +32,106 @@ const Dashboard = () => {
    const [showAll, setShowAll] = useState(false); // toggle state
    useEffect(() => {
       const fetchCrypto = async () => {
-        try {
-          const res = await axios.get("https://api.coingecko.com/api/v3/coins/markets", {
-            params: {
-              vs_currency: "usd",
-              order: "market_cap_desc",
-              per_page: 20,
-              page: 1,
-              sparkline: false
-            }
-          });
-  
-          const formatted = {};
-          const binanceSyms = [];
-  
-          res.data.forEach((coin) => {
-            const symbol = `${coin.symbol}usdt`.toUpperCase();
-            formatted[symbol] = {
-              id: coin.id,
-              name: coin.name,
-              symbol: symbol,
-              image: coin.image,
-              price: coin.current_price,
-              change: coin.price_change_24h,
-              percent: coin.price_change_percentage_24h,
-              volume: (coin.total_volume / 1_000_000).toFixed(2) + "M"
-            };
-            binanceSyms.push(symbol.toLowerCase());
-          });
-  
-          setCryptoData(formatted);
-          setBinanceSymbols(binanceSyms);
-        } catch (error) {
-          console.error("CoinGecko fetch error:", error);
-        }
+         try {
+            const res = await axios.get("https://api.coingecko.com/api/v3/coins/markets", {
+               params: {
+                  vs_currency: "usd",
+                  order: "market_cap_desc",
+                  per_page: 20,
+                  page: 1,
+                  sparkline: false
+               }
+            });
+
+            const formatted = {};
+            const binanceSyms = [];
+
+            res.data.forEach((coin) => {
+               const symbol = `${coin.symbol}usdt`.toUpperCase();
+               formatted[symbol] = {
+                  id: coin.id,
+                  name: coin.name,
+                  symbol: symbol,
+                  image: coin.image,
+                  price: coin.current_price,
+                  change: coin.price_change_24h,
+                  percent: coin.price_change_percentage_24h,
+                  volume: (coin.total_volume / 1_000_000).toFixed(2) + "M"
+               };
+               binanceSyms.push(symbol.toLowerCase());
+            });
+
+            setCryptoData(formatted);
+            setBinanceSymbols(binanceSyms);
+         } catch (error) {
+            console.error("CoinGecko fetch error:", error);
+         }
       };
-  
+
       fetchCrypto();
-    }, []);
-  
-    useEffect(() => {
+   }, []);
+
+   useEffect(() => {
       if (binanceSymbols.length === 0) return;
-  
+
       const ws = new WebSocket(
-        `wss://stream.binance.com:9443/stream?streams=${binanceSymbols
-          .map((s) => `${s}@ticker`)
-          .join("/")}`
+         `wss://stream.binance.com:9443/stream?streams=${binanceSymbols
+            .map((s) => `${s}@ticker`)
+            .join("/")}`
       );
-  
+
       ws.onmessage = (event) => {
-        const msg = JSON.parse(event.data);
-        const data = msg.data;
-  
-        setCryptoData((prev) => {
-          const existing = prev[data.s];
-          if (!existing) return prev;
-  
-          return {
-            ...prev,
-            [data.s]: {
-              ...existing,
-              price: parseFloat(data.c),
-              change: parseFloat(data.p),
-              percent: parseFloat(data.P),
-              volume: (parseFloat(data.v) / 1_000_000).toFixed(2) + "M"
-            }
-          };
-        });
+         const msg = JSON.parse(event.data);
+         const data = msg.data;
+
+         setCryptoData((prev) => {
+            const existing = prev[data.s];
+            if (!existing) return prev;
+
+            return {
+               ...prev,
+               [data.s]: {
+                  ...existing,
+                  price: parseFloat(data.c),
+                  change: parseFloat(data.p),
+                  percent: parseFloat(data.P),
+                  volume: (parseFloat(data.v) / 1_000_000).toFixed(2) + "M"
+               }
+            };
+         });
       };
-  
+
       return () => ws.close();
-    }, [binanceSymbols]);
-  
-    const allCoins = Object.values(cryptoData);
-    const coinsToShow = showAll ? allCoins : allCoins.slice(0, 5);
-    const [loading, setLoading] = useState(true);
+   }, [binanceSymbols]);
 
-   
-const getUserData = async () => {
-  try {
-    const token = localStorage.getItem("token"); // or from context/state
+   const allCoins = Object.values(cryptoData);
+   const coinsToShow = showAll ? allCoins : allCoins.slice(0, 5);
+   const [loading, setLoading] = useState(true);
 
-    const res = await axios.get("http://localhost:5000/api/user/me", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
 
-    console.log("User Data:", res.data);
-  } catch (error) {
-    console.error("Error fetching user:", error.response?.data || error.message);
-  }
-};
-    
-  
+   const [userDetails, setUserDetails] = useState(null);
+   const token = localStorage.getItem('authToken'); // Retrieve token from localStorage
+
+   useEffect(() => {
+      const fetchUserDetails = async () => {
+         try {
+            const response = await Api.get('/user', {
+               headers: {
+                  'Authorization': `Bearer ${token}`
+               }
+            });
+            setUserDetails(response.data); // Save the response data in state
+         } catch (error) {
+            console.error("Error fetching user details:", error);
+         }
+      };
+
+      if (token) {
+         fetchUserDetails(); // Fetch user details if token exists
+      }
+   }, [token]);
+
+
    return (
 
       <div class="uni-body pages-index-index">
@@ -142,12 +148,21 @@ const getUserData = async () => {
                                  data-v-06ae08d2="" class="ava"><img data-v-06ae08d2="" src="/static/ava/ava4.jpg"
                                     alt="" /></uni-view>
                            </Link>
-                           <uni-view data-v-06ae08d2="" class="top-text"><uni-view
-                              data-v-06ae08d2="" class="name">Riteshk</uni-view><uni-view data-v-06ae08d2=""
-                                 class="uid">UID:2098141</uni-view></uni-view></uni-view><uni-view
-                                    data-v-06ae08d2="" class="right"><uni-view data-v-06ae08d2="" class="notice"><img
-                                       data-v-06ae08d2="" src="/static/img/rewards.png" alt=""
-                                       style={{ width: '28px' }} /></uni-view>
+                           {userDetails ? (
+                              <uni-view data-v-06ae08d2="" class="top-text">
+                                 <uni-view
+                                    data-v-06ae08d2="" class="name">{userDetails.name}</uni-view>
+                                 <uni-view data-v-06ae08d2=""
+                                    class="uid">UID: {userDetails.username}</uni-view>
+
+                              </uni-view>
+                           ) : (
+                              <p>Loading user details...</p>
+                           )}
+                        </uni-view><uni-view
+                           data-v-06ae08d2="" class="right"><uni-view data-v-06ae08d2="" class="notice"><img
+                              data-v-06ae08d2="" src="/static/img/rewards.png" alt=""
+                              style={{ width: '28px' }} /></uni-view>
                            <a href="{{route('user.notice')}}">
                               <uni-view data-v-06ae08d2="" class="notice"><img
                                  data-v-06ae08d2="" src="/static/img/notice.png" alt="" /><uni-view
@@ -202,7 +217,7 @@ const getUserData = async () => {
                                                                               class="prop-down">-0.76%</uni-view></uni-view></uni-view>
                      <uni-view
                         data-v-06ae08d2="" class="new-banner">
-                           <uni-swiper data-v-06ae08d2="" style={{ height: '165px' }}>
+                        <uni-swiper data-v-06ae08d2="" style={{ height: '165px' }}>
                            <div class="uni-swiper-wrapper">
                               <div class="uni-swiper-slides">
                                  <div class="uni-swiper-slide-frame"
@@ -217,24 +232,24 @@ const getUserData = async () => {
                                              claim your USD rewards!</uni-view><uni-view data-v-06ae08d2=""
                                                 class="banner-btn">Get
                                              Rewards</uni-view></uni-view></uni-swiper-item>
-                                             <uni-swiper-item
-                                                data-v-06ae08d2=""
-                                                style={{ position: 'absolute', width: '100%', height: '100%', transform: 'translate(100%, 0px) translateZ(0px)' }}><uni-view
-                                                   data-v-06ae08d2="" class="banner-item"><img data-v-06ae08d2=""
-                                                      src="/static/img/server-icon.png" alt="" /><uni-view
-                                                         data-v-06ae08d2="" class="banner-title">Unlock Smart
+                                    <uni-swiper-item
+                                       data-v-06ae08d2=""
+                                       style={{ position: 'absolute', width: '100%', height: '100%', transform: 'translate(100%, 0px) translateZ(0px)' }}><uni-view
+                                          data-v-06ae08d2="" class="banner-item"><img data-v-06ae08d2=""
+                                             src="/static/img/server-icon.png" alt="" /><uni-view
+                                                data-v-06ae08d2="" class="banner-title">Unlock Smart
                                              Trading</uni-view><uni-view data-v-06ae08d2=""
                                                 class="banner-text">Unlock Smart Trading with Firefly Star – Try
                                              228 AI Strategies for Free!</uni-view><uni-view
                                                 data-v-06ae08d2="" class="banner-btn">Get
                                              Rewards</uni-view></uni-view></uni-swiper-item>
-                                             <uni-swiper-item
-                                                data-v-06ae08d2=""
-                                                style={{ position: 'absolute', width: '100%', height: '100%', transform: 'translate(200%, 0px) translateZ(0px)' }}><uni-view
-                                                   data-v-06ae08d2="" class="banner-item"><img data-v-06ae08d2=""
-                                                      src="/static/img/flash.png" alt="" /><uni-view data-v-06ae08d2=""
-                                                         class="banner-title">Smart Trading</uni-view><uni-view
-                                                            data-v-06ae08d2="" class="banner-text">Smart Trading, Steady
+                                    <uni-swiper-item
+                                       data-v-06ae08d2=""
+                                       style={{ position: 'absolute', width: '100%', height: '100%', transform: 'translate(200%, 0px) translateZ(0px)' }}><uni-view
+                                          data-v-06ae08d2="" class="banner-item"><img data-v-06ae08d2=""
+                                             src="/static/img/flash.png" alt="" /><uni-view data-v-06ae08d2=""
+                                                class="banner-title">Smart Trading</uni-view><uni-view
+                                                   data-v-06ae08d2="" class="banner-text">Smart Trading, Steady
                                              Growth – Build Your Wealth with Confidence!</uni-view><uni-view
                                                 data-v-06ae08d2="" class="banner-btn">Get
                                              Rewards</uni-view></uni-view></uni-swiper-item>
@@ -259,7 +274,7 @@ const getUserData = async () => {
                               return (
                                  <div
                                     key={coin.symbol}
-                                    
+
                                     // onClick={() => setSelectedSymbol(coin.symbol)} 
                                     onClick={() => coin.symbol && navigate(`/dashboard/TradingChart/${coin.symbol.toUpperCase()}`)}
                                     style={{
@@ -316,18 +331,18 @@ const getUserData = async () => {
 
                            {/* Show More / Less Button */}
                            {allCoins.length > 5 && (
-                            
+
                               <uni-view data-v-06ae08d2="" onClick={() => setShowAll(!showAll)}
-                              style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', marginTop: '3px' }}> {showAll ? "Hide " : "More "}<img
-                                 data-v-06ae08d2="" src="/static/img/Expand.png" alt=""
-                                 style={{ width: '30px', height: '20px' }} /> </uni-view>
+                                 style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', marginTop: '3px' }}> {showAll ? "Hide " : "More "}<img
+                                    data-v-06ae08d2="" src="/static/img/Expand.png" alt=""
+                                    style={{ width: '30px', height: '20px' }} /> </uni-view>
                            )}
                         </div>
                         {selectedSymbol && <TradingChart symbol={selectedSymbol} />}
 
 
-                              
-                              </uni-view>
+
+                     </uni-view>
                      <uni-view
                         data-v-06ae08d2="" class="market-title"
                         style={{ marginTop: '10px', marginBottom: '8px' }}>FAQ</uni-view>
@@ -637,16 +652,16 @@ const getUserData = async () => {
                            data-v-06ae08d2="" class="policy-item">Firefly Star LLC Trading Server Usage
                            Agreement<SlArrowRight size={11} style={{ marginLeft: '5px' }} /></uni-view>
                      </uni-view>
-                     
+
                   </uni-view>
 
                </uni-page-body>
                </uni-page-wrapper>
             </uni-page>
 
-         </uni-app> 
-   <Outlet />
-   </div>
+         </uni-app>
+         <Outlet />
+      </div>
    );
 
 };

@@ -50,7 +50,10 @@ const RechargeFunds = () => {
                                     </Link>
                                 </uni-view><uni-view data-v-35b9a113="" data-v-bec7c7ce="" class="uni-col uni-col-12" style={{ paddingLeft: '0px', paddingRight: '0px' }}><uni-view data-v-bec7c7ce="" class="page-title">Deposit</uni-view></uni-view>
                                 <uni-view data-v-35b9a113="" data-v-bec7c7ce="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
-                                    <uni-view data-v-bec7c7ce="" class="records"><img data-v-bec7c7ce="" src="/static/img/records.png" alt="" style={{ width: '25px', marginTop: '5px' }} /></uni-view></uni-view></uni-view></uni-view>
+  <Link to="/History">
+            <uni-view data-v-53c5f33f="" class="records"><img data-v-53c5f33f="" src="/static/img/records.png" alt="" style={{width: '25px', marginTop: '5px'}} /></uni-view>
+
+          </Link>                                    </uni-view></uni-view></uni-view>
                                     <uni-view data-v-bec7c7ce="" class="recharge-box">
                                         <uni-view data-v-bec7c7ce="" class="input-layer">
                                             <uni-view data-v-bec7c7ce="" class="input-title">Select Deposit Type</uni-view>
