@@ -21,7 +21,7 @@ const NodeDetails = () => {
   useEffect(() => {
      const fetchUserDetails = async () => {
         try {
-           const response = await axios.get('http://localhost:5000/api/auth/user', {
+           const response = await Api.get('/user', {
               headers: {
                  'Authorization': `Bearer ${token}`
               }
