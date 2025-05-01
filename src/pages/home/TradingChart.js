@@ -28,8 +28,8 @@ const TradingChart = () => {
 
    };
    const SmartradeClick = () => {
-    navigate('/Smartrade'); 
-  };
+    navigate('/Smartrade', { state: { symbol } });
+  };  
     return (
         <div class="uni-body pages-index-symbol">
             <uni-app class="uni-app--maxwidth">

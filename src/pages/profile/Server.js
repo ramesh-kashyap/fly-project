@@ -23,7 +23,8 @@ const Server = () => {
             title: `S${index + 1}-IntelliCalc Edition`,
             heading: "Benefits",
             text: `Amount that can be invested: ${item.invest_amount}`,
-            text1: `Optional investment period (hours): ${item.period}, ${item.period_end}`,
+            text1: `Optional investment period (hours): ${item.period},`,
+            text2:   `To: ${item.period_end},`,
             price: item.plan === "Free" ? "Free" : item.plan,
           }));
     
@@ -39,6 +40,7 @@ const Server = () => {
         const response = await Api.post('/submitserver', {
          amount: slideData.text.split(": ")[1],     // Extracts "30"
          period: slideData.text1.split(": ")[1],    // Extracts "8, 12"
+         period_end: slideData.text2.split(": ")[1], 
          plan: slideData.price 
        });
         if (response.data.success) {
@@ -225,7 +227,7 @@ const Server = () => {
                      style={{width: '20px', marginRight: '5px'}}/>
                      <uni-text
                         data-v-b19b400c=""
-                        class="benefit-text"><span>{slide.text1}</span>
+                        class="benefit-text"><span>{slide.text1}- {slide.text2}</span>
 
                      </uni-text>
                   </uni-view>
