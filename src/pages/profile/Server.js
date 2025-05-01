@@ -1,52 +1,90 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import Slider from "react-slick";
 // App.js ya index.js me
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import Api from "../../Requests/Api";
+import { Toaster, toast } from 'react-hot-toast';
 const Server = () => {
-  const [activeTab, setActiveTab] = useState("running");
+   const [activeTab, setActiveTab] = useState("running");
+   const [slides, setSlides] = useState([]);
+   const [servers, setServers] = useState([])
 
-   const slides = [
-      {
-        title: "S1-IntelliCalc Trial Edition (One-Time Only)",
-        heading: "Benefits",
+    useEffect(() => {
+       fetchwallet();
+       fetchrenew();
+     }, []);
+     const fetchwallet = async () => {
+      try {
+        const response = await Api.get("/fetchserver");
+    
+        if (response.data?.success && Array.isArray(response.data.server)) {
+          const serverSlides = response.data.server.map((item, index) => ({
+            title: `S${index + 1}-IntelliCalc Edition`,
+            heading: "Benefits",
+            text: `Amount that can be invested: ${item.invest_amount}`,
+            text1: `Optional investment period (hours): ${item.period}, ${item.period_end}`,
+            price: item.plan === "Free" ? "Free" : item.plan,
+          }));
+    
+          setSlides(serverSlides);
+        }
+      } catch (error) {
+        console.error("Error fetching plans:", error);
+      }
+    };
 
-        text: "Amount that can be invested: 10.00-30.00",
-        text1: "Optional investment period (hours): 4,8",
-        price: "Free",
-      },
-      {
-        title: "S2-IntelliCalc Starter Edition",
-        heading: "Benefits",
-        text: "Renew at half price",
-        text1: "Amount that can be invested: 30.00-100.00",
-        text2: "Optional investment period (hours): 8,12",
-        text3: "Low risk, high return",
-        text4: "Access to faster customer service",
-        text5: "Faster Response time",
-        price: "4.00",
+    const handleBuyClick = async (slideData) => {
+      try {
+        const response = await Api.post('/submitserver', {
+         amount: slideData.text.split(": ")[1],     // Extracts "30"
+         period: slideData.text1.split(": ")[1],    // Extracts "8, 12"
+         plan: slideData.price 
+       });
+        if (response.data.success) {
+          toast.success("Purchase successful", response.data.message); 
+          // console.log("Purchase successful");
+        } else {
+          toast.error("Purchase failed", response.data.message); 
+          // console.error("Purchase failed");
+        }
+      } catch (error) {
+        toast.error("Error making purchase:", error);
+        // console.error("Error making purchase:", error);
+      }
+    };
 
-      },
-      {
-        title: "S3-IntelliCalc Core Edition",
-        heading: "Benefits",
-
-        text: "Renew at half price",
-        text1: "Amount that can be invested: 100.00-500.00",
-        price: "10.0",
-
-      },
-      {
-         title: "S4-IntelliCalc Breakthrough Edition",
-         heading: "Benefits",
-        text: "Renew at half price",
-
-         text1: "RAmount that can be invested: 500.00-2500.00",
-         price: "40.0",
+    const fetchrenew = async () => {
+      try {
+        const response = await Api.get('/fetchrenew');
+        if (response.data?.success) {
+          setServers(response.data.server); // or .servers if you update backend
+        } else {
+          console.error("API did not return success");
+        }
+      } catch (error) {
+        console.error("Error fetching servers:", error);
+      }
+    };
+    
+    const handleRenew = async (serverhash, amount) => {
+      try {
+        const response = await Api.post('/renew-server', { serverhash, amount });
+        if (response.data?.success) {
+          toast.success("Renewal successful", response.data.message); 
+          // console.log("Renewal successful");
+          fetchrenew(); // Optionally refetch the updated server list
+        } else {
+          toast.error("Renewal failed", response.data.message); 
+          // console.error("Renewal failed");
+        }
+      } catch (error) {
+        toast.error("Error during renewal:", error); 
+      }
+    };
  
-       },
-    ];
-  
+    
+
     const settings = {
       dots: true,
       infinite: true,
@@ -63,6 +101,7 @@ const Server = () => {
              
               <uni-page-wrapper>
                  <uni-page-body>
+                  <Toaster position="top-right" reverseOrder={false} />
                     <uni-view data-v-7542ab04=""
                        class="page">
                        <uni-view data-v-7542ab04="" class="ellipse"></uni-view>
@@ -131,7 +170,7 @@ const Server = () => {
    >
    <Slider {...settings}>
       {slides.map((slide, index) => (
-      <uni-view data-v-b19b400c=""  >
+      <uni-view data-v-b19b400c=""  key={index}>
          <uni-view
             data-v-b19b400c="" class="box">
             <uni-view data-v-b19b400c=""  
@@ -212,7 +251,7 @@ const Server = () => {
                   data-v-b19b400c="" class="card-footer">
                   <uni-button
                      data-v-b19b400c=""
-                     class="subscribe-button">Buy</uni-button>
+                     class="subscribe-button"  onClick={() => handleBuyClick(slide)}>Buy</uni-button>
                </uni-view>
             </uni-view>
             <uni-view
@@ -237,22 +276,26 @@ const Server = () => {
      
       <uni-view data-v-7542ab04="" class="content">
    <uni-view data-v-7542ab04="" class="list-box">
-      <uni-view data-v-7542ab04="" class="server-item">
-         <img data-v-7542ab04="" src="/static/img/S1.png" alt=""/>
-         <uni-view data-v-7542ab04="" class="item-no">
-            SEO1Hu1dPpXdQLE28
-            <uni-view data-v-7542ab04="" class="expired-time">2025-04-29 13:22:47</uni-view>
-         </uni-view>
-         <uni-view data-v-7542ab04="" class="renew unrenew">Renewal</uni-view>
-      </uni-view>
-      <uni-view data-v-7542ab04="" class="server-item">
-         <img data-v-7542ab04="" src="/static/img/S3.png" alt=""/>
-         <uni-view data-v-7542ab04="" class="item-no">
-            SEOCtJaEFSVFm1X3B
-            <uni-view data-v-7542ab04="" class="expired-time">2025-05-21 14:48:49</uni-view>
-         </uni-view>
-         <uni-view data-v-7542ab04="" class="renew">Renewal</uni-view>
-      </uni-view>
+   {servers.map((server, index) => (
+  <uni-view key={index} data-v-7542ab04="" class="server-item">
+    <img data-v-7542ab04="" src={`/static/img/S${(index % 4) + 1}.png`} alt="" />
+    ${server.amount}
+    <uni-view data-v-7542ab04="" class="item-no">
+      {server.serverhash}
+      <uni-view data-v-7542ab04="" class="expired-time">{server.sdate}</uni-view>
+    </uni-view>
+    <uni-view
+      data-v-7542ab04=""
+      class={`renew ${index % 2 === 0 ? 'unrenew' : ''}`}
+      onClick={() => handleRenew(server.serverhash, server.amount)}
+    >
+      Renewal
+    </uni-view>
+  </uni-view>
+))}
+
+
+      
    </uni-view>
 </uni-view>
     

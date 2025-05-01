@@ -33,9 +33,11 @@
       const response = await Api.post('/sendotp');  
       console.log(response);
       if (response) {
-        console.log('OTP sent successfully:', response.data);
+        toast.success('OTP sent successfully:', response.data); 
+        // console.log('OTP sent successfully:', response.data);
       } else {
-        console.warn('Failed to send OTP:', response.data.message);
+        toast.error('Failed to send OTP:', response.data.message); 
+        // console.warn('Failed to send OTP:', response.data.message);
       }
     } catch (error) {
       console.error('Error sending OTP:', error);
@@ -76,7 +78,7 @@
       }
     } catch (error) {
       console.error(error);
-      toast.error("Error fetching wallet addresses.");
+      // toast.error("Error fetching wallet addresses.");
     }
   };
 

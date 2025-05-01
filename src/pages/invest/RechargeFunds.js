@@ -3,6 +3,7 @@ import { Link,useNavigate  } from "react-router-dom";
 import Api from "../../Requests/Api";
 import { QRCodeCanvas } from 'qrcode.react';
 import { FaRegCopy } from 'react-icons/fa';
+import { Toaster, toast } from 'react-hot-toast';
 const RechargeFunds = () => {
    
   
@@ -39,6 +40,7 @@ const RechargeFunds = () => {
                 <uni-page data-page="pages/user/recharge">
                     <uni-page-wrapper>
                         <uni-page-body>
+                          <Toaster position="top-right" reverseOrder={false} />
                             <uni-view data-v-bec7c7ce="" class="page">
                                 <uni-view data-v-bec7c7ce="" class="ellipse"></uni-view>
                                 <uni-view data-v-bec7c7ce="" class="top-box">
