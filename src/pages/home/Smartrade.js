@@ -15,6 +15,7 @@ const Smartrade = () => {
      const location = useLocation();
   const [symbol, setSymbol] = useState("");
   const [servers, setServers] = useState([]);
+  const [amount, setAmount] = useState('');
 
   useEffect(() => {
     if (location.state?.symbol) {
@@ -28,6 +29,9 @@ const Smartrade = () => {
    
       };
       const [balance, setBalance] = useState(null);
+      const handleAllClick = () => {
+         setAmount(balance);
+       };
   const [error, setError] = useState('');
 
  
@@ -115,15 +119,14 @@ const Smartrade = () => {
                            </uni-view>
                            <uni-view data-v-2c1047a8="" class="input-item">
                               <uni-view data-v-2c1047a8="" class="input-title">Server</uni-view>
-                              <uni-view data-v-2c1047a8="" class="server-click">
+                              <uni-view data-v-2c1047a8="" class="server-click" onClick={() => setShowOverlay(true)}>
                                  <uni-view data-v-2c1047a8="" class="click-layer"></uni-view>
                                  <uni-view data-v-30449abe="" data-v-2c1047a8="" class="uni-easyinput" style={{color: 'rgb(255, 255, 255)'}}>
                                     <uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style={{borderColor: 'rgba(255, 255, 255, 0.2)', backgroundColor: 'unset'}}>
                                         
                                        <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style={{paddingLeft: '10px'}}>
                                           <div class="uni-input-wrapper">
-                                             {/* <div class="uni-input-placeholder uni-easyinput__placeholder-class" data-v-30449abe="" data-v-2c1047a8="">Please select a Server</div> */}
-                                             <input disabled="disabled" step="" enterkeyhint="done" autocomplete="off" type="text" value={selectedServer} class="uni-input-input" onClick={() => setShowOverlay(true)} placeholder='Please select a Server'/> 
+                                             <input disabled="disabled" step="" type="text" value={selectedServer} class="uni-input-input" placeholder='Please select a Server'/> 
                                           </div>
                                        </uni-input>
                                         
@@ -131,7 +134,34 @@ const Smartrade = () => {
                                  </uni-view>
                               </uni-view>
                            </uni-view>
-                             
+                           <uni-view data-v-2c1047a8="" class="input-item">
+                                 <uni-view data-v-2c1047a8="" class="input-title">Amount</uni-view>
+                                 <uni-view data-v-30449abe="" data-v-2c1047a8="" class="uni-easyinput" style={{ color: 'rgb(255, 255, 255)' }}>
+                                    <uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style={{ borderColor: 'rgba(255, 255, 255, 0.2)', backgrounColor: 'unset' }}>
+                                       <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style={{ paddingLeft: '10px' }}>
+                                          <div class="uni-input-wrapper">
+                                             {/* <div class="uni-input-placeholder uni-easyinput__placeholder-class" data-v-30449abe="" data-v-2c1047a8="">500</div> */}
+                                             <input type="number" className="uni-input-input" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Enter amount"/>
+                                          </div>
+                                       </uni-input>
+                                       <uni-view data-v-2c1047a8="" class="allin" onClick={handleAllClick}>All</uni-view>
+                                    </uni-view>
+                                 </uni-view>
+                              </uni-view>
+                              <uni-view data-v-2c1047a8="" class="input-item">
+                                 <uni-view data-v-2c1047a8="" class="input-title">Period (Hour)</uni-view>
+                                 <uni-view data-v-2c1047a8="" class="period-box">
+                                    <uni-view data-v-2c1047a8="" class="period-item">12</uni-view>
+                                    <uni-view data-v-2c1047a8="" class="period-item">24</uni-view>
+                                 </uni-view>
+                              </uni-view>
+                              <uni-view data-v-2c1047a8="" class="input-item">
+                                 <uni-view data-v-2c1047a8="" class="input-title">Buy Insurance (0.000%)</uni-view>
+                                 <uni-view data-v-2c1047a8="" class="period-box">
+                                    <uni-view data-v-2c1047a8="" class="period-item">Agree</uni-view>
+                                    <uni-view data-v-2c1047a8="" class="period-item">Reject</uni-view>
+                                 </uni-view>
+                              </uni-view>
                         </uni-view>
                         <uni-view data-v-2c1047a8="" class="book-box">
                            <uni-view data-v-2c1047a8="" class="order-book">
