@@ -1,10 +1,26 @@
 import React, { useEffect, useState } from 'react';
 
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useNavigate, useLocation } from 'react-router-dom';
+import Api from "../../Requests/Api";
 
 const Smartrade = () => {
+   const [showOverlay, setShowOverlay] = useState(false);
+  const [selectedServer, setSelectedServer] = useState('');
+
+  const handleServerClick = (serverhash) => {
+    setSelectedServer(serverhash);
+    setShowOverlay(false);
+  };  
      const navigate = useNavigate();
+     const location = useLocation();
+  const [symbol, setSymbol] = useState("");
+  const [servers, setServers] = useState([]);
+
+  useEffect(() => {
+    if (location.state?.symbol) {
+      setSymbol(location.state.symbol);
+    }
+  }, [location])
    
       const backClick = () => {
         
@@ -14,23 +30,38 @@ const Smartrade = () => {
       const [balance, setBalance] = useState(null);
   const [error, setError] = useState('');
 
-  useEffect(() => {
+ 
     const token = localStorage.getItem('token');
+     useEffect(()=>{
+      withavail();
+          fetchserv();
+          },[])
 
-    axios.get('http://localhost:8000/api/user/available-balance', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: 'application/json'
+    const withavail = async () => {
+    try {
+      const response = await Api.get("/availbal");      
+      if (response.data) {
+         setBalance(response.data.AvailBalance);
+      } 
+    } catch (error) {
+      console.error(error);
+      setError(error);
+    }
+   }
+
+   const fetchserv = async () => {
+      try {
+        const response = await Api.get('/fetchservers');
+        console.log(response.data);
+        if (response.data?.success) {
+          setServers(response.data.server); // or .servers if you update backend
+        } else {
+          console.error("API did not return success");
+        }
+      } catch (error) {
+        console.error("Error fetching servers:", error);
       }
-    })
-    .then(response => {
-      setBalance(response.data.available_balance);
-    })
-    .catch(error => {
-      console.error('Error fetching balance:', error);
-      setError('⚠️ Failed to load balance. Please try again later.');
-    });
-  }, []);
+    };
       
     return (
 <div class="uni-body pages-index-symbol">
@@ -75,7 +106,7 @@ const Smartrade = () => {
                                     <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style={{paddingLeft: '10px'}}>
                                        <div class="uni-input-wrapper">
                                           <div class="uni-input-placeholder uni-easyinput__placeholder-class" data-v-30449abe="" data-v-2c1047a8="" style={{display: 'none'}}> </div>
-                                          <input disabled="disabled" maxlength="140" step="" enterkeyhint="done" autocomplete="off" type="text" class="uni-input-input"/> 
+                                          <input disabled="disabled" maxlength="140" step="" enterkeyhint="done" autocomplete="off" type="text" value={symbol} class="uni-input-input"/> 
                                        </div>
                                     </uni-input>
                                      
@@ -87,12 +118,12 @@ const Smartrade = () => {
                               <uni-view data-v-2c1047a8="" class="server-click">
                                  <uni-view data-v-2c1047a8="" class="click-layer"></uni-view>
                                  <uni-view data-v-30449abe="" data-v-2c1047a8="" class="uni-easyinput" style={{color: 'rgb(255, 255, 255)'}}>
-                                    <uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border is-disabled " style={{borderColor: 'rgba(255, 255, 255, 0.2)', backgroundColor: 'unset'}}>
+                                    <uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style={{borderColor: 'rgba(255, 255, 255, 0.2)', backgroundColor: 'unset'}}>
                                         
                                        <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style={{paddingLeft: '10px'}}>
                                           <div class="uni-input-wrapper">
-                                             <div class="uni-input-placeholder uni-easyinput__placeholder-class" data-v-30449abe="" data-v-2c1047a8="">Please select a Server</div>
-                                             <input disabled="disabled" maxlength="140" step="" enterkeyhint="done" autocomplete="off" type="text" class="uni-input-input"/> 
+                                             {/* <div class="uni-input-placeholder uni-easyinput__placeholder-class" data-v-30449abe="" data-v-2c1047a8="">Please select a Server</div> */}
+                                             <input disabled="disabled" step="" enterkeyhint="done" autocomplete="off" type="text" value={selectedServer} class="uni-input-input" onClick={() => setShowOverlay(true)} placeholder='Please select a Server'/> 
                                           </div>
                                        </uni-input>
                                         
@@ -202,7 +233,41 @@ const Smartrade = () => {
                      </uni-view>
                      <uni-view data-v-2c1047a8="" style={{height: '60px'}}></uni-view>
                      <uni-view data-v-2c1047a8="" class="create-btn">Create</uni-view>
-                      
+                     {showOverlay && (
+                     <uni-view data-v-2c1047a8="" class="overlay">
+                        <uni-view data-v-2c1047a8="" class="pop-box">
+                           <uni-view data-v-2c1047a8="" class="pop-content">
+                              <uni-view data-v-2c1047a8="" class="close-box"  onClick={() => setShowOverlay(false)}
+                                 >
+                                 <img data-v-2c1047a8="" src="/static/img/close.png" alt=""/>
+                                 </uni-view><uni-view data-v-2c1047a8="" class="server-box">
+                                    <uni-view data-v-2c1047a8="" class="icon-tips">
+                                       <uni-view data-v-2c1047a8="" class="tips-item">
+                                          <uni-view data-v-2c1047a8="" class="busy"></uni-view>
+                                          <uni-view data-v-2c1047a8="" class="text">Busy</uni-view>
+                                          </uni-view>
+                                          <uni-view data-v-2c1047a8="" class="tips-item">
+                                             <uni-view data-v-2c1047a8="" class="idle">
+                                                </uni-view>
+                                                <uni-view data-v-2c1047a8="" class="text">Idle</uni-view>
+                                                </uni-view>
+                                                <uni-view data-v-2c1047a8="" class="tips-item">
+                                                   <uni-view data-v-2c1047a8="" class="expired"></uni-view>
+                                                   <uni-view data-v-2c1047a8="" class="text">Expired</uni-view></uni-view></uni-view>
+                                                   {servers.map((item, index) => (
+                                                   <uni-view data-v-2c1047a8="" key={index} onClick={() => handleServerClick(item.serverhash)}
+                                                   style={{ cursor: 'pointer' }} class="server-item">                                                      
+                                                      <img data-v-2c1047a8="" src="/static/img/S1.png" alt=""/>
+                                                      <uni-view data-v-2c1047a8="" class="item-no">{item.serverhash}<uni-view data-v-2c1047a8="" class="expired-time">{new Date(item.sdate).toLocaleString()}</uni-view></uni-view>
+                                                      <uni-view data-v-2c1047a8="" class="idle">
+                                                         </uni-view>
+                                                         </uni-view>
+                                                         ))}                                                      
+                                                         </uni-view>
+                                                         </uni-view>
+                                                         </uni-view>
+                                                         </uni-view>
+                                                         )}
                   </uni-view>
                </uni-page-body>
             </uni-page-wrapper>

@@ -25,7 +25,7 @@
     } 
   } catch (error) {
     console.error(error);
-    toast.error("Error submitting withdraw request.");
+    // toast.error("Error submitting withdraw request.");
   }
   };
   const handleSendRequest = async () => {
