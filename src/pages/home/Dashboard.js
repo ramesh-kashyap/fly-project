@@ -107,6 +107,7 @@ const Dashboard = () => {
    const allCoins = Object.values(cryptoData);
    const coinsToShow = showAll ? allCoins : allCoins.slice(0, 5);
    const [loading, setLoading] = useState(true);
+   const [balance, setBalance] = useState(null);
 
 
    const [userDetails, setUserDetails] = useState(null);
@@ -130,7 +131,26 @@ const Dashboard = () => {
          fetchUserDetails(); // Fetch user details if token exists
       }
    }, [token]);
+   const fetchBalance = async () => {
+      try {
+      
+          // Make the API request with the Authorization header
+          const response = await Api.get("/availbal", {
+            
+          });
 
+          // Check the response and set the data
+          if (response.data.success) {
+              setBalance(response.data.AvailBalance);
+          }
+
+          setLoading(false);
+      } catch (error) {
+          setLoading(false);
+          console.error(error);
+          console.error("Error fetching withdraws!");
+      }
+  };
 
    return (
 
@@ -157,7 +177,7 @@ const Dashboard = () => {
 
                               </uni-view>
                            ) : (
-                              <p>Loading user details...</p>
+                              <p>NaN</p>
                            )}
                         </uni-view><uni-view
                            data-v-06ae08d2="" class="right"><uni-view data-v-06ae08d2="" class="notice"><img
@@ -174,7 +194,7 @@ const Dashboard = () => {
                         data-v-06ae08d2="" class="balance-card"><uni-view data-v-06ae08d2="" class="first"><uni-view
                            data-v-06ae08d2="" class="balance-title">Your Balance
                            (USDT)</uni-view></uni-view><uni-view data-v-06ae08d2="" class="second"><uni-view
-                              data-v-06ae08d2="" translate="no" class="balance-num">0.0000</uni-view><uni-view
+                              data-v-06ae08d2="" translate="no" class="balance-num">{balance}</uni-view><uni-view
                                  data-v-06ae08d2="" translate="no" class="profit-num">+0.0000<uni-view
                                     data-v-06ae08d2=""
                                     class="today">Yesterday</uni-view></uni-view></uni-view><uni-view

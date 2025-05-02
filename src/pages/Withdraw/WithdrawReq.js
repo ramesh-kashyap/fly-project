@@ -17,18 +17,6 @@ const WithdrawReq = () => {
   }, [])
 
   const withfatch = async () => {
-<<<<<<< HEAD
-    try {
-      const response = await Api.get("/availbal");
-      console.log(response.data);
-      if (response.data) {
-        setAvailableBal(response.data.AvailBalance);
-      }
-    } catch (error) {
-      console.error(error);
-      // toast.error("Error submitting withdraw request.");
-    }
-=======
   try {
     const response = await Api.get("/availbal");
     console.log(response.data);
@@ -39,7 +27,6 @@ const WithdrawReq = () => {
     console.error(error);
     // toast.error("Error submitting withdraw request.");
   }
->>>>>>> 2a4e945d3f5ee1aee1d7ba5f5ad3ddcbc3e1d941
   };
   const handleSendRequest = async () => {
     try {

@@ -86,10 +86,10 @@ const Login = () => {
 
                   </uni-view>
 
-
+                  <Link to="/ForgotPassword">
                   <uni-view data-v-2b56ecaf="" class="forget">Forget Password?</uni-view>
-
-
+                  </Link>
+ 
 
                   <button data-v-2b56ecaf="" class="login" style={{ width: '100%' }} onClick={handleLogin}>Log in</button>
 

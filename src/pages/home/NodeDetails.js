@@ -59,7 +59,10 @@ const NodeDetails = () => {
                       <uni-view data-v-3dcfa33c="" class="page-title">User</uni-view>
                     </uni-view>
                     <uni-view data-v-35b9a113="" data-v-3dcfa33c="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
-                      <uni-view data-v-3dcfa33c="" class="set"><img data-v-3dcfa33c="" src="/static/img/setting.png" alt="" style={{ width: '35px' }} /></uni-view>
+                    <Link to="/Setting">
+                    <uni-view data-v-3dcfa33c="" class="set"><img data-v-3dcfa33c="" src="/static/img/setting.png" alt="" style={{ width: '35px' }} /></uni-view>
+
+                    </Link>
                     </uni-view>
                   </uni-view>
                 </uni-view>
@@ -74,7 +77,7 @@ const NodeDetails = () => {
 
                               </uni-view>
                            ) : (
-                              <p>Loading user details...</p>
+                              <p>NaN</p>
                            )}
                 </uni-view>
                 <uni-view data-v-3dcfa33c="" class="two-group">

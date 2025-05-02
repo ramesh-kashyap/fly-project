@@ -9,21 +9,14 @@ const AddWalletAddress = () => {
 
 const saveAddress = async () => {
   try {
-    const token = localStorage.getItem("authToken");
-
-    const response = await Api.post(
-      "/save-address/${networkType}",
+     const response = await Api.post(
+      `/save-address/${networkType}`,
       {
         address,
         verificationCode,
         networkType  
       },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json"
-        }
-      }
+   
     );
 
     if (response.data?.alreadySaved) {

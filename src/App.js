@@ -8,6 +8,7 @@ import {
 
 import Dashboard from "./pages/home/Dashboard";
 import NodeDetails from "./pages/home/NodeDetails";
+
 import RechargeFunds from "./pages/invest/RechargeFunds";
 import WithdrawReq from "./pages/Withdraw/WithdrawReq";
 import AddWallet from "./pages/Withdraw/AddWallet";
@@ -17,9 +18,12 @@ import History from "./pages/invest/History";
 import Trade from "./pages/team/Trade";
 import Assets from "./pages/Withdraw/Assets";
 import Server from "./pages/profile/Server";
+import ChangePassword from "./pages/profile/ChangePassword";
+import PaymentPassword from "./pages/profile/PaymentPassword";
 import Team from "./pages/team/Team";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
+import ForgotPassword from "./pages/auth/ForgotPassword";
 import Footer from "./components/Footer";
 import TradingChart from "./pages/home/TradingChart";
 import Smartrade from "./pages/home/Smartrade";
@@ -27,6 +31,7 @@ import { AuthProvider } from "./components/AuthContext";
 import { ProtectedRoute, PublicRoute } from './Helper/helper';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Setting from "./pages/home/Setting";
 
 function AppContent() {
     const location = useLocation();
@@ -42,7 +47,9 @@ function AppContent() {
         "/NodeDetails",
         "/RechargeFunds",
         "/AddWalletAddress",
-        "/AddWallet"
+        "/AddWallet",
+        "/ForgotPassword",
+        "/ChangePassword"
     ];
 
     // Check if current path matches any of the above OR dynamic TradingChart route
@@ -60,12 +67,17 @@ function AppContent() {
                     <Route path="/" element={<PublicRoute><Login /></PublicRoute>} />
                     <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
                     <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
+                    <Route path="/ForgotPassword" element={<PublicRoute><ForgotPassword /></PublicRoute>} />
 
                     {/* Protected Routes */}
                     <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+                    <Route path="/Setting" element={<ProtectedRoute><Setting /></ProtectedRoute>} />
+                    <Route path="/ChangePassword" element={<ProtectedRoute><ChangePassword /></ProtectedRoute>} />
                     <Route path="/trade" element={<ProtectedRoute><Trade /></ProtectedRoute>} />
                     <Route path="/assets" element={<ProtectedRoute><Assets /></ProtectedRoute>} />
                     <Route path="/server" element={<ProtectedRoute><Server /></ProtectedRoute>} />
+                    <Route path="/PaymentPassword" element={<ProtectedRoute><PaymentPassword /></ProtectedRoute>} />
+
                     <Route path="/Team" element={<ProtectedRoute><Team /></ProtectedRoute>} />
                     <Route path="/NodeDetails" element={<ProtectedRoute><NodeDetails /></ProtectedRoute>} />
                     <Route path="/WithdrawReq" element={<ProtectedRoute><WithdrawReq /></ProtectedRoute>} />

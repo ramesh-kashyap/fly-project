@@ -1,95 +1,245 @@
 import { useState } from "react";
-import axios from "axios";
+import Api from "../../Requests/Api";
+import { useNavigate, Link } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 const ForgotPassword = () => {
-    const [email, setEmail] = useState("");
-    const [message, setMessage] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
+  const [verificationCode, setVerificationCode] = useState('');
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-       
+  const handleSendRequest = async () => {
     try {
-        const response = await axios.post("http://localhost:5001/api/auth/forgot-password", { email });
-        setMessage(response.data.message);
+      const response = await Api.post('/sendForgotOtp', {
+        email: email.trim() // Make sure 'email' state variable exists
+      });
+  
+      if (response?.data?.success) {
+        toast.success("OTP sent successfully!");
+      } else {
+        toast.error(response?.data?.message || "Failed to send OTP!");
+      }
     } catch (error) {
-        console.error("Forgot Password Error:", error.response?.data || error.message);
-        setMessage(error.response?.data?.message || "Error sending reset link");
+      console.error('Error sending OTP:', error);
+      toast.error(error?.response?.data?.message || "Failed to send OTP!");
     }
-    };
+  };
+  
+  const handleForgotPassword = async () => {
+    if (password !== passwordConfirmation) {
+      toast.error("Passwords do not match!");
+      return;
+    }
+  
+    try {
+      const response = await Api.post('/forgotPassword', {
+        email,
+        password,
+        password_confirmation: passwordConfirmation,
+        verification_code: verificationCode
+      });
+  
+      if (response.data.success) {
+        toast.success(response.data.message);
+        setEmail('');
+        setPassword('');
+        setPasswordConfirmation('');
+        setVerificationCode('');
+        navigate('/login');
+
+      }
+     
+      else {
+        toast.error(response.data.message || 'Something went wrong.');
+      }
+    } catch (err) {
+      console.error('Error:', err.response);
+      toast.error(err.response?.data?.message || "Server error");
+    }
+  };
+  
+
+ 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center pt-[100px] bg-gray-50 p-6">
-      <div className="absolute top-6 flex justify-between w-full px-6">
-        <img
-          alt="MeshNode Logo"
-          loading="lazy"
-          width="163"
-          height="40"
-          className="hidden sm:flex"
-          src="/upnl/assets/icons/logo_meshchain_full_text.svg"
-        />
-        <img
-          alt="Logo"
-          loading="lazy"
-          width="40"
-          height="40"
-          className="flex sm:hidden"
-          src="/upnl/assets/icons/logo_meshchain.svg"
-        />
-        {/* <div className="flex">
-          <button className="w-[80px] md:w-[100px] mr-2 md:mr-4 py-2 px-2 md:px-4 bg-green-500 text-white rounded-[30px] shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">
-            Log In
-          </button>
-          <button className="w-[100px] py-2 px-2 md:px-4 bg-[#171717] text-white rounded-[30px] shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">
-            Sign Up
-          </button>
-        </div> */}
-      </div>
-      <div className="bg-white max-w-[385px] rounded-[20px] py-6 px-6 md:px-8 w-full shadow-lg">
-        <h2 className="text-[28px] font-semibold text-gray-800 text-center mb-2">
-        Forgot Password
-        </h2>
-        
-        <form onSubmit={handleSubmit}> {/* Change here */}
-          <div className="mb-3">
-          <label className="block text-sm font-medium text-gray-700">
-          Email
-            </label>
-            <div className="relative">
-
-            <input
-              name="email"
-              type="text"
-              value={email} onChange={(e) => setEmail(e.target.value)} 
-              placeholder="Enter email"
-              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-[12px] shadow-sm focus:outline-none focus:ring focus:ring-green-500"
-            />
-          </div>
-          </div>
-
-         
-          
-          <button
-            type="submit"
-            className="w-full h-[46px] py-2 px-4 bg-green-500 font-medium text-white rounded-[30px] shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 mt-4"
-          >
-            Send Reset Link
-          </button>
-        </form>
-
-        {/* <div className="mt-6 text-center">
-          <span className="text-sm text-gray-600">
-            Don't have an account? 
-            <a className="text-gray-800 underline font-semibold" href="/register">
-              Sign Up
-            </a>
-          </span>
-        </div> */}
-        <p>{message}</p>
-
-      </div>
-    </div>
-  );
+<div class="uni-body pages-user-changepwd">
+      <uni-app class="uni-app--maxwidth">
+        <uni-page data-page="pages/user/changepwd">
+          <uni-page-wrapper>
+            <uni-page-body>
+              <uni-view data-v-34a1f189="" class="page">
+                <uni-view data-v-34a1f189="" class="ellipse"></uni-view>
+                <uni-view data-v-34a1f189="" class="top-box">
+                  <uni-view data-v-636c600c="" data-v-34a1f189="" class="uni-row" style={{ marginLeft: '0px', marginRight: '0px' }}><uni-view data-v-35b9a113="" data-v-34a1f189="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
+                    <Link to="/Setting">
+                      <uni-view data-v-34a1f189="" class="back"><img data-v-34a1f189="" src="/static/img/back.png" alt="" style={{ width: '35px' }} /></uni-view>
+                    </Link>
+                  </uni-view>
+                    <uni-view data-v-35b9a113="" data-v-34a1f189="" class="uni-col uni-col-12" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
+                      <uni-view data-v-34a1f189="" class="page-title">Forgot Password</uni-view>
+                    </uni-view>
+                    <uni-view data-v-35b9a113="" data-v-34a1f189="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}></uni-view></uni-view></uni-view>
+                <uni-view data-v-34a1f189="" class="content">
+                <uni-view data-v-0c515aee="" class="input-layer">
+                     <uni-view data-v-0c515aee="" class="input-title">Email Address</uni-view>
+                     <uni-view data-v-30449abe="" data-v-0c515aee="" class="uni-easyinput" style={{color: 'rgb(255, 255, 255)'}}>
+                        <uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style={{borderColor: 'rgba(255, 255, 255, 0.2)', backgroundColor: 'unset'}}>
+                           <uni-view data-v-30449abe="" class="content-clear-icon"><img data-v-30449abe="" src="/static/img/email-fill.png" alt=""/></uni-view>
+                             
+                           <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style={{paddingLeft: '10px'}}>
+                              <div class="uni-input-wrapper">
+                                 <div class="uni-input-placeholder uni-easyinput__placeholder-class" data-v-30449abe="" data-v-0c515aee="" style={{display: 'none'}}>Please Enter Email Address</div>
+                                 <input maxlength="140" step="" enterkeyhint="done"  type="email"value={email}
+                                  onChange={(e) => setEmail(e.target.value)} class="uni-input-input"/>  
+                              </div>
+                           </uni-input>
+                             
+                           <uni-text data-v-45a6b600="" data-v-30449abe="" class="uni-icons content-clear-icon " style={{color: 'rgb(192, 196, 204)', fontsize: '24px'}}><span></span></uni-text>
+                        </uni-view>
+                     </uni-view>
+                  </uni-view>
+                  <uni-view data-v-34a1f189="" class="input-layer">
+                    <uni-view data-v-34a1f189="" class="input-title">New Password</uni-view>
+                    <uni-view data-v-30449abe="" data-v-34a1f189="" class="uni-easyinput" style={{ color: 'rgb(255, 255, 255)' }}><uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style={{ borderColor: 'rgba(255, 255, 255, 0.2)', backgroundColor: 'unset' }}> <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style={{ paddingLeft: '10px' }}>
+                      <div class="uni-input-wrapper">
+                        <input maxlength="140" step="" enterkeyhint="done" autocomplete="off" type="password" class="uni-input-input" value={password}
+                          onChange={(e) => setPassword(e.target.value)} placeholder="Please enter new password" />
+                      </div>
+                    </uni-input>
+                    </uni-view>
+                    </uni-view>
+                  </uni-view>
+                  <uni-view data-v-34a1f189="" class="input-layer">
+                    <uni-view data-v-34a1f189="" class="input-title">Confirm Password</uni-view>
+                    <uni-view data-v-30449abe="" data-v-34a1f189="" class="uni-easyinput" style={{ color: 'rgb(255, 255, 255)' }}><uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style={{ borderColor: 'rgba(255, 255, 255, 0.2)', backgroundColor: 'unset' }}> <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style={{ paddingLeft: '10px' }}>
+                      <div class="uni-input-wrapper">
+                        <input maxlength="140" step="" enterkeyhint="done" autocomplete="off" type="password" class="uni-input-input" value={passwordConfirmation}
+                          onChange={(e) => setPasswordConfirmation(e.target.value)} placeholder="Please enter your new password again" />
+                      </div>
+                    </uni-input>
+                    </uni-view>
+                    </uni-view></uni-view>
+                  <uni-view data-v-b918f992="" class="input-layer">
+                    <uni-view data-v-b918f992="" class="input-title">Verification Code</uni-view>
+                    <uni-view data-v-30449abe="" data-v-b918f992="" class ="uni-easyinput" style={{ color: 'rgb(255, 255, 255)' }}>
+                      <uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style={{ borderColor: 'rgba(255, 255, 255, 0.2)', backgroundColor: 'unset' }}>
+                        <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style={{ paddingRight: '10px', paddingLeft: '10px' }}>
+                          <div class="uni-input-wrapper">
+                            {/* <div class="uni-input-placeholder uni-easyinput__placeholder-class" data-v-30449abe="" data-v-b918f992=""></div> */}
+                            <input maxlength="140" step="" enterkeyhint="done" autocomplete="off" value={verificationCode} onChange={(e) => setVerificationCode(e.target.value)} type="" placeholder="Please Enter Verification Code" class="uni-input-input" />
+                          </div>
+                        </uni-input>
+                        <uni-view data-v-b918f992="" class="resend" onClick={handleSendRequest}>Send</uni-view>
+                      </uni-view>
+                    </uni-view>
+                  </uni-view>
+                </uni-view>
+                <uni-view data-v-34a1f189="" class="submit"onClick={handleForgotPassword}>Submit</uni-view>
+              </uni-view>
+            </uni-page-body>
+          </uni-page-wrapper>
+        </uni-page>
+      </uni-app>
+    </div>  );
 };
 
 export default ForgotPassword;
+
+
+//  <div class="uni-body pages-login-forget">
+// <uni-app class="uni-app--maxwidth">
+//    <uni-page data-page="pages/login/forget">
+        
+//       <uni-page-wrapper>
+//          <uni-page-body>
+//             <uni-view data-v-0c515aee="" class="page">
+//                <uni-view data-v-0c515aee="" class="ellipse"></uni-view>
+//                <uni-view data-v-0c515aee="" class="top-box">
+//                   <uni-view data-v-636c600c="" data-v-0c515aee="" class="uni-row" style="margin-left: 0px; margin-right: 0px;">
+//                      <uni-view data-v-35b9a113="" data-v-0c515aee="" class="uni-col uni-col-6" style="padding-left: 0px; padding-right: 0px;">
+//                         <uni-view data-v-0c515aee="" class="back"><img data-v-0c515aee="" src="/static/img/back.png" alt="" style="width: 35px;"/></uni-view>
+//                      </uni-view>
+//                      <uni-view data-v-35b9a113="" data-v-0c515aee="" class="uni-col uni-col-12" style="padding-left: 0px; padding-right: 0px;">
+//                         <uni-view data-v-0c515aee="" class="page-title">Forget</uni-view>
+//                      </uni-view>
+//                      <uni-view data-v-35b9a113="" data-v-0c515aee="" class="uni-col uni-col-6" style="padding-left: 0px; padding-right: 0px;"></uni-view>
+//                   </uni-view>
+//                </uni-view>
+//                <uni-view data-v-0c515aee="" class="content">
+//                   <uni-view data-v-0c515aee="" class="input-layer">
+//                      <uni-view data-v-0c515aee="" class="input-title">Email Address</uni-view>
+//                      <uni-view data-v-30449abe="" data-v-0c515aee="" class="uni-easyinput" style="color: rgb(255, 255, 255);">
+//                         <uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style="border-color: rgba(255, 255, 255, 0.2); background-color: unset;">
+//                            <uni-view data-v-30449abe="" class="content-clear-icon"><img data-v-30449abe="" src="/static/img/email-fill.png" alt=""></uni-view>
+                             
+//                            <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style="padding-left: 10px;">
+//                               <div class="uni-input-wrapper">
+//                                  <div class="uni-input-placeholder uni-easyinput__placeholder-class" data-v-30449abe="" data-v-0c515aee="" style="display: none;">Please Enter Email Address</div>
+//                                  <input maxlength="140" step="" enterkeyhint="done" autocomplete="off" type="" class="uni-input-input">  
+//                               </div>
+//                            </uni-input>
+                             
+//                            <uni-text data-v-45a6b600="" data-v-30449abe="" class="uni-icons content-clear-icon uniui-clear" style="color: rgb(192, 196, 204); font-size: 24px;"><span></span></uni-text>
+//                         </uni-view>
+//                      </uni-view>
+//                   </uni-view>
+//                   <uni-view data-v-0c515aee="" class="input-layer">
+//                      <uni-view data-v-0c515aee="" class="input-title">New Password</uni-view>
+//                      <uni-view data-v-30449abe="" data-v-0c515aee="" class="uni-easyinput" style="color: rgb(255, 255, 255);">
+//                         <uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style="border-color: rgba(255, 255, 255, 0.2); background-color: unset;">
+                             
+//                            <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style="padding-left: 10px;">
+//                               <div class="uni-input-wrapper">
+//                                  <div class="uni-input-placeholder uni-easyinput__placeholder-class" data-v-30449abe="" data-v-0c515aee="" style="display: none;">Please enter new password</div>
+//                                  <input maxlength="140" step="" enterkeyhint="done" autocomplete="off" type="password" class="uni-input-input">  
+//                               </div>
+//                            </uni-input>
+//                            <uni-text data-v-45a6b600="" data-v-30449abe="" class="uni-icons content-clear-icon uniui-eye-filled" style="color: rgb(192, 196, 204); font-size: 22px;"><span></span></uni-text>
+//                            <uni-text data-v-45a6b600="" data-v-30449abe="" class="uni-icons content-clear-icon uniui-clear" style="color: rgb(192, 196, 204); font-size: 24px;"><span></span></uni-text>
+//                         </uni-view>
+//                      </uni-view>
+//                   </uni-view>
+//                   <uni-view data-v-0c515aee="" class="input-layer">
+//                      <uni-view data-v-0c515aee="" class="input-title">Confirm Password</uni-view>
+//                      <uni-view data-v-30449abe="" data-v-0c515aee="" class="uni-easyinput" style="color: rgb(255, 255, 255);">
+//                         <uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style="border-color: rgba(255, 255, 255, 0.2); background-color: unset;">
+                             
+//                            <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style="padding-left: 10px;">
+//                               <div class="uni-input-wrapper">
+//                                  <div class="uni-input-placeholder uni-easyinput__placeholder-class" data-v-30449abe="" data-v-0c515aee="">Please enter your new password again</div>
+//                                  <input maxlength="140" step="" enterkeyhint="done" autocomplete="off" type="password" class="uni-input-input">  
+//                               </div>
+//                            </uni-input>
+                             
+//                         </uni-view>
+//                      </uni-view>
+//                   </uni-view>
+//                   <uni-view data-v-0c515aee="" class="input-layer">
+//                      <uni-view data-v-0c515aee="" class="input-title">Verification Code</uni-view>
+//                      <uni-view data-v-30449abe="" data-v-0c515aee="" class="uni-easyinput" style="color: rgb(255, 255, 255);">
+//                         <uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style="border-color: rgba(255, 255, 255, 0.2); background-color: unset;">
+                             
+//                            <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style="padding-right: 10px; padding-left: 10px;">
+//                               <div class="uni-input-wrapper">
+//                                  <div class="uni-input-placeholder uni-easyinput__placeholder-class" data-v-30449abe="" data-v-0c515aee="">Please Enter Verification Code</div>
+//                                  <input maxlength="140" step="" enterkeyhint="done" autocomplete="off" type="" class="uni-input-input">  
+//                               </div>
+//                            </uni-input>
+                             
+//                            <uni-view data-v-0c515aee="" class="resend">Send</uni-view>
+//                         </uni-view>
+//                      </uni-view>
+//                   </uni-view>
+//                </uni-view>
+//                <uni-view data-v-0c515aee="" class="submit">Submit</uni-view>
+//             </uni-view>
+//          </uni-page-body>
+//       </uni-page-wrapper>
+//    </uni-page>
+   
+// </uni-app>
+
+// </div> 

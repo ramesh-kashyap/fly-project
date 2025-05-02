@@ -5,37 +5,24 @@ import Api from "../../Requests/Api";
 import { toast } from 'react-toastify';
 
 const History = () => {
-    const [investments, setInvestments] = useState([]);
+    const [buy_funds, setInvestments] = useState([]);
     const [loading, setLoading] = useState(true);
 
     // Fetch investments when component mounts
     useEffect(() => {
         const fetchInvestments = async () => {
             try {
-                // Get the JWT token from localStorage or sessionStorage
-                const token = localStorage.getItem("authToken"); // Assuming the token is stored in localStorage
-
-                if (!token) {
-                    throw new Error("No token found, please login again.");
-                }
-
-                // Make the API request with the Authorization header
-                const response = await Api.get("/investments", {
-                    headers: {
-                        Authorization: `Bearer ${token}` // Add the actual token here
-                    }
-                });
-
+                const response = await Api.get("/investments");
                 // Check the response and set the data
                 if (response.data.success) {
-                    setInvestments(response.data.investments);
+                    setInvestments(response.data.buy_funds);
                 }
 
                 setLoading(false);
             } catch (error) {
                 setLoading(false);
                 console.error(error);
-                toast.error("Error fetching investments!");
+                // toast.error("Error fetching investments!");
             }
         };
 
@@ -60,48 +47,46 @@ const History = () => {
                     <uni-view data-v-35b9a113="" data-v-b0a5c882="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}></uni-view></uni-view></uni-view><uni-view data-v-b0a5c882="" class="top-group"><uni-view data-v-b0a5c882="" class="top-btn selected">USDT</uni-view><uni-view data-v-b0a5c882="" class="top-btn">Fiat Currency</uni-view></uni-view>
                     {loading ? (
                         <p>Loading...</p>
-                    ) : investments.length === 0 ? (
-                        <p>No investments found</p>
+                    ) : buy_funds.length === 0 ? (
+                        <uni-view data-v-b0a5c882="" ><uni-view data-v-b0a5c882="" class="nodata"><img data-v-b0a5c882="" src="/static/img/nodata.png" alt="" />No Data</uni-view></uni-view>
                     ) : (
                         <uni-view data-v-b0a5c882="" class="content">
 
-                            {investments.map((investment, index) => (
+                            {buy_funds.map((buy_fund, index) => (
 
                                 <uni-view data-v-b0a5c882="" class="item">
                                     <uni-view data-v-b0a5c882="" class="first">
-                                        <uni-view data-v-b0a5c882="" class="left">WD1HwGup4aqkULZD</uni-view>
+                                        <uni-view data-v-b0a5c882="" class="left">{buy_fund.txn_no}</uni-view>
                                         <uni-view
                                             data-v-b0a5c882=""
                                             style={{
-                                                color: investment.status === 'Decline' ? 'red' :
-                                                    (investment.status === 'Active' ? 'green' : 'orange'),
+                                                color: buy_fund.status === 'Decline' ? 'red' :
+                                                    (buy_fund.status === 'Active' ? 'green' : 'orange'),
                                             }}
                                         >
-                                            {investment.status}
+                                            {buy_fund.status}
                                         </uni-view>
 
                                     </uni-view>
                                     <uni-view data-v-b0a5c882="" class="h-line"></uni-view>
                                     <uni-view data-v-b0a5c882="" class="layout">
                                         <uni-view data-v-b0a5c882="" class="title">Create Time</uni-view>
-                                        <uni-view data-v-b0a5c882="" class="value">{new Date(investment.created_at).toLocaleDateString()}</uni-view>
+                                        <uni-view data-v-b0a5c882="" class="value">{new Date(buy_fund.created_at).toLocaleDateString()}</uni-view>
                                     </uni-view>
                                     <uni-view data-v-b0a5c882="" class="layout">
                                         <uni-view data-v-b0a5c882="" class="title">Amount</uni-view>
-                                        <uni-view data-v-b0a5c882="" class="value">{investment.amount} USDT</uni-view>
+                                        <uni-view data-v-b0a5c882="" class="value">{buy_fund.amount} USDT</uni-view>
                                     </uni-view>
                                     <uni-view data-v-b0a5c882="" class="layout">
                                         <uni-view data-v-b0a5c882="" class="title">Type</uni-view>
-                                        <uni-view data-v-b0a5c882="" class="value">TRC20</uni-view>
+                                        <uni-view data-v-b0a5c882="" class="value">{buy_fund.type}</uni-view>
                                     </uni-view>
                                 </uni-view>
                             ))}
 
                         </uni-view>
 
-                    )}
-                    <uni-view data-v-b0a5c882="" class="content" style={{ display: 'none' }}><uni-view data-v-b0a5c882="" class="nodata"><img data-v-b0a5c882="" src="/static/img/nodata.png" alt="" />No Data</uni-view></uni-view>
-
+                )}
                 </uni-view></uni-page-body></uni-page-wrapper></uni-page>
             </uni-app>
         </div>
