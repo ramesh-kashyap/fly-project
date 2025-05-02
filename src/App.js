@@ -10,6 +10,8 @@ import Trade from "./pages/team/Trade";
 import Assets from "./pages/Withdraw/Assets";
 import Server from "./pages/profile/Server";
 import Team from "./pages/team/Team";
+import Level from "./pages/team/Level";
+
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Footer from "./components/Footer";
@@ -61,6 +63,8 @@ function App() {
                         <Route path="/assets" element={<ProtectedRoute><Assets /></ProtectedRoute>} />
                         <Route path="/server" element={<ProtectedRoute><Server /></ProtectedRoute>} />
                         <Route path="/Team" element={<ProtectedRoute><Team /></ProtectedRoute>} />
+                        <Route path="/Level" element={<ProtectedRoute><Level/></ProtectedRoute>} />
+
                         <Route path="/NodeDetails" element={<ProtectedRoute><NodeDetails /></ProtectedRoute>} />
                         <Route path="/WithdrawReq" element={<ProtectedRoute><WithdrawReq /></ProtectedRoute>} />
                         <Route path="/History" element={<ProtectedRoute><History /></ProtectedRoute>} />
