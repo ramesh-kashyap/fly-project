@@ -2,30 +2,48 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Api from "../../Requests/Api";
 import Loader from "../../components/Loader";
+import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+
 
 const Level = () => {
+      const [activeTab, setActiveTab] = useState("running");
+    
+    const location = useLocation();
     const [level, setLevel] = useState([]);
     const [error, setError] = useState("");
     const [users, setUsers] = useState([]);
     const [search, setSearch] = useState("");
     const [page, setPage] = useState(1);
     const [limit] = useState(10); // Default limit
-    const [selectedLevel, setSelectedLevel] = useState(0);
+    const [selectedLevel, setSelectedLevel] = useState(null);
     const [loading, setLoading] = useState(false);
     const { lvl } = useParams(); // 🔹 Get the 'lvl' parameter from URL
 
     useEffect(() => {
         loadUsers();
-    }, [page, selectedLevel]);
+    }, []);
+
     const loadUsers = async () => {
         setLoading(true);
         try {
-            const reaponse = await Api.get('auth/list', { limit, page, selected_level: selectedLevel, search });
+            const queryParams = new URLSearchParams(location.search);
+            const level = queryParams.get("selected_level"); // Get value from query param
+            setSelectedLevel(level);
+
+            console.log(level);
+            const reaponse = await Api.get("list", {
+                params: { // ✅ Ensure query parameters are passed correctly
+                    selected_level: level || 0
+                },
+            });
 
             if (reaponse.data.status) {
                 setUsers(reaponse.data.direct_team);
-                console.log(reaponse.data.direct_team);
             }
+
+            // console.log(users);
 
         } catch (error) {
             console.error("❌ Error fetching users:", error);
@@ -46,6 +64,9 @@ const Level = () => {
     };
 
 
+
+
+
     const handleSearch = (e) => {
         setSearch(e.target.value);
     };
@@ -56,97 +77,141 @@ const Level = () => {
         loadUsers();
     };
 
+
     const handleLevelChange = (e) => {
         setSelectedLevel(e.target.value);
         setPage(1); // Reset page on level change
     };
     // ✅ Show a loader while fetching data
     if (loading) {
-        return <Loader />;
+        return <Loader />
     }
-    
+  return (
+    <div class="uni-body pages-trade-trade">
+      <uni-app class="uni-app--showtabbar uni-app--maxwidth">
+        <uni-page data-page="pages/trade/trade">
+          <uni-page-wrapper>
+            <uni-page-body>
+              <uni-view data-v-7cdca4f6="" class="page">
+                <uni-view data-v-7cdca4f6="" class="ellipse"></uni-view>
 
-   
 
-    return (
-        <div className="flex-1 overflow-y-auto px-4 md:px-10 lg:px-10 xl:px-20 pt-5 pb-[88px] md:pb-[20px] bg-[#F1F1F1]">
-            <div className="w-full mt-10 flex justify-center text-primary">
-                <div className="w-full max-w-[1440px] rounded-lg">
 
-                    <div className="overflow-x-auto">
-                        <table className="w-full border-collapse">
-                            <thead>
-                                <tr className="text-secondary bg-gray-100">
-                                    <th className="text-left py-2 px-4 font-medium text-[12px]">Name</th>
-                                    <th className="text-right py-2 px-4 font-medium text-[12px]">Join Date</th>
-                                    <th className="text-right py-2 px-4 font-medium text-[12px] hidden md:table-cell">Price</th>
-                                    <th className="text-right py-2 px-4 font-medium text-[12px]">
-                                        <span className="hidden md:inline-block">Total USD</span>
-                                        <span className="md:hidden">USD</span>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {users.map((user, index) => (
-                                    <tr key={index} className="border-t h-[72px]">
-                                        <td className="py-4 px-4 flex items-center space-x-2 lg:space-x-3 text-sm">
-                                            <img
-                                                src="/upnl/assets/icons/icon-referrals.svg"
-                                              
-                                                width="40"
-                                                height="40"
-                                                className="color-transparent"
-                                            />
-                                            <span>{user.name} - {user.username}</span>
-                                        </td>
-                                        <td className="py-4 px-4 text-right text-sm">
-                                            <span>{formatDate(user.created_at)}</span>
-                                        </td>
-                                        <td className="py-4 px-4 text-primary text-right text-sm hidden md:table-cell">
-                                            <span className="text-secondary">{user.active_status}</span>
-                                        </td>
-                                        <td className="py-4 px-4 text-primary text-right text-sm">
-                                            <div className="flex flex-col md:flex-row justify-end gap-1">
-                                                <p>
-                                                    <span>{user.package?user.package:0} USDT</span>
-                                                </p>
-                                                <p className="block md:hidden text-secondary text-sm">
-                                                    <span>Price: {user.package} USDT</span>
-                                                </p>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
+   <uni-view data-v-1011963f="" class="top-box">
+                  <uni-view data-v-636c600c="" data-v-1011963f="" class="uni-row" style={{ marginLeft: '0px', marginRight: '0px' }}>
+                    <uni-view data-v-35b9a113="" data-v-1011963f="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+ <Link to="/Team">   
+                        <uni-view data-v-1011963f="" class="back"><img data-v-1011963f="" src="/static/img/back.png" alt="" style={{ width: '35px' }} /></uni-view>
+                   </Link>
 
-                </div>
-            </div>
-            <div className="fixed bottom-0 w-full bg-white flex md:hidden justify-around shadow-lg">
-                <a className="flex w-1/5 p-[12px] flex-col items-center" href="dashboard">
-                    <img alt="Overview Icon" loading="lazy" width="20" height="20" src="upnl/assets/icons/icon-overview.svg" />
-                    <span className="text-xs mt-1 text-gray-400">Overview</span>
-                </a>
-                <a className="flex w-1/5 p-[12px] flex-col items-center" href="Node">
-                    <img alt="My Nodes Icon" loading="lazy" width="20" height="20" src="upnl/assets/icons/icon-nodes.svg" />
-                    <span className="text-xs mt-1 text-gray-400">Nodes</span>
-                </a>
-                <a className="flex w-1/5 p-[12px] flex-col items-center" href="team">
-                    <img alt="Referrals Icon" loading="lazy" width="20" height="20" src="upnl/assets/icons/icon-referrals.svg" />
-                    <span className="text-xs mt-1 text-gray-400">Referrals</span>
-                </a>
-                <a className="flex w-1/5 p-[12px] flex-col items-center" href="wallet">
-                    <img alt="Wallet Icon" loading="lazy" width="20" height="20" src="upnl/assets/icons/icon-wallet.svg" />
-                    <span className="text-xs mt-1 text-green-500">Wallet</span>
-                </a>
-                <a className="flex w-1/5 p-[12px] flex-col items-center" href="Profile">
-                    <img alt="Profile Icon" loading="lazy" width="20" height="20" src="upnl/assets/icons/icon-wallet.svg" />
-                    <span className="text-xs mt-1 text-green-500">Profile</span>
-                </a>
-            </div>
-        </div>
-    );
+                    </uni-view>
+                    <uni-view data-v-35b9a113="" data-v-1011963f="" class="uni-col uni-col-12" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
+                      <uni-view data-v-1011963f="" class="page-title">Level Team</uni-view>
+                    </uni-view>
+                    <uni-view data-v-35b9a113="" data-v-1011963f="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}></uni-view>
+                  </uni-view>
+                </uni-view>
+
+
+
+                {activeTab === "running" ? (
+                  <uni-view data-v-b7dd60dc="" class="history-box">
+
+{users.map((user, index) => (
+
+
+
+                    <uni-view data-v-b7dd60dc="" class="item-box"  key={index}>
+                      <uni-view data-v-b7dd60dc="" class="history-item">
+                        <uni-view data-v-b7dd60dc="" class="first">
+                          <uni-view data-v-b7dd60dc="" class="left">
+                            <img
+                              data-v-b7dd60dc=""
+                              src="/static/img/team-people.png"
+                              alt=""
+                            />
+                            {user.name|| "user"}
+                          </uni-view>
+                          <uni-view data-v-b7dd60dc="" class="right">
+                          {user.active_status}
+                          </uni-view>
+                        </uni-view>
+
+                        <uni-view data-v-b7dd60dc="" class="h-line"></uni-view>
+                        <uni-view
+                          data-v-542626a5=""
+                          data-v-b7dd60dc=""
+                          class="count-down"
+                        >
+                          <img
+                            data-v-542626a5=""
+                            src="/static/img/time.png"
+                            alt=""
+                          />
+                        </uni-view>
+                        <uni-view data-v-b7dd60dc="" class="text-line">
+                          <uni-view data-v-b7dd60dc="" class="title">
+                          User ID
+                          </uni-view>
+                          <uni-view data-v-b7dd60dc="" class="value">
+                          {user.username}                           </uni-view>
+                        </uni-view>
+                        <uni-view data-v-b7dd60dc="" class="text-line">
+                          <uni-view data-v-b7dd60dc="" class="title">
+                            Join Date
+                          </uni-view>
+                          <uni-view data-v-b7dd60dc="" class="value">
+                          {formatDate(user.jdate)}
+                          </uni-view>
+                        </uni-view>
+                      
+                        <uni-view data-v-b7dd60dc="" class="text-line">
+                          <uni-view data-v-b7dd60dc="" class="title">
+                            Investment Amount
+                          </uni-view>
+                          <uni-view data-v-b7dd60dc="" class="value">
+                         $ {Number(user.package,).toFixed(2)}
+                          </uni-view>
+                        </uni-view>
+                       
+                        <uni-view
+                          data-v-b7dd60dc=""
+                          style={{ height: "10px" }}
+                        ></uni-view>
+                      </uni-view>
+                    </uni-view>
+
+
+
+
+))}
+
+
+
+
+
+                  </uni-view>
+                ) : (
+                  <uni-view data-v-7cdca4f6="" class="history-box">
+                    <uni-view data-v-7cdca4f6="" class="nodata">
+                      <img
+                        data-v-7cdca4f6=""
+                        src="/static/img/nodata.png"
+                        alt=""
+                      />
+                      No Data
+                    </uni-view>
+                  </uni-view>
+                )}
+              </uni-view>
+            </uni-page-body>
+          </uni-page-wrapper>
+        </uni-page>
+      </uni-app>
+    </div>
+  );
 };
 
 export default Level;
+
