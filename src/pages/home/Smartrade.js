@@ -2,11 +2,18 @@ import React, { useEffect, useState } from 'react';
 
 import { useNavigate, useLocation } from 'react-router-dom';
 import Api from "../../Requests/Api";
-
+import { Toaster, toast } from 'react-hot-toast';
 const Smartrade = () => {
    const [showOverlay, setShowOverlay] = useState(false);
   const [selectedServer, setSelectedServer] = useState('');
   const [selectedServerInfo, setSelectedServerInfo] = useState(null);
+  const [selectedPeriod, setSelectedPeriod] = useState('');
+  const [agreeOrReject, setAgreeOrReject] = useState('');
+  const navigate = useNavigate();
+     const location = useLocation();
+  const [symbol, setSymbol] = useState("");
+  const [servers, setServers] = useState([]);
+  const [amount, setAmount] = useState('');
 
   const handleServerClick = (serverhash) => {
     setSelectedServer(serverhash);
@@ -14,12 +21,7 @@ const Smartrade = () => {
     setSelectedServerInfo(foundServer);
     setShowOverlay(false);
   };  
-     const navigate = useNavigate();
-     const location = useLocation();
-  const [symbol, setSymbol] = useState("");
-  const [servers, setServers] = useState([]);
-  const [amount, setAmount] = useState('');
-
+     
   useEffect(() => {
     if (location.state?.symbol) {
       setSymbol(location.state.symbol);
@@ -60,7 +62,7 @@ const Smartrade = () => {
       try {
         const response = await Api.get('/fetchservers');
         console.log(response.data);
-        if (response.data?.success) {
+        if (response.data?.success) {         
           setServers(response.data.server); // or .servers if you update backend
         } else {
           console.error("API did not return success");
@@ -69,12 +71,38 @@ const Smartrade = () => {
         console.error("Error fetching servers:", error);
       }
     };
+    const postData = {
+      symbol: symbol,
+      selectedServer: selectedServer,
+      amount: amount,
+      period: selectedPeriod,         // either selectedPeriod or selectedPeriodEnd
+      buyInsurance: agreeOrReject     // value: 'agree' or 'reject'
+    };
+    
+    const sendtrade = async () => {
+      console.log(postData);
+      try {
+        const response = await Api.post('/sendtrade',{postData});
+        console.log(response.data);
+        if (response.data?.success) {
+         console.log(response.data);
+         navigate('/trade');
+         toast.success('Trade Buy successfully:', response.data.message);
+        } else {
+          toast.error('Trade not Buying:');
+        }
+      } catch (error) {
+        console.error("Somthings Wrong Try Again:", error);
+      }
+    };
+    
       
     return (
 <div class="uni-body pages-index-symbol">
       <uni-app class="uni-app--maxwidth">
          <uni-page data-page="pages/index/SmartTrade">
             <uni-page-wrapper>
+            <Toaster position="top-right" reverseOrder={false} />
                <uni-page-body>
                   <uni-view data-v-2c1047a8="" class="page">
                      <uni-view data-v-2c1047a8="" class="ellipse"></uni-view>
@@ -155,16 +183,16 @@ const Smartrade = () => {
                                  <uni-view data-v-2c1047a8="" class="input-title">Period (Hour)</uni-view>
                                  {selectedServerInfo && (
                                  <uni-view data-v-2c1047a8="" class="period-box">
-                                    <uni-view data-v-2c1047a8="" class="period-item">{selectedServerInfo.period}</uni-view>
-                                    <uni-view data-v-2c1047a8="" class="period-item">{selectedServerInfo.period_end}</uni-view>
+                                    <uni-view data-v-2c1047a8="" class="period-item" style={{ backgroundColor: selectedPeriod === selectedServerInfo.period ? '#35f7e7' : '' }} onClick={() => setSelectedPeriod(selectedServerInfo.period)}>{selectedServerInfo.period}</uni-view>
+                                    <uni-view data-v-2c1047a8="" class="period-item" style={{ backgroundColor: selectedPeriod === selectedServerInfo.period_end ? '#35f7e7' : '' }} onClick={() => setSelectedPeriod(selectedServerInfo.period_end)}>{selectedServerInfo.period_end}</uni-view>
                                  </uni-view>
                                  )}
                               </uni-view>
                               <uni-view data-v-2c1047a8="" class="input-item">
                                  <uni-view data-v-2c1047a8="" class="input-title">Buy Insurance </uni-view>
                                  <uni-view data-v-2c1047a8="" class="period-box">
-                                    <uni-view data-v-2c1047a8="" class="period-item">Agree</uni-view>
-                                    <uni-view data-v-2c1047a8="" class="period-item">Reject</uni-view>
+                                    <uni-view data-v-2c1047a8="" class="period-item" style={{ backgroundColor: agreeOrReject === 'agree' ? '#35f7e7' : '' }} onClick={() => setAgreeOrReject('agree')}>Agree</uni-view>
+                                    <uni-view data-v-2c1047a8="" class="period-item" style={{ backgroundColor: agreeOrReject === 'reject' ? '#35f7e7' : '' }} onClick={() => setAgreeOrReject('reject')}>Reject</uni-view>
                                  </uni-view>
                               </uni-view>
                         </uni-view>
@@ -267,7 +295,7 @@ const Smartrade = () => {
                         </uni-checkbox-group>
                      </uni-view>
                      <uni-view data-v-2c1047a8="" style={{height: '60px'}}></uni-view>
-                     <uni-view data-v-2c1047a8="" class="create-btn">Create</uni-view>
+                     <uni-view data-v-2c1047a8="" class="create-btn" onClick={()=>sendtrade()}>Create</uni-view>
                      {showOverlay && (
                      <uni-view data-v-2c1047a8="" class="overlay">
                         <uni-view data-v-2c1047a8="" class="pop-box">
