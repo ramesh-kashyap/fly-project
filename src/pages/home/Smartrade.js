@@ -6,9 +6,12 @@ import Api from "../../Requests/Api";
 const Smartrade = () => {
    const [showOverlay, setShowOverlay] = useState(false);
   const [selectedServer, setSelectedServer] = useState('');
+  const [selectedServerInfo, setSelectedServerInfo] = useState(null);
 
   const handleServerClick = (serverhash) => {
     setSelectedServer(serverhash);
+    const foundServer = servers.find(server => server.serverhash === serverhash);
+    setSelectedServerInfo(foundServer);
     setShowOverlay(false);
   };  
      const navigate = useNavigate();
@@ -150,13 +153,15 @@ const Smartrade = () => {
                               </uni-view>
                               <uni-view data-v-2c1047a8="" class="input-item">
                                  <uni-view data-v-2c1047a8="" class="input-title">Period (Hour)</uni-view>
+                                 {selectedServerInfo && (
                                  <uni-view data-v-2c1047a8="" class="period-box">
-                                    <uni-view data-v-2c1047a8="" class="period-item">12</uni-view>
-                                    <uni-view data-v-2c1047a8="" class="period-item">24</uni-view>
+                                    <uni-view data-v-2c1047a8="" class="period-item">{selectedServerInfo.period}</uni-view>
+                                    <uni-view data-v-2c1047a8="" class="period-item">{selectedServerInfo.period_end}</uni-view>
                                  </uni-view>
+                                 )}
                               </uni-view>
                               <uni-view data-v-2c1047a8="" class="input-item">
-                                 <uni-view data-v-2c1047a8="" class="input-title">Buy Insurance (0.000%)</uni-view>
+                                 <uni-view data-v-2c1047a8="" class="input-title">Buy Insurance </uni-view>
                                  <uni-view data-v-2c1047a8="" class="period-box">
                                     <uni-view data-v-2c1047a8="" class="period-item">Agree</uni-view>
                                     <uni-view data-v-2c1047a8="" class="period-item">Reject</uni-view>
