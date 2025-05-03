@@ -21,6 +21,8 @@ import Server from "./pages/profile/Server";
 import ChangePassword from "./pages/profile/ChangePassword";
 import PaymentPassword from "./pages/profile/PaymentPassword";
 import Team from "./pages/team/Team";
+import Level from "./pages/team/Level";
+
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import ForgotPassword from "./pages/auth/ForgotPassword";
