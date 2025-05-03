@@ -6,8 +6,13 @@ import {
     useLocation
 } from "react-router-dom";
 
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
+import ForgotPassword from "./pages/auth/ForgotPassword";
+
 import Dashboard from "./pages/home/Dashboard";
 import NodeDetails from "./pages/home/NodeDetails";
+import Notice from "./pages/home/Notice";
 
 import RechargeFunds from "./pages/invest/RechargeFunds";
 import WithdrawReq from "./pages/Withdraw/WithdrawReq";
@@ -18,17 +23,20 @@ import History from "./pages/invest/History";
 import Trade from "./pages/team/Trade";
 import Assets from "./pages/Withdraw/Assets";
 import Server from "./pages/profile/Server";
+import ServerCommission from "./pages/profile/ServerCommission";
 import ChangePassword from "./pages/profile/ChangePassword";
 import PaymentPassword from "./pages/profile/PaymentPassword";
+import Refer from "./pages/profile/Refer";
+import Kyc from "./pages/profile/Kyc";
 import Team from "./pages/team/Team";
 import Level from "./pages/team/Level";
 
-import Login from "./pages/auth/Login";
-import Register from "./pages/auth/Register";
-import ForgotPassword from "./pages/auth/ForgotPassword";
+
 import Footer from "./components/Footer";
 import TradingChart from "./pages/home/TradingChart";
 import Smartrade from "./pages/home/Smartrade";
+
+
 import { AuthProvider } from "./components/AuthContext";
 import { ProtectedRoute, PublicRoute } from './Helper/helper';
 import { ToastContainer } from 'react-toastify';
@@ -51,7 +59,11 @@ function AppContent() {
         "/AddWalletAddress",
         "/AddWallet",
         "/ForgotPassword",
-        "/ChangePassword"
+        "/ChangePassword",
+        "/Notice",
+        "/ServerCommission",
+        "/Refer",
+        "/Kyc"
     ];
 
     // Check if current path matches any of the above OR dynamic TradingChart route
@@ -73,15 +85,20 @@ function AppContent() {
 
                     {/* Protected Routes */}
                     <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+                    <Route path="/NodeDetails" element={<ProtectedRoute><NodeDetails /></ProtectedRoute>} />
+                    <Route path="/Notice" element={<ProtectedRoute><Notice /></ProtectedRoute>} />
                     <Route path="/Setting" element={<ProtectedRoute><Setting /></ProtectedRoute>} />
                     <Route path="/ChangePassword" element={<ProtectedRoute><ChangePassword /></ProtectedRoute>} />
                     <Route path="/trade" element={<ProtectedRoute><Trade /></ProtectedRoute>} />
                     <Route path="/assets" element={<ProtectedRoute><Assets /></ProtectedRoute>} />
                     <Route path="/server" element={<ProtectedRoute><Server /></ProtectedRoute>} />
+                    <Route path="/Refer" element={<ProtectedRoute><Refer /></ProtectedRoute>} />
+                    <Route path="/Kyc" element={<ProtectedRoute><Kyc /></ProtectedRoute>} />
+                    <Route path="/ServerCommission" element={<ProtectedRoute><ServerCommission /></ProtectedRoute>} />
                     <Route path="/PaymentPassword" element={<ProtectedRoute><PaymentPassword /></ProtectedRoute>} />
-
+                    <Route path="/Level" element={<ProtectedRoute><Level/></ProtectedRoute>}/>
                     <Route path="/Team" element={<ProtectedRoute><Team /></ProtectedRoute>} />
-                    <Route path="/NodeDetails" element={<ProtectedRoute><NodeDetails /></ProtectedRoute>} />
+                    
                     <Route path="/WithdrawReq" element={<ProtectedRoute><WithdrawReq /></ProtectedRoute>} />
                     <Route path="/History" element={<ProtectedRoute><History /></ProtectedRoute>} />
                     <Route path="/Whistory" element={<ProtectedRoute><Whistory /></ProtectedRoute>} />

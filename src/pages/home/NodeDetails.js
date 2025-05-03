@@ -1,4 +1,4 @@
-import React, { useContext,useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 import { toast } from "react-toastify";
@@ -12,29 +12,29 @@ const NodeDetails = () => {
   const handleLogout = () => {
     // Remove the token from localStorage
     localStorage.removeItem("authToken");
-    navigate("/login"); 
+    navigate("/login");
   };
-      
-   const [userDetails, setUserDetails] = useState(null);
+
+  const [userDetails, setUserDetails] = useState(null);
   const token = localStorage.getItem('authToken'); // Retrieve token from localStorage
 
   useEffect(() => {
-     const fetchUserDetails = async () => {
-        try {
-           const response = await Api.get('/user', {
-              headers: {
-                 'Authorization': `Bearer ${token}`
-              }
-           });
-           setUserDetails(response.data); // Save the response data in state
-        } catch (error) {
-           console.error("Error fetching user details:", error);
-        }
-     };
+    const fetchUserDetails = async () => {
+      try {
+        const response = await Api.get('/user', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        setUserDetails(response.data); // Save the response data in state
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+      }
+    };
 
-     if (token) {
-        fetchUserDetails(); // Fetch user details if token exists
-     }
+    if (token) {
+      fetchUserDetails(); // Fetch user details if token exists
+    }
   }, [token]);
 
 
@@ -59,31 +59,35 @@ const NodeDetails = () => {
                       <uni-view data-v-3dcfa33c="" class="page-title">User</uni-view>
                     </uni-view>
                     <uni-view data-v-35b9a113="" data-v-3dcfa33c="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
-                    <Link to="/Setting">
-                    <uni-view data-v-3dcfa33c="" class="set"><img data-v-3dcfa33c="" src="/static/img/setting.png" alt="" style={{ width: '35px' }} /></uni-view>
+                      <Link to="/Setting">
+                        <uni-view data-v-3dcfa33c="" class="set"><img data-v-3dcfa33c="" src="/static/img/setting.png" alt="" style={{ width: '35px' }} /></uni-view>
 
-                    </Link>
+                      </Link>
                     </uni-view>
                   </uni-view>
                 </uni-view>
                 <uni-view data-v-3dcfa33c="" class="ava-box">
                   <uni-view data-v-3dcfa33c="" class="ava"><img data-v-3dcfa33c="" src="/static/ava/ava4.jpg" alt="" /></uni-view>
-                
-                  {userDetails ? (
-                              <uni-view >
-                                 <uni-view
-                                    data-v-3dcfa33c="" class="nickname">{userDetails.name}</uni-view>
-                                 <uni-view data-v-3dcfa33c="" class="uid">UID: {userDetails.username}</uni-view>
 
-                              </uni-view>
-                           ) : (
-                              <p>NaN</p>
-                           )}
+                  {userDetails ? (
+                    <uni-view >
+                      <uni-view
+                        data-v-3dcfa33c="" class="nickname">{userDetails.name}</uni-view>
+                      <uni-view data-v-3dcfa33c="" class="uid">UID: {userDetails.username}</uni-view>
+
+                    </uni-view>
+                  ) : (
+                    <p>NaN</p>
+                  )}
                 </uni-view>
                 <uni-view data-v-3dcfa33c="" class="two-group">
                   <uni-view data-v-3dcfa33c="" class="item">
-                    <uni-view data-v-3dcfa33c="" class="title">Server Commission</uni-view>
-                    <uni-view data-v-3dcfa33c="" translate="no" class="value"><img data-v-3dcfa33c="" src="/static/img/db.png" alt="" />0.0000</uni-view>
+                    <Link to="/ServerCommission" style={{ textDecorationLine: 'none' }}>
+
+                      <uni-view data-v-3dcfa33c="" class="title">Server Commission</uni-view>
+                      <uni-view data-v-3dcfa33c="" translate="no" class="value"><img data-v-3dcfa33c="" src="/static/img/db.png" alt="" />0.0000</uni-view>
+                    </Link>
+
                   </uni-view>
 
                   <uni-view data-v-3dcfa33c="" class="item"> <Link to="/Team" style={{ textDecorationLine: 'none' }}>
@@ -97,17 +101,22 @@ const NodeDetails = () => {
                   <uni-view data-v-3dcfa33c="" class="title">Email Address</uni-view>
                   <uni-view data-v-3dcfa33c="" class="value">****kor55@gmail.com</uni-view>
                 </uni-view>
+                 <Link to="/Refer"style={{ textDecorationLine: 'none' }}>
                 <uni-view data-v-3dcfa33c="" class="invite-box">
+
                   <img data-v-3dcfa33c="" src="/static/img/giftbox.png" alt="" />
                   <uni-view data-v-3dcfa33c="" class="invite">
                     <uni-view data-v-3dcfa33c="" class="title">Invite Friends!</uni-view>
                     <uni-view data-v-3dcfa33c="" class="text">Invite friends and earn referral commission</uni-view>
                   </uni-view>
                 </uni-view>
-                <uni-view data-v-3dcfa33c="" class="kyc-box">
+                </Link>
+
+                <uni-view data-v-3dcfa33c="" class="kyc-box"><Link to="/Kyc">
                   <uni-view data-v-3dcfa33c="" class="value"><img data-v-3dcfa33c="" src="/static/img/warn.png" alt="" />KYC Certification</uni-view>
                   <uni-view data-v-3dcfa33c="" class="title">Your account is not verified yet please add add your personal details to verify</uni-view>
                   <uni-view data-v-3dcfa33c="" class="go-kyc">Verify Now</uni-view>
+                  </Link>
                 </uni-view>
 
                 <uni-view data-v-3dcfa33c="" class="invite-box">

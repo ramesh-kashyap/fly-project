@@ -133,24 +133,24 @@ const Dashboard = () => {
    }, [token]);
    const fetchBalance = async () => {
       try {
-      
-          // Make the API request with the Authorization header
-          const response = await Api.get("/availbal", {
-            
-          });
 
-          // Check the response and set the data
-          if (response.data.success) {
-              setBalance(response.data.AvailBalance);
-          }
+         // Make the API request with the Authorization header
+         const response = await Api.get("/availbal", {
 
-          setLoading(false);
+         });
+
+         // Check the response and set the data
+         if (response.data.success) {
+            setBalance(response.data.AvailBalance);
+         }
+
+         setLoading(false);
       } catch (error) {
-          setLoading(false);
-          console.error(error);
-          console.error("Error fetching withdraws!");
+         setLoading(false);
+         console.error(error);
+         console.error("Error fetching withdraws!");
       }
-  };
+   };
 
    return (
 
@@ -183,12 +183,12 @@ const Dashboard = () => {
                            data-v-06ae08d2="" class="right"><uni-view data-v-06ae08d2="" class="notice"><img
                               data-v-06ae08d2="" src="/static/img/rewards.png" alt=""
                               style={{ width: '28px' }} /></uni-view>
-                           <a href="{{route('user.notice')}}">
+                           <Link to="/Notice">
                               <uni-view data-v-06ae08d2="" class="notice"><img
                                  data-v-06ae08d2="" src="/static/img/notice.png" alt="" /><uni-view
                                     data-v-06ae08d2=""
                                     class="red-point"></uni-view></uni-view>
-                           </a>
+                           </Link>
                         </uni-view></uni-view>
                      <uni-view
                         data-v-06ae08d2="" class="balance-card"><uni-view data-v-06ae08d2="" class="first"><uni-view

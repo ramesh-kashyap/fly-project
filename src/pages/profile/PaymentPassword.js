@@ -12,13 +12,17 @@ const PaymentPassword = () => {
   const [error, setError] = useState('');
 
   const handleChangePassword = async () => {
+    if (!password || !passwordConfirmation || !verificationCode) {
+      toast.error("All fields are required!");
+      return;
+    }
     if (password !== passwordConfirmation) {
       toast.error("Passwords do not match!");
       return;
     }
   
     try {
-      const response = await Api.post('/forgotPassword', {
+      const response = await Api.post('/PaymentPassword', {
         password,
         password_confirmation: passwordConfirmation,
         verification_code: verificationCode
