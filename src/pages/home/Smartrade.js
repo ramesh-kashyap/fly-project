@@ -14,13 +14,18 @@ const Smartrade = () => {
   const [symbol, setSymbol] = useState("");
   const [servers, setServers] = useState([]);
   const [amount, setAmount] = useState('');
-
+  const [invest_amount, setMaxInvestAmount] = useState(0);
   const handleServerClick = (serverhash) => {
-    setSelectedServer(serverhash);
+    
     const foundServer = servers.find(server => server.serverhash === serverhash);
+    setSelectedServer(serverhash);
     setSelectedServerInfo(foundServer);
     setShowOverlay(false);
-  };  
+    const invest_amount = foundServer?.invest_amount || 10;
+    setMaxInvestAmount(invest_amount);
+    console.log(invest_amount);
+  }; 
+  
      
   useEffect(() => {
     if (location.state?.symbol) {
@@ -168,7 +173,17 @@ const Smartrade = () => {
                                        <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style={{ paddingLeft: '10px' }}>
                                           <div class="uni-input-wrapper">
                                              {/* <div class="uni-input-placeholder uni-easyinput__placeholder-class" data-v-30449abe="" data-v-2c1047a8="">500</div> */}
-                                             <input type="number" className="uni-input-input" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Enter amount"/>
+                                             <input type="number" className="uni-input-input" value={amount} max={invest_amount} 
+                                             onChange={(e) => {
+    const value = e.target.value;
+    const num = Number(value);
+
+    if (invest_amount !== null && num <= invest_amount) {
+      setAmount(value);
+    } else {
+      setAmount(""); // Handle invalid input if necessary
+    }
+  }} placeholder="Enter amount"/>
                                           </div>
                                        </uni-input>
                                        <uni-view data-v-2c1047a8="" class="allin" onClick={handleAllClick}>All</uni-view>
@@ -255,24 +270,24 @@ const Smartrade = () => {
                      <uni-view data-v-2c1047a8="" class="Info-box">
                         <uni-view data-v-2c1047a8="" class="info-item">
                            <uni-view data-v-2c1047a8="" class="title">Trading Currency</uni-view>
-                           <uni-view data-v-2c1047a8="" class="value">ETHUSDT</uni-view>
+                           <uni-view data-v-2c1047a8="" class="value">{symbol || '----'}</uni-view>
                         </uni-view>
                         <uni-view data-v-2c1047a8="" class="info-item">
                            <uni-view data-v-2c1047a8="" class="title">Server</uni-view>
-                           <uni-view data-v-2c1047a8="" class="value">----</uni-view>
+                           <uni-view data-v-2c1047a8="" class="value">{selectedServerInfo?.serverhash || '----'}</uni-view>
                         </uni-view>
                         <uni-view data-v-2c1047a8="" class="info-item">
                            <uni-view data-v-2c1047a8="" class="title">Amount</uni-view>
-                           <uni-view data-v-2c1047a8="" translate="no" class="value">----</uni-view>
+                           <uni-view data-v-2c1047a8="" translate="no" class="value">{amount || '----'}</uni-view>
                         </uni-view>
                         <uni-view data-v-2c1047a8="" class="info-item">
                            <uni-view data-v-2c1047a8="" class="title">Period (Hour)</uni-view>
-                           <uni-view data-v-2c1047a8="" translate="no" class="value">----</uni-view>
+                           <uni-view data-v-2c1047a8="" translate="no" class="value">{selectedPeriod || '----'}</uni-view>
                         </uni-view>
                         <uni-view data-v-2c1047a8="" class="info-item">
-                           <uni-view data-v-2c1047a8="" class="title">Insurance (0.000%)</uni-view>
+                           <uni-view data-v-2c1047a8="" class="title">Insurance</uni-view>
                             
-                           <uni-view data-v-2c1047a8="" class="value">----</uni-view>
+                           <uni-view data-v-2c1047a8="" class="value">{agreeOrReject === 'yes' ? 'Agreed' : agreeOrReject === 'no' ? 'Rejected' : '----'}</uni-view>
                         </uni-view>
                      </uni-view>
                      <uni-view data-v-2c1047a8="" class="check-box" style={{marginTop: '10px'}}>
