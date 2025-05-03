@@ -54,7 +54,6 @@ const Trade = () => {
             <uni-page-body>
               <uni-view data-v-7cdca4f6="" class="page">
                 <uni-view data-v-7cdca4f6="" class="ellipse"></uni-view>
-
                 <uni-view data-v-7cdca4f6="" class="top-group">
                   <uni-view
                     data-v-7cdca4f6=""
