@@ -23,8 +23,8 @@ const Server = () => {
             title: `S${index + 1}-IntelliCalc Edition`,
             heading: "Benefits",
             text: `Amount that can be invested: ${item.invest_amount}`,
-            text1: `Optional investment period (hours): ${item.period},`,
-            text2:   `To: ${item.period_end},`,
+            text1: `Optional investment period (hours): ${item.period}`,
+            text2:   `To: ${item.period_end}`,
             price: item.plan === "Free" ? "Free" : item.plan,
           }));
     

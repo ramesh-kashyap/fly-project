@@ -10,7 +10,7 @@ const Smartrade = () => {
   const [selectedPeriod, setSelectedPeriod] = useState('');
   const [agreeOrReject, setAgreeOrReject] = useState('');
   const navigate = useNavigate();
-     const location = useLocation();
+  const location = useLocation();
   const [symbol, setSymbol] = useState("");
   const [servers, setServers] = useState([]);
   const [amount, setAmount] = useState('');
@@ -28,19 +28,17 @@ const Smartrade = () => {
     }
   }, [location])
    
-      const backClick = () => {
-        
-        navigate('/dashboard/TradingChart');
-   
+      const backClick = () => {        
+        navigate('/dashboard/TradingChart');   
       };
       const [balance, setBalance] = useState(null);
       const handleAllClick = () => {
          setAmount(balance);
        };
-  const [error, setError] = useState('');
+      const [error, setError] = useState('');
 
  
-    const token = localStorage.getItem('token');
+   //  const token = localStorage.getItem('token');
      useEffect(()=>{
       withavail();
           fetchserv();
@@ -63,7 +61,7 @@ const Smartrade = () => {
         const response = await Api.get('/fetchservers');
         console.log(response.data);
         if (response.data?.success) {         
-          setServers(response.data.server); // or .servers if you update backend
+          setServers(response.data.server); 
         } else {
           console.error("API did not return success");
         }
@@ -76,24 +74,23 @@ const Smartrade = () => {
       selectedServer: selectedServer,
       amount: amount,
       period: selectedPeriod,         // either selectedPeriod or selectedPeriodEnd
-      buyInsurance: agreeOrReject     // value: 'agree' or 'reject'
+      buyInsurance: agreeOrReject,  
+      plan: selectedServerInfo?.plan || '',  
     };
     
     const sendtrade = async () => {
-      console.log(postData);
       try {
-        const response = await Api.post('/sendtrade',{postData});
-        console.log(response.data);
-        if (response.data?.success) {
-         console.log(response.data);
-         navigate('/trade');
-         toast.success('Trade Buy successfully:', response.data.message);
-        } else {
-          toast.error('Trade not Buying:');
-        }
-      } catch (error) {
-        console.error("Somthings Wrong Try Again:", error);
-      }
+         const response = await Api.post('/sendtrade', { postData });   
+         if (response.data?.success) {
+           navigate('/trade');
+           toast.success(response.data.message || 'Trade Buy successful!');
+         } else {
+           toast.error(response.data.message || 'Trade not buying!');
+         }
+       } catch (error) {
+         console.error("Somethings Wrong Try Again:", error);
+         toast.error('Something went wrong. Please try again.');
+       }
     };
     
       
@@ -160,7 +157,6 @@ const Smartrade = () => {
                                              <input disabled="disabled" step="" type="text" value={selectedServer} class="uni-input-input" placeholder='Please select a Server'/> 
                                           </div>
                                        </uni-input>
-                                        
                                     </uni-view>
                                  </uni-view>
                               </uni-view>
@@ -320,7 +316,7 @@ const Smartrade = () => {
                                                    {servers.map((item, index) => (
                                                    <uni-view data-v-2c1047a8="" key={index} onClick={() => handleServerClick(item.serverhash)}
                                                    style={{ cursor: 'pointer' }} class="server-item">                                                      
-                                                      <img data-v-2c1047a8="" src="/static/img/S1.png" alt=""/>
+                                                      <img data-v-2c1047a8="" src="/static/img/S1.png" alt={item.plan}/>
                                                       <uni-view data-v-2c1047a8="" class="item-no">{item.serverhash}<uni-view data-v-2c1047a8="" class="expired-time">{new Date(item.sdate).toLocaleString()}</uni-view></uni-view>
                                                       <uni-view data-v-2c1047a8="" class="idle">
                                                          </uni-view>

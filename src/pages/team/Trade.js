@@ -101,11 +101,11 @@ const Trade = () => {
                       <uni-view data-v-b7dd60dc="" class="history-item">
                         <uni-view data-v-b7dd60dc="" class="first">
                           <uni-view data-v-b7dd60dc="" class="left">
-                            <img
+                            {/* <img
                               data-v-b7dd60dc=""
                               src="/static/coin/doge.png"
                               alt=""
-                            />
+                            /> */}
                             {item.currency||0}
                           </uni-view>
                           <uni-view data-v-b7dd60dc="" class="right">
@@ -187,84 +187,51 @@ const Trade = () => {
                   </uni-view>
                    )
                   ) : comtrade.length > 0 ? (
-                    comtrade.map((item, index) => (
-                  <uni-view data-v-b7dd60dc="" key={index} class="history-box">
-                    <uni-view data-v-b7dd60dc="" class="item-box">
-                      <uni-view data-v-b7dd60dc="" class="history-item">
-                        <uni-view data-v-b7dd60dc="" class="first">
-                          <uni-view data-v-b7dd60dc="" class="left">
-                            <img
-                              data-v-b7dd60dc=""
-                              src="/static/coin/doge.png"
-                              alt=""
-                            />
-                            {item.currency || 0}
-                          </uni-view>
-                          <uni-view data-v-b7dd60dc="" class="right">
-                            Running
-                          </uni-view>
-                        </uni-view>
+                    comtrade.map((item, index) => (             
 
-                        <uni-view data-v-b7dd60dc="" class="h-line"></uni-view>
-                        <uni-view
-                          data-v-542626a5=""
-                          data-v-b7dd60dc=""
-                          class="count-down"
-                        >
-                          <img
-                            data-v-542626a5=""
-                            src="/static/img/time.png"
-                            alt=""
-                          />
-                          00:42:13
-                        </uni-view>
-                        <uni-view data-v-b7dd60dc="" class="text-line">
-                          <uni-view data-v-b7dd60dc="" class="title">
-                            Server No
-                          </uni-view>
-                          <uni-view data-v-b7dd60dc="" class="value">
-                          {item.selectedServer || 0}
-                          </uni-view>
-                        </uni-view>
-                        <uni-view data-v-b7dd60dc="" class="text-line">
-                          <uni-view data-v-b7dd60dc="" class="title">
-                            Create Time
-                          </uni-view>
-                          <uni-view data-v-b7dd60dc="" class="value">
-                          {item.entrytime||0}
-                          </uni-view>
-                        </uni-view>
-                        <uni-view data-v-b7dd60dc="" class="text-line">
-                          <uni-view data-v-b7dd60dc="" class="title">
-                            End Time
-                          </uni-view>
-                          <uni-view data-v-b7dd60dc="" class="value">
-                          {item.endtime||0}
-                          </uni-view>
-                        </uni-view>
-                        <uni-view data-v-b7dd60dc="" class="text-line">
-                          <uni-view data-v-b7dd60dc="" class="title">
-                            Investment Amount
-                          </uni-view>
-                          <uni-view data-v-b7dd60dc="" class="value">
-                          {item.amount||0}
-                          </uni-view>
-                        </uni-view>
-                        <uni-view data-v-b7dd60dc="" class="text-line">
-                          <uni-view data-v-b7dd60dc="" class="title">
-                            Insurance
-                          </uni-view>
-                          <uni-view data-v-b7dd60dc="" class="value">
-                            0.0037
-                          </uni-view>
-                        </uni-view>
-                        <uni-view
-                          data-v-b7dd60dc=""
-                          style={{ height: "10px" }}
-                        ></uni-view>
-                      </uni-view>
-                    </uni-view>
-                  </uni-view> 
+                  <uni-view data-v-945761f4=""  key={index} class="history-item">
+                     <uni-view data-v-945761f4="" class="first">
+                       <uni-view data-v-945761f4="" class="left">
+                        {/* <img data-v-945761f4="" src="/static/coin/doge.png" alt=""/> */}
+                        {item.currency || 0}</uni-view>
+                       <uni-view data-v-945761f4="" class="right">Completed</uni-view>
+                  </uni-view>
+                   <uni-view data-v-945761f4="" class="h-line"></uni-view>
+                    <uni-view data-v-945761f4="" class="text-line">
+                    <uni-view data-v-945761f4="" class="title">Server No</uni-view>
+                   <uni-view data-v-945761f4="" class="value">{item.selectedServer || 0}</uni-view>
+                  </uni-view>
+                    <uni-view data-v-945761f4="" class="text-line">
+                  <uni-view data-v-945761f4="" class="title">Create Time</uni-view>
+                   <uni-view data-v-945761f4="" class="value">{item.entrytime||0}</uni-view>
+                  </uni-view>
+                    <uni-view data-v-945761f4="" class="text-line">
+                    <uni-view data-v-945761f4="" class="title">End Time</uni-view>
+                   <uni-view data-v-945761f4="" class="value">{item.endtime||0}</uni-view>
+                </uni-view>
+                  <uni-view data-v-945761f4="" class="text-line">
+                   <uni-view data-v-945761f4="" class="title">Investment Amount</uni-view>
+                  <uni-view data-v-945761f4="" class="value">{item.amount||0}</uni-view>
+                </uni-view>
+                <uni-view data-v-945761f4="" class="text-line">
+                  <uni-view data-v-945761f4="" class="title">Insurance</uni-view>
+                <uni-view data-v-945761f4="" class="value">0.0038</uni-view>
+                </uni-view>
+                <uni-view data-v-945761f4="" class="h-line"></uni-view>
+                    <uni-view data-v-945761f4="" class="text-line">
+                 <uni-view data-v-945761f4="" class="title">Total Profit</uni-view>
+                <uni-view data-v-945761f4="" class="value">0.0612</uni-view>
+              </uni-view>
+                <uni-view data-v-945761f4="" class="text-line">
+                  <uni-view data-v-945761f4="" class="title">Commission</uni-view>
+              <uni-view data-v-945761f4="" class="value red">-0.0183</uni-view>
+             </uni-view>
+                <uni-view data-v-945761f4="" class="text-line">
+                <uni-view data-v-945761f4="" class="title">User Income</uni-view>
+                   <uni-view data-v-945761f4="" class="value green">0.0428</uni-view>
+                 </uni-view>
+               <uni-view data-v-945761f4="" style={{height: '10px'}}></uni-view>
+                </uni-view>
                    ))
                   ) : (             
                   <uni-view data-v-7cdca4f6="" class="history-box">
