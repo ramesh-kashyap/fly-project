@@ -22,6 +22,7 @@ import Whistory from "./pages/Withdraw/Whistory";
 import History from "./pages/invest/History";
 import Trade from "./pages/team/Trade";
 import Assets from "./pages/Withdraw/Assets";
+import Wallet from "./pages/Withdraw/Wallet";
 import Server from "./pages/profile/Server";
 import ServerCommission from "./pages/profile/ServerCommission";
 import ChangePassword from "./pages/profile/ChangePassword";
@@ -63,7 +64,8 @@ function AppContent() {
         "/Notice",
         "/ServerCommission",
         "/Refer",
-        "/Kyc"
+        "/Kyc",
+        "Wallet"
     ];
 
     // Check if current path matches any of the above OR dynamic TradingChart route
@@ -92,6 +94,7 @@ function AppContent() {
                     <Route path="/trade" element={<ProtectedRoute><Trade /></ProtectedRoute>} />
                     <Route path="/assets" element={<ProtectedRoute><Assets /></ProtectedRoute>} />
                     <Route path="/server" element={<ProtectedRoute><Server /></ProtectedRoute>} />
+                    <Route path="/Wallet" element={<ProtectedRoute><Wallet /></ProtectedRoute>} />
                     <Route path="/Refer" element={<ProtectedRoute><Refer /></ProtectedRoute>} />
                     <Route path="/Kyc" element={<ProtectedRoute><Kyc /></ProtectedRoute>} />
                     <Route path="/ServerCommission" element={<ProtectedRoute><ServerCommission /></ProtectedRoute>} />

@@ -1,7 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Import Link for navigation
+import Api from '../../Requests/Api';
 
 const Assets = () => {
+    const [transactions, setTransactions] = useState([]);
+    const [users, setUsers] = useState([]);
+    const [error, setError] = useState("");
+    useEffect(() => {
+        fetchUsers();
+    }, []);
+
+    const fetchUsers = async () => {
+        try {
+            const response = await Api.get("/getUserHistory");
+
+            if (response.data && response.data.success) {
+                setTransactions({
+                    investment: response.data.investment || [],
+                    income: response.data.income || [],
+                    withdraw: response.data.withdraw || []
+                });
+            } else {
+                setTransactions({
+                    investment: [],
+                    income: [],
+                    withdraw: []
+                });
+            }
+
+            console.log("Fetched:", response.data);
+        } catch (err) {
+            setError(err.response?.data?.error || "Error fetching history");
+        }
+    };
+
+
     return (
         <div class="uni-body pages-assets-assets">
             <uni-app class="uni-app--showtabbar uni-app--maxwidth">
@@ -67,88 +100,69 @@ const Assets = () => {
                                 </uni-view>
                                 <uni-view data-v-248ca5b8="" class="user-title"
                                     style={{ marginTop: '-30px' }}>Funding Details</uni-view>
-                                <uni-view data-v-248ca5b8="" class="list-box">
 
-                                    <uni-view data-v-248ca5b8="" class="item">
-                                        <uni-view data-v-248ca5b8="" class="first">
-                                            <uni-view data-v-248ca5b8="" class="left">2025-04-21 14:50:13</uni-view>
 
-                                            <uni-view data-v-248ca5b8="" class="right" style={{color: 'rgb(255, 61, 61)'}}>-11.221113</uni-view>
-                                        </uni-view>
-                                        <uni-view data-v-248ca5b8="" class="layer">
-                                            <uni-view data-v-248ca5b8="" class="title">Fund Flows</uni-view>
+                                {['investment', 'income', 'withdraw'].map((type) =>
+                                    transactions[type] && transactions[type].length > 0 ? (
+                                        transactions[type]
+                                            .slice() // create copy
+                                            .reverse() // reverse order
+                                            .map((item, index) => (
+                                                <uni-view data-v-248ca5b8=""  class="item" >
+                                                    <uni-view data-v-248ca5b8=""  class="first">
+                                                        <uni-view data-v-248ca5b8=""  class="left">
+                                                            {new Date(item.created_at).toLocaleString()} - {item?.users?.name || 'User'}
+                                                        </uni-view>
+                                                        <uni-view data-v-248ca5b8=""
+                                                             class="right"
+                                                            style={{ color: type === 'withdraw' ? 'green' : 'rgb(255, 61, 61)' }}
+                                                        >
+                                                            {type === 'withdraw' ? '+ ' : '- '}{item.amount}
+                                                        </uni-view>
+                                                    </uni-view>
 
-                                            <uni-view data-v-248ca5b8="" class="value">Create Quantitative Orders</uni-view>
+                                                    <uni-view  data-v-248ca5b8=""  class="layer">
+                                                        <uni-view data-v-248ca5b8=""  class="title">Fund Flow</uni-view>
+                                                        <uni-view data-v-248ca5b8=""  class="value">
+                                                              {item.remarks || item.source || '—'}
+                                                        </uni-view>
+                                                    </uni-view>
+                                                </uni-view>
+                                            ))
+                                    ) : null
+                                )}
 
-                                        </uni-view>
-                                    </uni-view>
-                                    <uni-view data-v-248ca5b8="" class="item">
+{/* <uni-view data-v-248ca5b8="" class="item">
                                         <uni-view data-v-248ca5b8="" class="first">
                                             <uni-view data-v-248ca5b8="" class="left">2025-04-21 14:48:49</uni-view>
 
-                                            <uni-view data-v-248ca5b8="" class="right" style={{color: 'rgb(255, 61, 61)'}}>-10.000000</uni-view>
+                                            <uni-view data-v-248ca5b8="" class="right" style={{ color: 'rgb(255, 61, 61)' }}>-10.000000</uni-view>
                                         </uni-view>
                                         <uni-view data-v-248ca5b8="" class="layer">
                                             <uni-view data-v-248ca5b8="" class="title">Fund Flows</uni-view>
                                             <uni-view data-v-248ca5b8="" class="value">Buy Server</uni-view>
 
                                         </uni-view>
-                                    </uni-view>
-                                    <uni-view data-v-248ca5b8="" class="item">
-                                        <uni-view data-v-248ca5b8="" class="first">
-                                            <uni-view data-v-248ca5b8="" class="left">2025-04-21 14:46:49</uni-view>
-                                            <uni-view data-v-248ca5b8="" class="right" style={{color: 'rgb(53, 247, 231)'}}>+0.447953</uni-view>
-
-                                        </uni-view>
-                                        <uni-view data-v-248ca5b8="" class="layer">
-                                            <uni-view data-v-248ca5b8="" class="title">Fund Flows</uni-view>
-
-                                            <uni-view data-v-248ca5b8="" class="value">Rewards</uni-view>
-
-                                        </uni-view>
-                                    </uni-view>
-                                    <uni-view data-v-248ca5b8="" class="item">
-                                        <uni-view data-v-248ca5b8="" class="first">
-                                            <uni-view data-v-248ca5b8="" class="left">2025-04-21 14:46:41</uni-view>
-                                            <uni-view data-v-248ca5b8="" class="right" style={{color: 'rgb(53, 247, 231)'}}>+0.273160</uni-view>
-
-                                        </uni-view>
-                                        <uni-view data-v-248ca5b8="" class="layer">
-                                            <uni-view data-v-248ca5b8="" class="title">Fund Flows</uni-view>
-
-                                            <uni-view data-v-248ca5b8="" class="value">Rewards</uni-view>
-
-                                        </uni-view>
-                                    </uni-view>
-                                    <uni-view data-v-248ca5b8="" class="item">
-                                        <uni-view data-v-248ca5b8="" class="first">
-                                            <uni-view data-v-248ca5b8="" class="left">2025-04-21 14:45:08</uni-view>
-                                            <uni-view data-v-248ca5b8="" class="right" style={{color: 'rgb(53, 247, 231)'}}>+20.500000</uni-view>
-
-                                        </uni-view>
-                                        <uni-view data-v-248ca5b8="" class="layer">
-                                            <uni-view data-v-248ca5b8="" class="title">Fund Flows</uni-view>
-
-                                            <uni-view data-v-248ca5b8="" class="value">Deposit</uni-view>
-
-                                        </uni-view>
-                                    </uni-view>
-                                </uni-view>
-                                <uni-view data-v-248ca5b8=""
-                                    class="list-box">
-                                    {/* <uni-view data-v-248ca5b8="" class="nodata"><img data-v-248ca5b8=""
-                                        src="{{asset('')}}static/img/nodata.png" alt="" />No
-                                        Data
                                     </uni-view> */}
-                                </uni-view>
+
                             </uni-view>
                         </uni-page-body>
                     </uni-page-wrapper>
                 </uni-page>
 
             </uni-app>
-        </div>
+        </div >
     );
 };
 
 export default Assets;
+
+
+
+
+
+
+
+
+
+

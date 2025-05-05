@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, Link, Outlet } from "react-router-dom";
 import axios from "axios";
 import Api from "../../Requests/Api";
+import Collapse from 'react-collapse';
 
 import { SlArrowRight } from "react-icons/sl";
 import TradingChart from "./TradingChart";
@@ -30,6 +31,8 @@ const Dashboard = () => {
    const [cryptoData, setCryptoData] = useState({});
    const [binanceSymbols, setBinanceSymbols] = useState([]);
    const [showAll, setShowAll] = useState(false); // toggle state
+   const toggleDropdown = () => setIsOpen(!isOpen);
+
    useEffect(() => {
       const fetchCrypto = async () => {
          try {
@@ -113,13 +116,11 @@ const Dashboard = () => {
    const [userDetails, setUserDetails] = useState(null);
    const token = localStorage.getItem('authToken'); // Retrieve token from localStorage
 
-   useEffect(() => {
+   // useEffect(() => {
       const fetchUserDetails = async () => {
          try {
             const response = await Api.get('/user', {
-               headers: {
-                  'Authorization': `Bearer ${token}`
-               }
+             
             });
             setUserDetails(response.data); // Save the response data in state
          } catch (error) {
@@ -130,7 +131,7 @@ const Dashboard = () => {
       if (token) {
          fetchUserDetails(); // Fetch user details if token exists
       }
-   }, [token]);
+   // }, [token]);
    const fetchBalance = async () => {
       try {
 
@@ -367,301 +368,59 @@ const Dashboard = () => {
                         data-v-06ae08d2="" class="market-title"
                         style={{ marginTop: '10px', marginBottom: '8px' }}>FAQ</uni-view>
                      <uni-view data-v-06ae08d2=""
-                        class="content"><uni-view data-v-6fe2d4dd="" data-v-06ae08d2=""
-                           class="uni-collapse"><uni-view data-v-9da912bc="" data-v-06ae08d2=""
-                              class="uni-collapse-item"><uni-view data-v-9da912bc=""
-                                 class="uni-collapse-item__title uni-collapse-item-border"><uni-view
-                                    data-v-9da912bc="" class="uni-collapse-item__title-wrap"><uni-view
-                                       data-v-9da912bc="" class="uni-collapse-item__title-box"> <uni-text
-                                          data-v-9da912bc="" class="uni-collapse-item__title-text"><span>How
-                                             to Register and Get
-                                             Started?</span></uni-text></uni-view></uni-view><uni-view
-                                                data-v-9da912bc=""
-                                                class="uni-collapse-item__title-arrow uni-collapse-item--animation"><uni-text
-                                                   data-v-45a6b600="" data-v-9da912bc="" class="uni-icons uniui-bottom"
-                                                   style={{ color: 'rgb(187, 187, 187)', fontSize: '14px' }}><span></span></uni-text></uni-view></uni-view><uni-view
-                                                      data-v-9da912bc="" class="uni-collapse-item__wrap is--transition"
-                                                      style={{ height: '0px' }}><uni-view data-v-9da912bc="" id="Uni_e8x9"
-                                                         class="uni-collapse-item__wrap-content open"><uni-view data-v-06ae08d2=""
-                                                            class="content"><uni-text data-v-06ae08d2="" class="text"><span>Account
-                                                               Registration: Visit the official website, fill in your
-                                                               information, and complete
-                                                               verification.</span></uni-text><uni-text data-v-06ae08d2=""
-                                                                  class="text"><span>KYC Verification: Upload identity documents to
-                                                                     ensure account security.</span></uni-text><uni-text
-                                                                        data-v-06ae08d2="" class="text"><span>Payment Method Binding: Add a
-                                                                           crypto wallet or bank card for convenient fund
-                                                                           management.</span></uni-text><uni-text data-v-06ae08d2=""
-                                                                              class="text"><span>Fund Deposit: Deposit funds into your account via
-                                                                                 the bound method to prepare for
-                                                                                 trading.</span></uni-text><uni-text data-v-06ae08d2=""
-                                                                                    class="text"><span>Server Selection: Choose a server based on your
-                                                                                       investment plan, purchase it, and access the trading
-                                                                                       interface.</span></uni-text></uni-view></uni-view></uni-view></uni-view></uni-view><uni-view
-                                                                                          data-v-6fe2d4dd="" data-v-06ae08d2="" class="uni-collapse">
-                           <uni-view data-v-9da912bc=""
-                              data-v-06ae08d2="" class="uni-collapse-item"><uni-view data-v-9da912bc=""
-                                 class="uni-collapse-item__title uni-collapse-item-border"><uni-view
-                                    data-v-9da912bc="" class="uni-collapse-item__title-wrap"><uni-view
-                                       data-v-9da912bc="" class="uni-collapse-item__title-box"> <uni-text
-                                          data-v-9da912bc="" class="uni-collapse-item__title-text"><span>Why
-                                             Choose Firefly Star
-                                             LLC?</span></uni-text></uni-view></uni-view><uni-view
-                                                data-v-9da912bc=""
-                                                class="uni-collapse-item__title-arrow uni-collapse-item--animation"><uni-text
-                                                   data-v-45a6b600="" data-v-9da912bc="" class=""
-                                                   style={{ color: 'rgb(187, 187, 187)', fontSize: '14px' }}><img src="/static/img/down-arrow.png" alt="" /></uni-text>
-                                 </uni-view></uni-view><uni-view
-                                    data-v-9da912bc="" class="uni-collapse-item__wrap is--transition"
-                                    style={{ height: '0px' }}><uni-view data-v-9da912bc="" id="Uni_hf4k"
-                                       class="uni-collapse-item__wrap-content open"><uni-view data-v-06ae08d2=""
-                                          class="content"><uni-text data-v-06ae08d2="" class="text"><span>Leading
-                                             Quantitative Technology: 228 strategies powered by AI-driven
-                                             algorithms for optimized trading.</span></uni-text><uni-text
-                                                data-v-06ae08d2="" class="text"><span>Compliant Operations: Licensed
-                                                   under the U.S. MSB, ensuring fund
-                                                   security.</span></uni-text><uni-text data-v-06ae08d2=""
-                                                      class="text"><span>Efficiency and Security: Cold wallet storage and
-                                                         2FA authentication to safeguard
-                                                         accounts.</span></uni-text><uni-text data-v-06ae08d2=""
-                                                            class="text"><span>Flexible Investments: Diverse trading strategies
-                                                               with strong liquidity.</span></uni-text><uni-text
-                                                                  data-v-06ae08d2="" class="text"><span>Referral Rewards: Earn high
-                                                                     commissions through promotions, including product and trading
-                                                                     commissions.</span></uni-text><uni-text data-v-06ae08d2=""
-                                                                        class="text"><span>User Support: 24/7 customer service and global
-                                                                           community
-                                                                           engagement.</span></uni-text></uni-view></uni-view></uni-view></uni-view></uni-view><uni-view
-                                                                              data-v-6fe2d4dd="" data-v-06ae08d2="" class="uni-collapse"><uni-view data-v-9da912bc=""
-                                                                                 data-v-06ae08d2="" class="uni-collapse-item"><uni-view data-v-9da912bc=""
-                                                                                    class="uni-collapse-item__title uni-collapse-item-border"><uni-view
-                                                                                       data-v-9da912bc="" class="uni-collapse-item__title-wrap"><uni-view
-                                                                                          data-v-9da912bc="" class="uni-collapse-item__title-box"> <uni-text
-                                                                                             data-v-9da912bc=""
-                                                                                             class="uni-collapse-item__title-text"><span>Supported
-                                                                                                Cryptocurrencies and Trading
-                                                                                                Products?</span></uni-text></uni-view></uni-view><uni-view
-                                                                                                   data-v-9da912bc=""
-                                                                                                   class="uni-collapse-item__title-arrow uni-collapse-item--animation"><uni-text
-                                                                                                      data-v-45a6b600="" data-v-9da912bc="" class="uni-icons uniui-bottom"
-                                                                                                      style={{ color: 'rgb(187, 187, 187)', fontSize: '14px' }}><span></span></uni-text></uni-view></uni-view><uni-view
-                                                                                                         data-v-9da912bc="" class="uni-collapse-item__wrap is--transition"
-                                                                                                         style={{ height: '0px' }}><uni-view data-v-9da912bc="" id="Uni_hrj0"
-                                                                                                            class="uni-collapse-item__wrap-content open"><uni-view data-v-06ae08d2=""
-                                                                                                               class="content"><uni-text data-v-06ae08d2=""
-                                                                                                                  class="text"><span>Supported Assets: 30 major cryptocurrencies, with
-                                                                                                                     plans to add forex trading in the
-                                                                                                                     future.</span></uni-text><uni-text data-v-06ae08d2=""
-                                                                                                                        class="text"><span>Quantitative Trading: 7-day, 3-day, 1-day, 12H,
-                                                                                                                           4H strategies.</span></uni-text><uni-text data-v-06ae08d2=""
-                                                                                                                              class="text"><span>Second Contracts: Ideal for short-term,
-                                                                                                                                 high-frequency trading.</span></uni-text><uni-text
-                                                                                                                                    data-v-06ae08d2="" class="text"><span>Copy Trading: Replicate
-                                                                                                                                       strategies of top traders.</span></uni-text><uni-text
-                                                                                                                                          data-v-06ae08d2="" class="text"><span>Personal API Trading: Use the
-                                                                                                                                             platform’s API for trading operations. Trades are executed by
-                                                                                                                                             Firefly’s strategy bots and
-                                                                                                                                             investors.</span></uni-text></uni-view></uni-view></uni-view></uni-view></uni-view><uni-view
-                                                                                                                                                data-v-6fe2d4dd="" data-v-06ae08d2="" class="uni-collapse"><uni-view data-v-9da912bc=""
-                                                                                                                                                   data-v-06ae08d2="" class="uni-collapse-item"><uni-view data-v-9da912bc=""
-                                                                                                                                                      class="uni-collapse-item__title uni-collapse-item-border"><uni-view
-                                                                                                                                                         data-v-9da912bc="" class="uni-collapse-item__title-wrap"><uni-view
-                                                                                                                                                            data-v-9da912bc="" class="uni-collapse-item__title-box"> <uni-text
-                                                                                                                                                               data-v-9da912bc="" class="uni-collapse-item__title-text"><span>How
-                                                                                                                                                                  to Choose the Right
-                                                                                                                                                                  Server?</span></uni-text></uni-view></uni-view><uni-view
-                                                                                                                                                                     data-v-9da912bc=""
-                                                                                                                                                                     class="uni-collapse-item__title-arrow uni-collapse-item--animation"><uni-text
-                                                                                                                                                                        data-v-45a6b600="" data-v-9da912bc="" class="uni-icons uniui-bottom"
-                                                                                                                                                                        style={{ color: 'rgb(187, 187, 187)', fontSize: '14px' }}><span></span></uni-text></uni-view></uni-view><uni-view
-                                                                                                                                                                           data-v-9da912bc="" class="uni-collapse-item__wrap is--transition"
-                                                                                                                                                                           style={{ height: '0px' }}><uni-view data-v-9da912bc="" id="Uni_d0kk"
-                                                                                                                                                                              class="uni-collapse-item__wrap-content open"><uni-view data-v-06ae08d2=""
-                                                                                                                                                                                 class="content"><uni-text data-v-06ae08d2="" class="text"><span>Free
-                                                                                                                                                                                    Trial: New users get a 15-day trial with an investment limit of
-                                                                                                                                                                                    $10−30.</span></uni-text><uni-text data-v-06ae08d2=""
-                                                                                                                                                                                       class="text"><span>Official Servers: S1-S6 levels with varying
-                                                                                                                                                                                          investment ranges and returns. Details are available in the
-                                                                                                                                                                                          server
-                                                                                                                                                                                          marketplace.</span></uni-text></uni-view></uni-view></uni-view></uni-view></uni-view><uni-view
-                                                                                                                                                                                             data-v-6fe2d4dd="" data-v-06ae08d2="" class="uni-collapse"><uni-view data-v-9da912bc=""
-                                                                                                                                                                                                data-v-06ae08d2="" class="uni-collapse-item"><uni-view data-v-9da912bc=""
-                                                                                                                                                                                                   class="uni-collapse-item__title uni-collapse-item-border"><uni-view
-                                                                                                                                                                                                      data-v-9da912bc="" class="uni-collapse-item__title-wrap"><uni-view
-                                                                                                                                                                                                         data-v-9da912bc="" class="uni-collapse-item__title-box"> <uni-text
-                                                                                                                                                                                                            data-v-9da912bc="" class="uni-collapse-item__title-text"><span>How
-                                                                                                                                                                                                               is Fund Security
-                                                                                                                                                                                                               Ensured?</span></uni-text></uni-view></uni-view><uni-view
-                                                                                                                                                                                                                  data-v-9da912bc=""
-                                                                                                                                                                                                                  class="uni-collapse-item__title-arrow uni-collapse-item--animation"><uni-text
-                                                                                                                                                                                                                     data-v-45a6b600="" data-v-9da912bc="" class="uni-icons uniui-bottom"
-                                                                                                                                                                                                                     style={{ color: 'rgb(187, 187, 187)', fontSize: '14px' }}><span></span></uni-text></uni-view></uni-view><uni-view
-                                                                                                                                                                                                                        data-v-9da912bc="" class="uni-collapse-item__wrap is--transition"
-                                                                                                                                                                                                                        style={{ height: '0px' }}><uni-view data-v-9da912bc="" id="Uni_i4fa"
-                                                                                                                                                                                                                           class="uni-collapse-item__wrap-content open"><uni-view data-v-06ae08d2=""
-                                                                                                                                                                                                                              class="content"><uni-text data-v-06ae08d2=""
-                                                                                                                                                                                                                                 class="text"><span>Compliant Operations: MSB licensing ensures legal
-                                                                                                                                                                                                                                    and transparent operations.</span></uni-text><uni-text
-                                                                                                                                                                                                                                       data-v-06ae08d2="" class="text"><span>API Trading:
-                                                                                                                                                                                                                                          Institutional-grade APIs guarantee secure and efficient
-                                                                                                                                                                                                                                          trading.</span></uni-text><uni-text data-v-06ae08d2=""
-                                                                                                                                                                                                                                             class="text"><span>Partnerships: API integration with exchanges like
-                                                                                                                                                                                                                                                Binance and OKX ensures stable
-                                                                                                                                                                                                                                                liquidity.</span></uni-text><uni-text data-v-06ae08d2=""
-                                                                                                                                                                                                                                                   class="text"><span>Insurance mechanism: Pay a percentage of the
-                                                                                                                                                                                                                                                      investment amount to purchase insurance to reduce market
-                                                                                                                                                                                                                                                      risks.</span></uni-text></uni-view></uni-view></uni-view></uni-view></uni-view><uni-view
-                                                                                                                                                                                                                                                         data-v-6fe2d4dd="" data-v-06ae08d2="" class="uni-collapse"><uni-view data-v-9da912bc=""
-                                                                                                                                                                                                                                                            data-v-06ae08d2="" class="uni-collapse-item"><uni-view data-v-9da912bc=""
-                                                                                                                                                                                                                                                               class="uni-collapse-item__title uni-collapse-item-border"><uni-view
-                                                                                                                                                                                                                                                                  data-v-9da912bc="" class="uni-collapse-item__title-wrap"><uni-view
-                                                                                                                                                                                                                                                                     data-v-9da912bc="" class="uni-collapse-item__title-box"> <uni-text
-                                                                                                                                                                                                                                                                        data-v-9da912bc=""
-                                                                                                                                                                                                                                                                        class="uni-collapse-item__title-text"><span>Withdrawal
-                                                                                                                                                                                                                                                                           Guidelines</span></uni-text></uni-view></uni-view><uni-view
-                                                                                                                                                                                                                                                                              data-v-9da912bc=""
-                                                                                                                                                                                                                                                                              class="uni-collapse-item__title-arrow uni-collapse-item--animation"><uni-text
-                                                                                                                                                                                                                                                                                 data-v-45a6b600="" data-v-9da912bc="" class="uni-icons uniui-bottom"
-                                                                                                                                                                                                                                                                                 style={{ color: 'rgb(187, 187, 187)', fontSize: '14px' }}><span></span></uni-text></uni-view></uni-view><uni-view
-                                                                                                                                                                                                                                                                                    data-v-9da912bc="" class="uni-collapse-item__wrap is--transition"
-                                                                                                                                                                                                                                                                                    style={{ height: '0px' }}><uni-view data-v-9da912bc="" id="Uni_516g"
-                                                                                                                                                                                                                                                                                       class="uni-collapse-item__wrap-content open"><uni-view data-v-06ae08d2=""
-                                                                                                                                                                                                                                                                                          class="content"><uni-text data-v-06ae08d2="" class="text"><span>Timing:
-                                                                                                                                                                                                                                                                                             One withdrawal per day.</span></uni-text><uni-text
-                                                                                                                                                                                                                                                                                                data-v-06ae08d2="" class="text"><span>Fees: A flat 8-10% fee
-                                                                                                                                                                                                                                                                                                   (covering taxes, exchange settlement, and channel
-                                                                                                                                                                                                                                                                                                   fees).</span></uni-text></uni-view></uni-view></uni-view></uni-view></uni-view><uni-view
-                                                                                                                                                                                                                                                                                                      data-v-6fe2d4dd="" data-v-06ae08d2="" class="uni-collapse"><uni-view data-v-9da912bc=""
-                                                                                                                                                                                                                                                                                                         data-v-06ae08d2="" class="uni-collapse-item"><uni-view data-v-9da912bc=""
-                                                                                                                                                                                                                                                                                                            class="uni-collapse-item__title uni-collapse-item-border"><uni-view
-                                                                                                                                                                                                                                                                                                               data-v-9da912bc="" class="uni-collapse-item__title-wrap"><uni-view
-                                                                                                                                                                                                                                                                                                                  data-v-9da912bc="" class="uni-collapse-item__title-box"> <uni-text
-                                                                                                                                                                                                                                                                                                                     data-v-9da912bc="" class="uni-collapse-item__title-text"><span>How
-                                                                                                                                                                                                                                                                                                                        Does the Platform Achieve Stable
-                                                                                                                                                                                                                                                                                                                        Profits?</span></uni-text></uni-view></uni-view><uni-view
-                                                                                                                                                                                                                                                                                                                           data-v-9da912bc=""
-                                                                                                                                                                                                                                                                                                                           class="uni-collapse-item__title-arrow uni-collapse-item--animation"><uni-text
-                                                                                                                                                                                                                                                                                                                              data-v-45a6b600="" data-v-9da912bc="" class="uni-icons uniui-bottom"
-                                                                                                                                                                                                                                                                                                                              style={{ color: 'rgb(187, 187, 187)', fontSize: '14px' }}><span></span></uni-text></uni-view></uni-view><uni-view
-                                                                                                                                                                                                                                                                                                                                 data-v-9da912bc="" class="uni-collapse-item__wrap is--transition"
-                                                                                                                                                                                                                                                                                                                                 style={{ height: '0px' }}><uni-view data-v-9da912bc="" id="Uni_jk1d"
-                                                                                                                                                                                                                                                                                                                                    class="uni-collapse-item__wrap-content open"><uni-view data-v-06ae08d2=""
-                                                                                                                                                                                                                                                                                                                                       class="content"><uni-text data-v-06ae08d2="" class="text"><span>AI
-                                                                                                                                                                                                                                                                                                                                          Quantitative Trading: 24/7 market monitoring and portfolio
-                                                                                                                                                                                                                                                                                                                                          optimization.</span></uni-text><uni-text data-v-06ae08d2=""
-                                                                                                                                                                                                                                                                                                                                             class="text"><span>Multi-Strategy Portfolio: Combines short, medium,
-                                                                                                                                                                                                                                                                                                                                                and long-term strategies to diversify
-                                                                                                                                                                                                                                                                                                                                                risks.</span></uni-text></uni-view></uni-view></uni-view></uni-view></uni-view><uni-view
-                                                                                                                                                                                                                                                                                                                                                   data-v-6fe2d4dd="" data-v-06ae08d2="" class="uni-collapse"><uni-view data-v-9da912bc=""
-                                                                                                                                                                                                                                                                                                                                                      data-v-06ae08d2="" class="uni-collapse-item"><uni-view data-v-9da912bc=""
-                                                                                                                                                                                                                                                                                                                                                         class="uni-collapse-item__title uni-collapse-item-border"><uni-view
-                                                                                                                                                                                                                                                                                                                                                            data-v-9da912bc="" class="uni-collapse-item__title-wrap"><uni-view
-                                                                                                                                                                                                                                                                                                                                                               data-v-9da912bc="" class="uni-collapse-item__title-box"> <uni-text
-                                                                                                                                                                                                                                                                                                                                                                  data-v-9da912bc="" class="uni-collapse-item__title-text"><span>How
-                                                                                                                                                                                                                                                                                                                                                                     to Participate in the Referral
-                                                                                                                                                                                                                                                                                                                                                                     System?</span></uni-text></uni-view></uni-view><uni-view
-                                                                                                                                                                                                                                                                                                                                                                        data-v-9da912bc=""
-                                                                                                                                                                                                                                                                                                                                                                        class="uni-collapse-item__title-arrow uni-collapse-item--animation"><uni-text
-                                                                                                                                                                                                                                                                                                                                                                           data-v-45a6b600="" data-v-9da912bc="" class="uni-icons uniui-bottom"
-                                                                                                                                                                                                                                                                                                                                                                           style={{ color: 'rgb(187, 187, 187)', fontSize: '14px' }}><span></span></uni-text></uni-view></uni-view><uni-view
-                                                                                                                                                                                                                                                                                                                                                                              data-v-9da912bc="" class="uni-collapse-item__wrap is--transition"
-                                                                                                                                                                                                                                                                                                                                                                              style={{ height: '0px' }}><uni-view data-v-9da912bc="" id="Uni_8pm8"
-                                                                                                                                                                                                                                                                                                                                                                                 class="uni-collapse-item__wrap-content open"><uni-view data-v-06ae08d2=""
-                                                                                                                                                                                                                                                                                                                                                                                    class="content"><uni-view data-v-06ae08d2="" class="title">Server
-                                                                                                                                                                                                                                                                                                                                                                                       Commission Rewards:</uni-view><uni-text data-v-06ae08d2=""
-                                                                                                                                                                                                                                                                                                                                                                                          class="text"><span>L1 Referrer: 30%
-                                                                                                                                                                                                                                                                                                                                                                                             commission.</span></uni-text><uni-text data-v-06ae08d2=""
-                                                                                                                                                                                                                                                                                                                                                                                                class="text"><span>L2 Referrer: 20%
-                                                                                                                                                                                                                                                                                                                                                                                                   commission.</span></uni-text><uni-text data-v-06ae08d2=""
-                                                                                                                                                                                                                                                                                                                                                                                                      class="text"><span>Example: If a referred user purchases a 100$
-                                                                                                                                                                                                                                                                                                                                                                                                         server,L1 earns $30, and L2 earns
-                                                                                                                                                                                                                                                                                                                                                                                                         $20.</span></uni-text><uni-text data-v-06ae08d2=""
-                                                                                                                                                                                                                                                                                                                                                                                                            class="text"><span>Renewal Rules: Renewals are half-price but do not
-                                                                                                                                                                                                                                                                                                                                                                                                               generate additional commissions.</span></uni-text><uni-view
-                                                                                                                                                                                                                                                                                                                                                                                                                  data-v-06ae08d2="" class="title">Trading Commission
-                                          Rewards:</uni-view><uni-text data-v-06ae08d2=""
-                                             class="text"><span>The platform charges 30% of user profits, with
-                                                21% allocated for rebates.</span></uni-text><uni-text
-                                                   data-v-06ae08d2="" class="text"><span>L1 Referrer: 8%
-                                                      rebate.</span></uni-text><uni-text data-v-06ae08d2=""
-                                                         class="text"><span>L2 Referrer: 6%
-                                                            rebate.</span></uni-text><uni-text data-v-06ae08d2=""
-                                                               class="text"><span>L3 Referrer: 4%
-                                                                  rebate.</span></uni-text><uni-text data-v-06ae08d2=""
-                                                                     class="text"><span>L4 Referrer: 2%
-                                                                        rebate.</span></uni-text><uni-text data-v-06ae08d2=""
-                                                                           class="text"><span>L5 Referrer: 1%
-                                                                              rebate.</span></uni-text><uni-view data-v-06ae08d2=""
-                                                                                 style={{ height: '8px' }}></uni-view></uni-view></uni-view></uni-view></uni-view></uni-view><uni-view
-                                                                                    data-v-6fe2d4dd="" data-v-06ae08d2="" class="uni-collapse"><uni-view data-v-9da912bc=""
-                                                                                       data-v-06ae08d2="" class="uni-collapse-item"><uni-view data-v-9da912bc=""
-                                                                                          class="uni-collapse-item__title uni-collapse-item-border"><uni-view
-                                                                                             data-v-9da912bc="" class="uni-collapse-item__title-wrap"><uni-view
-                                                                                                data-v-9da912bc="" class="uni-collapse-item__title-box"> <uni-text
-                                                                                                   data-v-9da912bc=""
-                                                                                                   class="uni-collapse-item__title-text"><span>Personal API Trading vs.
-                                                                                                      Platform API
-                                                                                                      Trading</span></uni-text></uni-view></uni-view><uni-view
-                                                                                                         data-v-9da912bc=""
-                                                                                                         class="uni-collapse-item__title-arrow uni-collapse-item--animation"><uni-text
-                                                                                                            data-v-45a6b600="" data-v-9da912bc="" class="uni-icons uniui-bottom"
-                                                                                                            style={{ color: 'rgb(187, 187, 187)', fontSize: '14px' }}><span></span></uni-text></uni-view></uni-view><uni-view
-                                                                                                               data-v-9da912bc="" class="uni-collapse-item__wrap is--transition"
-                                                                                                               style={{ height: '0px' }}><uni-view data-v-9da912bc="" id="Uni_a9d"
-                                                                                                                  class="uni-collapse-item__wrap-content open"><uni-view data-v-06ae08d2=""
-                                                                                                                     class="content"><uni-text data-v-06ae08d2="" class="text"><span>Personal
-                                                                                                                        API: Users manage trades independently, with a 20% commission on
-                                                                                                                        profits.</span></uni-text><uni-text data-v-06ae08d2=""
-                                                                                                                           class="text"><span>Platform API: Trades executed by the platform,
-                                                                                                                              with a 30% commission on
-                                                                                                                              profits.</span></uni-text></uni-view></uni-view></uni-view></uni-view></uni-view><uni-view
-                                                                                                                                 data-v-6fe2d4dd="" data-v-06ae08d2="" class="uni-collapse"><uni-view data-v-9da912bc=""
-                                                                                                                                    data-v-06ae08d2="" class="uni-collapse-item"><uni-view data-v-9da912bc=""
-                                                                                                                                       class="uni-collapse-item__title uni-collapse-item-border"><uni-view
-                                                                                                                                          data-v-9da912bc="" class="uni-collapse-item__title-wrap"><uni-view
-                                                                                                                                             data-v-9da912bc="" class="uni-collapse-item__title-box"> <uni-text
-                                                                                                                                                data-v-9da912bc="" class="uni-collapse-item__title-text"><span>The
-                                                                                                                                                   Meaning Behind Firefly Star LLC’s
-                                                                                                                                                   Brand</span></uni-text></uni-view></uni-view><uni-view
-                                                                                                                                                      data-v-9da912bc=""
-                                                                                                                                                      class="uni-collapse-item__title-arrow uni-collapse-item--animation"><uni-text
-                                                                                                                                                         data-v-45a6b600="" data-v-9da912bc="" class="uni-icons uniui-bottom"
-                                                                                                                                                         style={{ color: 'rgb(187, 187, 187)', fontSize: '14px' }}><span></span></uni-text></uni-view></uni-view><uni-view
-                                                                                                                                                            data-v-9da912bc="" class="uni-collapse-item__wrap is--transition"
-                                                                                                                                                            style={{ height: '0px' }}><uni-view data-v-9da912bc="" id="Uni_64be"
-                                                                                                                                                               class="uni-collapse-item__wrap-content open"><uni-view data-v-06ae08d2=""
-                                                                                                                                                                  class="content"><uni-text data-v-06ae08d2="" class="text"><span>Firefly:
-                                                                                                                                                                     Symbolizes the gathering of light to illuminate the path to
-                                                                                                                                                                     wealth.</span></uni-text><uni-text data-v-06ae08d2=""
-                                                                                                                                                                        class="text"><span>Star: Represents direction and guidance, helping
-                                                                                                                                                                           investors move
-                                                                                                                                                                           forward.</span></uni-text></uni-view></uni-view></uni-view></uni-view></uni-view>
+                        class="content"
+                     >
+
                         <uni-view
-                           data-v-6fe2d4dd="" data-v-06ae08d2="" class="uni-collapse"><uni-view data-v-9da912bc=""
-                              data-v-06ae08d2="" class="uni-collapse-item"><uni-view data-v-9da912bc=""
-                                 class="uni-collapse-item__title uni-collapse-item-border"><uni-view
-                                    data-v-9da912bc="" class="uni-collapse-item__title-wrap"><uni-view
-                                       data-v-9da912bc="" class="uni-collapse-item__title-box"> <uni-text
+                           data-v-6fe2d4dd="" data-v-06ae08d2="" class="uni-collapse">
+                           <uni-view data-v-9da912bc=""
+                              data-v-06ae08d2="" class="uni-collapse-item">
+                              <uni-view data-v-9da912bc=""
+                                 class="uni-collapse-item__title uni-collapse-item-border">
+                                 <uni-view
+                                    data-v-9da912bc="" class="uni-collapse-item__title-wrap">
+                                    <uni-view
+                                       data-v-9da912bc="" class="uni-collapse-item__title-box">
+                                       <uni-text
                                           data-v-9da912bc="" class="uni-collapse-item__title-text"><span>How
                                              to Stay
-                                             Updated?</span></uni-text></uni-view></uni-view>
+                                             Updated?</span>
+                                       </uni-text>
+                                    </uni-view>
+                                 </uni-view>
                                  <uni-view
-                                    data-v-9da912bc=""
+                                    data-v-9da912bc="" onClick={toggleDropdown}
                                     class="uni-collapse-item__title-arrow uni-collapse-item--animation"><uni-text
-                                       data-v-45a6b600="" data-v-9da912bc="" class="uni-icons uniui-bottom"
-                                       style={{ color: 'rgb(187, 187, 187)', fontSize: '14px' }}><span></span></uni-text></uni-view>
+                                       data-v-45a6b600="" data-v-9da912bc="" class="uni-icons "
+                                       style={{ color: 'rgb(187, 187, 187)', fontSize: '14px' }}><span style={{
+                                          transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                                          transition: "transform 0.3s ease"
+                                       }}><img src="/static/img/down-arrow.png" alt="" /></span></uni-text>
+                                 </uni-view>
                               </uni-view>
-                              <uni-view
+                              <Collapse isOpened={isOpen}
                                  data-v-9da912bc="" class="uni-collapse-item__wrap is--transition"
-                                 style={{ height: '0px' }}><uni-view data-v-9da912bc="" id="Uni_la5w"
-                                    class="uni-collapse-item__wrap-content open"><uni-view data-v-06ae08d2=""
-                                       class="content"><uni-text data-v-06ae08d2="" class="text"><span>Official
+                                 style={{ height: '0px' }}>
+                                 <uni-view data-v-9da912bc="" id="Uni_la5w"
+                                    class="uni-collapse-item__wrap-content open">
+                                    <uni-view data-v-06ae08d2=""
+                                       class="content">
+                                       <uni-text data-v-06ae08d2="" class="text"><span>Official
                                           Website: Check announcements and rule
-                                          updates.</span></uni-text><uni-text data-v-06ae08d2=""
-                                             class="text"><span>Customer Service: Reach out via online chat or
-                                                email
-                                                support.</span></uni-text></uni-view></uni-view></uni-view>
-                           </uni-view></uni-view>
+                                          updates.</span>
+                                       </uni-text>
+                                       <uni-text data-v-06ae08d2=""
+                                          class="text"><span>Customer Service: Reach out via online chat or
+                                             email
+                                             support.</span>
+                                       </uni-text>
+                                    </uni-view>
+                                 </uni-view>
+                              </Collapse>
+                           </uni-view>
+                        </uni-view>
+
+
 
                         <uni-view
                            data-v-06ae08d2="" class="title">Policy</uni-view>

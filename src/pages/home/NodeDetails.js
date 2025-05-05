@@ -112,13 +112,13 @@ const NodeDetails = () => {
                 </uni-view>
                 </Link>
 
-                <uni-view data-v-3dcfa33c="" class="kyc-box"><Link to="/Kyc">
+                {/* <uni-view data-v-3dcfa33c="" class="kyc-box"><Link to="/Kyc"style={{ textDecorationLine: 'none' }}>
                   <uni-view data-v-3dcfa33c="" class="value"><img data-v-3dcfa33c="" src="/static/img/warn.png" alt="" />KYC Certification</uni-view>
                   <uni-view data-v-3dcfa33c="" class="title">Your account is not verified yet please add add your personal details to verify</uni-view>
                   <uni-view data-v-3dcfa33c="" class="go-kyc">Verify Now</uni-view>
                   </Link>
-                </uni-view>
-
+                </uni-view> */}
+               <Link to="/Wallet" style={{ textDecorationLine: 'none' }}>
                 <uni-view data-v-3dcfa33c="" class="invite-box">
                   <img data-v-3dcfa33c="" src="/static/img/wallet.png" alt="" />
                   <uni-view data-v-3dcfa33c="" class="invite">
@@ -126,6 +126,7 @@ const NodeDetails = () => {
                     <uni-view data-v-3dcfa33c="" class="text">Manage wallet addresses and bank cards</uni-view>
                   </uni-view>
                 </uni-view>
+                </Link>
                 <uni-view data-v-3dcfa33c="" class="invite-box">
                   <img data-v-3dcfa33c="" src="/static/img/service.png" alt="" />
                   <uni-view data-v-3dcfa33c="" class="invite">
