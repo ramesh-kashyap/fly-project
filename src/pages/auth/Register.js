@@ -2,18 +2,24 @@ import React, { useState } from "react";
 import Api from "../../Requests/Api";
 import { useNavigate,Link } from "react-router-dom";
 import { toast } from 'react-toastify';
-
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
+import 'react-phone-input-2/lib/style.css';
+import '../../index.css'
 const Register = () => {
+  
+  
   const [formData, setFormData] = useState({
     sponsor: "",
     email: "",
     phone: "",
     password: "",
     password_confirmation: "",
+    countryCode:"",
+    country: "",
   });
 
   const navigate = useNavigate();
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -33,7 +39,8 @@ const Register = () => {
         sponsor: formData.sponsor,
         email: formData.email,
         phone: formData.phone,
-        password: formData.password,       
+        password: formData.password,  
+        countryCode: formData.countryCode,     
       });
 
       if (response.data.status) {
@@ -55,6 +62,7 @@ const Register = () => {
       }
     }
   };
+
 
   return (
     <div class="uni-body pages-login-login">
@@ -165,11 +173,23 @@ const Register = () => {
                         }}
                       >
                         <uni-view data-v-30449abe="" class="content-clear-icon">
-                          <img
-                            data-v-30449abe=""
-                            src="/static/img/user.png"
-                            alt=""
-                          />
+                        <div class="relative flex items-center bg-[rgb(78_78_78_/_40%)]  rounded-l-xl px-2 h-[53px] text-white text-base min-w-[85px]">
+                        <PhoneInput
+        defaultCountry="IN"
+        value={formData.countryCode}
+        onChange={(value, meta) => {
+          setFormData({
+            ...formData,
+            countryCode: meta.country.dialCode,
+            country: meta.country.iso2.toUpperCase(),
+          });
+        }}
+        inputClassName="!opacity-0 !w-0"
+        containerClassName="!absolute !left-0 !top-0 w-full h-full"
+        buttonClassName="!h-full !bg-transparent !border-none z-10 !pl-1 !pr-1"
+      />
+      {/* <span className="ml-[-15px] z-0">+{formData.countryCode}</span> */}
+                         </div>
                         </uni-view>{" "}
                         <uni-input
                           data-v-30449abe=""
