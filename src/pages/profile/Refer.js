@@ -1,7 +1,61 @@
-import React, { useState } from 'react';
 import { useNavigate, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Api from "../../Requests/Api";
+import { FaCopy } from 'react-icons/fa'; // Import the copy icon
+
+
+
+
 
 const Refer = () => {
+
+
+
+
+    const [inviteLink, setInviteLink] = useState(null);
+    const [username, setUsername] = useState(null);
+
+    const [error, setError] = useState("");
+  
+    const fetchUsers = async () => {
+      try {
+        const response = await Api.get("Getinvate");
+  
+        if (response.data && response.data.data && response.data.data.username) {
+
+            const fetchedUsername = response.data.data.username;
+
+            setUsername(fetchedUsername);
+
+          // Construct the invite link with the username
+          const inviteLink = `${window.location.origin}=${response.data.data.username}`;
+          setInviteLink(inviteLink);
+        } else {
+          setInviteLink(null);
+        }
+  
+        console.log(response.data);
+      } catch (err) {
+        setError(err.response?.data?.error || "Error fetching user data");
+      }
+    };
+  
+    useEffect(() => {
+      fetchUsers();
+    }, []);
+  
+
+    const copyToClipboard = (text) => {
+        // Create a dummy input to copy text from
+        const dummyInput = document.createElement('input');
+        document.body.appendChild(dummyInput);
+        dummyInput.value = text;
+        dummyInput.select();
+        document.execCommand('copy'); // Execute the copy command
+        document.body.removeChild(dummyInput); // Remove the dummy input element
+        alert('Invite link copied to clipboard!');
+      };
 
 
     return (
@@ -31,15 +85,45 @@ const Refer = () => {
                                     <uni-view data-v-0f43bbff="" class="qrcode-box">
                                         <uni-view data-v-cd74eaf4="" data-v-0f43bbff="" class="tki-qrcode">
                                          
-                                         {/* qr  */}
-                                         <uni-view data-v-0f43bbff="" class=""><img data-v-0f43bbff="" src="/static/img/downlaad.png" alt=""/></uni-view>
+                                         <uni-view data-v-0f43bbff="" class=""><img data-v-0f43bbff=""  src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${window.location.origin}/register?inviteCode=${username}`} alt=""/></uni-view>
 
                                         </uni-view>
                                     </uni-view>
                                     <uni-view data-v-0f43bbff="" class="title">Invitation Registration Link</uni-view>
-                                    <uni-view data-v-0f43bbff="" class="link">https://tg.fireflyzerox.com/#/pages/login/register?invitecode=2098141</uni-view>
-                                    <uni-view data-v-0f43bbff="" class="title">Your Invitation Code</uni-view>
-                                    <uni-view data-v-0f43bbff="" class="code">2098141</uni-view>
+    <uni-view data-v-0f43bbff="" class="link">
+      {inviteLink ? inviteLink : "Invite link not available"}
+      <button onClick={() => copyToClipboard(inviteLink)} style={{ marginLeft: '10px', cursor: 'pointer' }}>
+        <FaCopy size={20} />
+      </button>
+    </uni-view>
+
+
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px' }}>
+    <uni-view data-v-0f43bbff="" class="title" style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '10px' }}>
+      Your Invitation Code
+    </uni-view>
+    <uni-view data-v-0f43bbff="" class="code" style={{ display: 'flex', alignItems: 'center', fontSize: '16px', marginBottom: '10px' }}>
+      <span>{username ? username : "Username not available"}</span>
+      <button 
+        onClick={() => copyToClipboard(username)} 
+        style={{
+          marginLeft: '10px',
+          cursor: 'pointer',
+          background: '#007BFF', // Blue background for the button
+          color: 'white',
+          padding: '5px 10px',
+          borderRadius: '5px',
+          border: 'none',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <FaCopy size={16} style={{ marginRight: '5px' }} />
+        Copy
+      </button>
+    </uni-view>
+  </div>
                                 </uni-view>
                                 <uni-view data-v-0f43bbff="" class="two-btn">
                                     <uni-view data-v-0f43bbff="" class="btn-item">

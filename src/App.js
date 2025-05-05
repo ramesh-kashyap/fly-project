@@ -31,8 +31,10 @@ import Refer from "./pages/profile/Refer";
 import Kyc from "./pages/profile/Kyc";
 import Team from "./pages/team/Team";
 import Level from "./pages/team/Level";
+import Refer from "./pages/profile/Refer";
 
-
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
 import Footer from "./components/Footer";
 import TradingChart from "./pages/home/TradingChart";
 import Smartrade from "./pages/home/Smartrade";
@@ -85,35 +87,29 @@ function AppContent() {
                     <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
                     <Route path="/ForgotPassword" element={<PublicRoute><ForgotPassword /></PublicRoute>} />
 
-                    {/* Protected Routes */}
-                    <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-                    <Route path="/NodeDetails" element={<ProtectedRoute><NodeDetails /></ProtectedRoute>} />
-                    <Route path="/Notice" element={<ProtectedRoute><Notice /></ProtectedRoute>} />
-                    <Route path="/Setting" element={<ProtectedRoute><Setting /></ProtectedRoute>} />
-                    <Route path="/ChangePassword" element={<ProtectedRoute><ChangePassword /></ProtectedRoute>} />
-                    <Route path="/trade" element={<ProtectedRoute><Trade /></ProtectedRoute>} />
-                    <Route path="/assets" element={<ProtectedRoute><Assets /></ProtectedRoute>} />
-                    <Route path="/server" element={<ProtectedRoute><Server /></ProtectedRoute>} />
-                    <Route path="/Wallet" element={<ProtectedRoute><Wallet /></ProtectedRoute>} />
-                    <Route path="/Refer" element={<ProtectedRoute><Refer /></ProtectedRoute>} />
-                    <Route path="/Kyc" element={<ProtectedRoute><Kyc /></ProtectedRoute>} />
-                    <Route path="/ServerCommission" element={<ProtectedRoute><ServerCommission /></ProtectedRoute>} />
-                    <Route path="/PaymentPassword" element={<ProtectedRoute><PaymentPassword /></ProtectedRoute>} />
-                    <Route path="/Level" element={<ProtectedRoute><Level/></ProtectedRoute>}/>
-                    <Route path="/Team" element={<ProtectedRoute><Team /></ProtectedRoute>} />
-                    
-                    <Route path="/WithdrawReq" element={<ProtectedRoute><WithdrawReq /></ProtectedRoute>} />
-                    <Route path="/History" element={<ProtectedRoute><History /></ProtectedRoute>} />
-                    <Route path="/Whistory" element={<ProtectedRoute><Whistory /></ProtectedRoute>} />
-                    <Route path="/Smartrade" element={<ProtectedRoute><Smartrade /></ProtectedRoute>} />
-                    <Route path="/RechargeFunds" element={<ProtectedRoute><RechargeFunds /></ProtectedRoute>} />
-                    <Route path="/dashboard/TradingChart/:symbol" element={<ProtectedRoute><TradingChart /></ProtectedRoute>} />
-                    <Route path="/add-wallet" element={<ProtectedRoute><AddWallet /></ProtectedRoute>} />
-                    <Route path="/Add-WalletAddress/:networkType" element={  <ProtectedRoute><AddWalletAddress /></ProtectedRoute>} />
-                </Routes>
+                        {/* Protected Routes */}
+                        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+                        {/* </Route> */}
+                        <Route path="/trade" element={<ProtectedRoute><Trade /></ProtectedRoute>} />
+                        <Route path="/assets" element={<ProtectedRoute><Assets /></ProtectedRoute>} />
+                        <Route path="/server" element={<ProtectedRoute><Server /></ProtectedRoute>} />
+                        <Route path="/Team" element={<ProtectedRoute><Team /></ProtectedRoute>} />
+                        <Route path="/Level" element={<ProtectedRoute><Level/></ProtectedRoute>} />
 
-                {/* Footer only if route not in hidden list */}
-                {!hideFooter && <Footer />}
+                        <Route path="/NodeDetails" element={<ProtectedRoute><NodeDetails /></ProtectedRoute>} />
+                        <Route path="/WithdrawReq" element={<ProtectedRoute><WithdrawReq /></ProtectedRoute>} />
+                        <Route path="/History" element={<ProtectedRoute><History /></ProtectedRoute>} />
+                        <Route path="/Smartrade" element={<Smartrade />} />
+                        <Route path="/RechargeFunds" element={<ProtectedRoute><RechargeFunds /></ProtectedRoute>} />
+                        <Route path="/Refer" element={<ProtectedRoute><Refer/></ProtectedRoute>} />
+                        {/* Redirect */}
+                        
+                        {/* <Route element={<ProtectedRoute><Footer /></ProtectedRoute>} /> */}
+                        <Route path="/dashboard/TradingChart/:symbol" element={<TradingChart />} />
+                        
+                    </Routes>
+                    {!hideFooter && <Footer />}                   
+                </uni-app>
                 <ToastContainer />
             </div>
         </div>

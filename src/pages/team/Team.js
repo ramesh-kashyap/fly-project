@@ -1,12 +1,8 @@
-
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { useNavigate } from "react-router-dom";
 
-
-
-import axios from "axios";
 import Api from "../../Requests/Api";
 const Team = () => {
     const navigate = useNavigate(); 
@@ -26,18 +22,12 @@ const Team = () => {
     }, []);
 
 
-    const fetchteam = async () => {
-        const token = localStorage.getItem("token"); // Get JWT Token
-        console.log("Token from LocalStorage:", token); // Debugging
-
-        if (!token) {
-            setError("User not authenticated!");
-            return;
-        }
-        try {
-            const data2 ={token:token};
-            const response =await Api.post('team',data2);                
-            setIncome(response.data);
+    const fetchteam = async () => {        
+        try {            
+            const response =await Api.get('/team');
+            if(response.data){
+              setIncome(response.data);
+            } 
             // console.log(response.data)
         } catch (err) {
             setError(err.response?.data?.error || "Error fetching income");
