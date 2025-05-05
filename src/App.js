@@ -11,6 +11,7 @@ import Assets from "./pages/Withdraw/Assets";
 import Server from "./pages/profile/Server";
 import Team from "./pages/team/Team";
 import Level from "./pages/team/Level";
+import Refer from "./pages/profile/Refer";
 
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
@@ -70,7 +71,7 @@ function App() {
                         <Route path="/History" element={<ProtectedRoute><History /></ProtectedRoute>} />
                         <Route path="/Smartrade" element={<Smartrade />} />
                         <Route path="/RechargeFunds" element={<ProtectedRoute><RechargeFunds /></ProtectedRoute>} />
-
+                        <Route path="/Refer" element={<ProtectedRoute><Refer/></ProtectedRoute>} />
                         {/* Redirect */}
                         
                         {/* <Route element={<ProtectedRoute><Footer /></ProtectedRoute>} /> */}
