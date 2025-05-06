@@ -192,7 +192,7 @@ const Trade = () => {
                   <uni-view data-v-945761f4=""  key={index} class="history-item">
                      <uni-view data-v-945761f4="" class="first">
                        <uni-view data-v-945761f4="" class="left">
-                        {/* <img data-v-945761f4="" src="/static/coin/doge.png" alt=""/> */}
+                        {/* {/ <img data-v-945761f4="" src="/static/coin/doge.png" alt=""/> } */}
                         {item.currency || 0}</uni-view>
                        <uni-view data-v-945761f4="" class="right">Completed</uni-view>
                   </uni-view>
@@ -255,6 +255,5 @@ const Trade = () => {
 };
 
 export default Trade;
-
 
 

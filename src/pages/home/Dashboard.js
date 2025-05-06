@@ -17,14 +17,11 @@ const Dashboard = () => {
 
    const [isOpen, setIsOpen] = useState(true); // Modal visibility state
 
-   // Function to close the modal when Decline is clicked
-   const closeModal = () => {
+    const closeModal = () => {
       setIsOpen(false);
-   };
+    };
 
-   // Function to handle Accept action (optional)
-   const handleAccept = () => {
-      // Logic for Accept (e.g., connect with Telegram)
+    const handleAccept = () => {
       console.log("Account connected with Telegram!");
       setIsOpen(false); // Close the modal after accepting
    };
@@ -32,6 +29,7 @@ const Dashboard = () => {
    const [binanceSymbols, setBinanceSymbols] = useState([]);
    const [showAll, setShowAll] = useState(false); // toggle state
    const toggleDropdown = () => setIsOpen(!isOpen);
+   
 
    useEffect(() => {
       const fetchCrypto = async () => {
@@ -110,46 +108,38 @@ const Dashboard = () => {
    const allCoins = Object.values(cryptoData);
    const coinsToShow = showAll ? allCoins : allCoins.slice(0, 5);
    const [loading, setLoading] = useState(true);
-   const [balance, setBalance] = useState(null);
+   const [availbal, setAvailableBal] = useState();
+
 
 
    const [userDetails, setUserDetails] = useState(null);
    const token = localStorage.getItem('authToken'); // Retrieve token from localStorage
 
-   // useEffect(() => {
-      const fetchUserDetails = async () => {
-         try {
-            const response = await Api.get('/user', {
-             
-            });
-            setUserDetails(response.data); // Save the response data in state
-         } catch (error) {
-            console.error("Error fetching user details:", error);
-         }
-      };
+   useEffect(() => {
+      fetchUserDetails();
+   }, []);
 
-      if (token) {
-         fetchUserDetails(); // Fetch user details if token exists
-      }
-   // }, [token]);
-   const fetchBalance = async () => {
+   const fetchUserDetails = async () => {
       try {
-
-         // Make the API request with the Authorization header
-         const response = await Api.get("/availbal", {
-
-         });
-
-         // Check the response and set the data
-         if (response.data.success) {
-            setBalance(response.data.AvailBalance);
-         }
-
-         setLoading(false);
+         const response = await Api.get('/user');
+         setUserDetails(response.data); // This should be your user object
       } catch (error) {
-         setLoading(false);
-         console.error(error);
-         console.error("Error fetching withdraws!");
+         console.error("Error fetching user details:", error);
+      }
+   };
+   // }, [token]);
+   useEffect(() => {
+      withfatch();
+   }, []);
+
+   const withfatch = async () => {
+      try {
+         const response = await Api.get("/availbal");
+         if (response.data?.AvailBalance !== undefined) {
+            setAvailableBal(response.data.AvailBalance);
+         }
+      } catch (error) {
+         console.error("Error:", error);
       }
    };
 
@@ -169,17 +159,15 @@ const Dashboard = () => {
                                  data-v-06ae08d2="" class="ava"><img data-v-06ae08d2="" src="/static/ava/ava4.jpg"
                                     alt="" /></uni-view>
                            </Link>
-                           {userDetails ? (
-                              <uni-view data-v-06ae08d2="" class="top-text">
-                                 <uni-view
-                                    data-v-06ae08d2="" class="name">{userDetails.name}</uni-view>
-                                 <uni-view data-v-06ae08d2=""
-                                    class="uid">UID: {userDetails.username}</uni-view>
 
-                              </uni-view>
-                           ) : (
-                              <p>NaN</p>
-                           )}
+                           <uni-view data-v-06ae08d2="" class="top-text">
+                              <uni-view
+                                 data-v-06ae08d2="" class="name">{userDetails?.name}</uni-view>
+                              <uni-view data-v-06ae08d2=""
+                                 class="uid">UID: {userDetails?.username}</uni-view>
+
+                           </uni-view>
+
                         </uni-view><uni-view
                            data-v-06ae08d2="" class="right"><uni-view data-v-06ae08d2="" class="notice"><img
                               data-v-06ae08d2="" src="/static/img/rewards.png" alt=""
@@ -195,7 +183,7 @@ const Dashboard = () => {
                         data-v-06ae08d2="" class="balance-card"><uni-view data-v-06ae08d2="" class="first"><uni-view
                            data-v-06ae08d2="" class="balance-title">Your Balance
                            (USDT)</uni-view></uni-view><uni-view data-v-06ae08d2="" class="second"><uni-view
-                              data-v-06ae08d2="" translate="no" class="balance-num">{balance}</uni-view><uni-view
+                              data-v-06ae08d2="" translate="no" class="balance-num">{availbal}</uni-view><uni-view
                                  data-v-06ae08d2="" translate="no" class="profit-num">+0.0000<uni-view
                                     data-v-06ae08d2=""
                                     class="today">Yesterday</uni-view></uni-view></uni-view><uni-view
@@ -375,7 +363,9 @@ const Dashboard = () => {
                            data-v-6fe2d4dd="" data-v-06ae08d2="" class="uni-collapse">
                            <uni-view data-v-9da912bc=""
                               data-v-06ae08d2="" class="uni-collapse-item">
-                              <uni-view data-v-9da912bc=""
+                                    
+                              <uni-view data-v-9da912bc=""  
+                              onClick={toggleDropdown}   
                                  class="uni-collapse-item__title uni-collapse-item-border">
                                  <uni-view
                                     data-v-9da912bc="" class="uni-collapse-item__title-wrap">
@@ -389,14 +379,26 @@ const Dashboard = () => {
                                     </uni-view>
                                  </uni-view>
                                  <uni-view
-                                    data-v-9da912bc="" onClick={toggleDropdown}
-                                    class="uni-collapse-item__title-arrow uni-collapse-item--animation"><uni-text
-                                       data-v-45a6b600="" data-v-9da912bc="" class="uni-icons "
-                                       style={{ color: 'rgb(187, 187, 187)', fontSize: '14px' }}><span style={{
-                                          transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-                                          transition: "transform 0.3s ease"
-                                       }}><img src="/static/img/down-arrow.png" alt="" /></span></uni-text>
+                                    data-v-9da912bc=""
+                                    class="uni-collapse-item__title-arrow uni-collapse-item--animation"
+                                 >
+                                    <uni-text
+                                       data-v-45a6b600=""
+                                       data-v-9da912bc=""
+                                       class="uni-icons"
+                                       style={{ color: 'rgb(187, 187, 187)', fontSize: '14px' }}
+                                    >
+                                       <img
+                                          src="/static/img/down-arrow.png"
+                                          alt=""
+                                          style={{
+                                             transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                                             transition: "transform 0.3s ease"
+                                          }}
+                                       />
+                                    </uni-text>
                                  </uni-view>
+
                               </uni-view>
                               <Collapse isOpened={isOpen}
                                  data-v-9da912bc="" class="uni-collapse-item__wrap is--transition"
@@ -419,8 +421,8 @@ const Dashboard = () => {
                               </Collapse>
                            </uni-view>
                         </uni-view>
-
-
+                       
+                       
 
                         <uni-view
                            data-v-06ae08d2="" class="title">Policy</uni-view>

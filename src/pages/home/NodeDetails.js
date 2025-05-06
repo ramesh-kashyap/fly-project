@@ -19,24 +19,19 @@ const NodeDetails = () => {
   const token = localStorage.getItem('authToken'); // Retrieve token from localStorage
 
   useEffect(() => {
-    const fetchUserDetails = async () => {
-      try {
-        const response = await Api.get('/user', {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-        setUserDetails(response.data); // Save the response data in state
-      } catch (error) {
-        console.error("Error fetching user details:", error);
-      }
-    };
-
-    if (token) {
-      fetchUserDetails(); // Fetch user details if token exists
+    fetchUserDetails();
+  }, []);
+  
+  const fetchUserDetails = async () => {
+    try {
+      const response = await Api.get('/user');
+      setUserDetails(response.data); // This should be your user object
+    } catch (error) {
+      console.error("Error fetching user details:", error);
     }
-  }, [token]);
+  };
 
+  
 
   return (
 
@@ -69,16 +64,13 @@ const NodeDetails = () => {
                 <uni-view data-v-3dcfa33c="" class="ava-box">
                   <uni-view data-v-3dcfa33c="" class="ava"><img data-v-3dcfa33c="" src="/static/ava/ava4.jpg" alt="" /></uni-view>
 
-                  {userDetails ? (
                     <uni-view >
                       <uni-view
-                        data-v-3dcfa33c="" class="nickname">{userDetails.name}</uni-view>
-                      <uni-view data-v-3dcfa33c="" class="uid">UID: {userDetails.username}</uni-view>
+                        data-v-3dcfa33c="" class="nickname">{userDetails?.name}</uni-view>
+                      <uni-view data-v-3dcfa33c="" class="uid">UID: {userDetails?.username}</uni-view>
 
                     </uni-view>
-                  ) : (
-                    <p>NaN</p>
-                  )}
+              
                 </uni-view>
                 <uni-view data-v-3dcfa33c="" class="two-group">
                   <uni-view data-v-3dcfa33c="" class="item">
