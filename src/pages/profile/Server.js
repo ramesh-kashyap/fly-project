@@ -127,7 +127,7 @@ const Server = () => {
                     style={{
                       backgroundColor:
                         activeTab === "running"
-                          ? "rgb(53, 247, 231)"
+                          ? "#16a932"
                           : "hsla(0, 0%, 100%, 0.05)",
                       color:
                         activeTab === "running" ? "#000" : "rgb(255, 255, 255)",
@@ -144,7 +144,7 @@ const Server = () => {
                     style={{
                       backgroundColor:
                         activeTab === "completed"
-                          ? "rgb(53, 247, 231)"
+                          ? "#16a932"
                           : "hsla(0, 0%, 100%, 0.05)",
                       color:
                         activeTab === "completed"

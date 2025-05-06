@@ -24,7 +24,7 @@ export default function Footer() {
                   <div  className="uni-tabbar__label"
                     style={{
                       color:
-                        currentPath === '/dashboard' ? 'rgb(53, 247, 231)' : 'rgba(255, 255, 255, 0.5)',
+                        currentPath === '/dashboard' ? '#ffff' : 'rgba(255, 255, 255, 0.5)',
                       fontSize: '13px',
                       lineHeight: 'normal',
                       marginTop: '3px',
@@ -42,7 +42,7 @@ export default function Footer() {
                   <div  className="uni-tabbar__label"
                     style={{
                       color:
-                        currentPath === '/trade' ? 'rgb(53, 247, 231)' : 'rgba(255, 255, 255, 0.5)',
+                        currentPath === '/trade' ? '#ffff' : 'rgba(255, 255, 255, 0.5)',
                       fontSize: '13px',
                       lineHeight: 'normal',
                       marginTop: '3px',
@@ -60,7 +60,7 @@ export default function Footer() {
                   <div  className="uni-tabbar__label"
                     style={{
                       color:
-                        currentPath === '/assets' ? 'rgb(53, 247, 231)' : 'rgba(255, 255, 255, 0.5)',
+                        currentPath === '/assets' ? '#ffff' : 'rgba(255, 255, 255, 0.5)',
                       fontSize: '13px',
                       lineHeight: 'normal',
                       marginTop: '3px',
@@ -78,7 +78,7 @@ export default function Footer() {
                   <div className="uni-tabbar__label"
                     style={{
                       color:
-                        currentPath === '/server' ? 'rgb(53, 247, 231)' : 'rgba(255, 255, 255, 0.5)',
+                        currentPath === '/server' ? '#ffff' : 'rgba(255, 255, 255, 0.5)',
                       fontSize: '13px',
                       lineHeight: 'normal',
                       marginTop: '3px',

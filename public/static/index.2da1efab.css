@@ -7795,7 +7795,7 @@ body {
     padding: 16px 18px;
     border: .5px solid rgba(82, 97, 98, .25098039215686274);
     border-radius: 20px;
-    background: linear-gradient(155deg, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2) 55%, rgba(82, 97, 98, .058823529411764705) 0, rgba(82, 97, 98, .058823529411764705))
+    background: linear-gradient(135deg, #227632, #258725, #258e39, #2a7925, #40924f);
 }
 
 .first[data-v-248ca5b8] {
@@ -9808,7 +9808,7 @@ body {
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
-        background-color: #35f7e7;
+        background: linear-gradient(135deg, #227632, #258725, #258e39, #2a7925, #40924f);
         border-radius: 19px;
         height: 150px;
         color: #000;
@@ -11445,7 +11445,7 @@ body {
     .selected[data-v-7cdca4f6] {
         border-radius: 32px;
         padding: 8px 0;
-        background-color: #35f7e7;
+        background-color: #16a932;
         width: 50%;
         text-align: center;
         color: #000
@@ -11610,7 +11610,7 @@ body {
         padding: 16px 18px;
         border: .5px solid rgba(82, 97, 98, .25098039215686274);
         border-radius: 20px;
-        background: linear-gradient(155deg, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2) 55%, rgba(82, 97, 98, .058823529411764705) 0, rgba(82, 97, 98, .058823529411764705))
+        background: linear-gradient(135deg, #227632, #258725, #258e39, #2a7925, #40924f);
     }
 
     .first[data-v-248ca5b8] {
@@ -11912,7 +11912,7 @@ body {
     .top-card[data-v-7542ab04] {
         margin-top: 15px;
         padding: 15px;
-        background-color: #35f7e7;
+        background:linear-gradient(135deg, #227632, #258725, #258e39, #2a7925, #40924f);
         border-radius: 19px;
         display: flex;
         flex-direction: column;
@@ -16743,9 +16743,10 @@ body {
 .balance-card[data-v-06ae08d2] {
     margin-top: 20px;
     padding: 16px 18px;
-    border: .5px solid rgba(82, 97, 98, .25098039215686274);
+    border: .5px solid rgb(74 207 133);
     border-radius: 20px;
-    background: linear-gradient(155deg, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2) 55%, rgba(82, 97, 98, .058823529411764705) 0, rgba(82, 97, 98, .058823529411764705))
+    background: linear-gradient(135deg, #227632, #258725, #258e39, #2a7925, #40924f);
+    background-position: inherit;
 }
 
 .first[data-v-06ae08d2] {
@@ -17194,7 +17195,7 @@ body {
 .selected[data-v-7cdca4f6] {
     border-radius: 32px;
     padding: 8px 0;
-    background-color: #35f7e7;
+    background-color: #16a932;
     width: 50%;
     text-align: center;
     color: #000
@@ -28900,7 +28901,7 @@ body {
     font-size: 14px;
     line-height: 19px;
     font-weight: 500;
-    color: #35f7e7
+    color: #16a932;
 }
 
 .input-title .right img[data-v-53c5f33f] {
@@ -28965,7 +28966,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #35f7e7;
+    background-color: #16a932;
     border-radius: 60px;
     padding: 10px;
     font-size: 17px;
@@ -31241,7 +31242,7 @@ body {
     padding: 16px 18px;
     border: .5px solid rgba(82, 97, 98, .25098039215686274);
     border-radius: 20px;
-    background: linear-gradient(155deg, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2) 55%, rgba(82, 97, 98, .058823529411764705) 0, rgba(82, 97, 98, .058823529411764705))
+    background: linear-gradient(135deg, #227632, #258725, #258e39, #2a7925, #40924f);
 }
 
 .first[data-v-248ca5b8] {
@@ -38174,7 +38175,7 @@ body {
 }
 
 uni-page-body {
-    background-color: #0b0a0e;
+    background-color: #282c2c;
     font-family: Raleway
 }
 
@@ -38190,7 +38191,7 @@ body {
     bottom: 0;
     height: 250px;
     width: 100%;
-    background: radial-gradient(#35f7e7, rgba(53, 247, 231, .5019607843137255));
+    background: radial-gradient(#0b0b0e, rgba(53, 247, 231, .5019607843137255));
     border-radius: 50%;
     opacity: .7;
     -webkit-filter: blur(170px);
@@ -45030,7 +45031,7 @@ body {
     padding: 16px 18px;
     border: .5px solid rgba(82, 97, 98, .25098039215686274);
     border-radius: 20px;
-    background: linear-gradient(155deg, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2) 55%, rgba(82, 97, 98, .058823529411764705) 0, rgba(82, 97, 98, .058823529411764705))
+    background: linear-gradient(135deg, #227632, #258725, #258e39, #2a7925, #40924f);
 }
 
 .first[data-v-248ca5b8] {

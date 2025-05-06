@@ -118,7 +118,7 @@ const Dashboard = () => {
                         data-v-06ae08d2="" class="top-box"><uni-view data-v-06ae08d2="" class="left">
                            <Link to="/NodeDetails">
                               <uni-view
-                                 data-v-06ae08d2="" class="ava"><img data-v-06ae08d2="" src="/static/ava/ava4.jpg"
+                                 data-v-06ae08d2="" class="ava"><img data-v-06ae08d2="" src="/static/img/logo.png"
                                     alt="" /></uni-view>
                            </Link>
                            <uni-view data-v-06ae08d2="" class="top-text"><uni-view
