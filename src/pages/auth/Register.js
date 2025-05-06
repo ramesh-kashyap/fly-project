@@ -136,7 +136,7 @@ const Register = () => {
                               className="uni-input-input"
                               required
                              
-                              placeholder="Enter your username"
+                              placeholder="Enter your Sponsor"
                             />
                           </div>
                         </uni-input>
