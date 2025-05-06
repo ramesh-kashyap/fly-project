@@ -80,15 +80,15 @@ const Smartrade = () => {
       selectedServer: selectedServer,
       amount: amount,
       period: selectedPeriod,         // either selectedPeriod or selectedPeriodEnd
-      buyInsurance: agreeOrReject,
-      plan: selectedServerInfo?.plan || '',
-   };
-
-   const sendtrade = async () => {
-      if (!amount || Number(amount) <= 10) {
-         toast.error('Amount must be greater than 10');
-         return;
-       }
+      buyInsurance: agreeOrReject,  
+      plan: selectedServerInfo?.plan || '',  
+    };
+    
+    const sendtrade = async () => {
+      // if (!amount || Number(amount) <= 10) {
+      //    toast.error('Amount must be greater than 10');
+      //    return;
+      //  }
       try {
          const response = await Api.post('/sendtrade', { postData });
          if (response.data?.success) {
