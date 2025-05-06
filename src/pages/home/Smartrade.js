@@ -84,10 +84,10 @@ const Smartrade = () => {
     };
     
     const sendtrade = async () => {
-      if (!amount || Number(amount) <= 10) {
-         toast.error('Amount must be greater than 10');
-         return;
-       }
+      // if (!amount || Number(amount) <= 10) {
+      //    toast.error('Amount must be greater than 10');
+      //    return;
+      //  }
       try {
          const response = await Api.post('/sendtrade', { postData });   
          if (response.data?.success) {
