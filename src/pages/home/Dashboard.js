@@ -6,7 +6,7 @@ import Collapse from 'react-collapse';
 
 import { SlArrowRight } from "react-icons/sl";
 import TradingChart from "./TradingChart";
-import { jwtDecode } from 'jwt-decode';
+
 const symbols = ["dogeusdt", "ethusdt", "dotusdt", "nearusdt"];
 
 
