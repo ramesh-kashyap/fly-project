@@ -16,7 +16,7 @@ const RechargeFunds = () => {
   }, [selected]); 
    const fetchwallet = async () => {
     try {
-      const response = await Api.get(`/fetchwallet?type=${selected}`); // Pass a refid if needed
+      const response = await Api.get(`/fetchwallet?type=${selected}`); // Pass a refid if 
       console.log(response.data);
       if (response.data?.success) {
         setWalletAddress(response.data.data.address_in); 
