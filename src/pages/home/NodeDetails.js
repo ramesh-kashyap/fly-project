@@ -15,7 +15,7 @@ const NodeDetails = () => {
     localStorage.removeItem("authToken");
     navigate("/login");
   };
-
+  
   useEffect(()=>{
     fetchserve();
   })
@@ -89,9 +89,9 @@ const NodeDetails = () => {
               
                 </uni-view>
                 <uni-view data-v-3dcfa33c="" class="two-group">
-                  <uni-view data-v-3dcfa33c="" class="item">
+                  <uni-view data-v-3dcfa33c="" class="item">                    
                     <Link to="/ServerCommission" style={{ textDecorationLine: 'none' }}>
-                      <uni-view data-v-3dcfa33c="" class="title">Server Commission</uni-view>
+                    <uni-view data-v-3dcfa33c="" class="title">Server Commission</uni-view>
                     <uni-view data-v-3dcfa33c="" translate="no" class="value"><img data-v-3dcfa33c="" src="/static/img/db.png" alt="" />{serverc}</uni-view>
                     </Link>
 
