@@ -52,10 +52,13 @@ const Login = () => {
               <uni-view data-v-2b56ecaf="" class="page">
                 <uni-view data-v-2b56ecaf="" class="ellipse"></uni-view>
                 <uni-view data-v-2b56ecaf="" class="service">
-                  <uni-text data-v-45a6b600="" data-v-2b56ecaf="" class="" style={{ color: 'rgb(53, 247, 231)', fontSize: '30px' }}>
+                  <uni-text data-v-45a6b600="" data-v-2b56ecaf="" class="fas fa-headphones" style={{ color: 'rgb(53, 247, 231)', fontSize: '20px' }}>
 
                   </uni-text></uni-view>
-                <uni-view data-v-2b56ecaf="" class="language"><img data-v-2b56ecaf="" src="/static/img/icon-lang.png" alt="" /></uni-view>
+                  <Link to="/langauge">
+                <uni-view data-v-2b56ecaf="" class="language"><img data-v-2b56ecaf="" src="/static/img/icon-lang.png" alt="" />
+                </uni-view>
+                </Link>
                 <uni-view data-v-2b56ecaf="" class="welcome">Welcome Back!</uni-view><uni-view data-v-2b56ecaf="" class="welcome-tips">Enter your Email and password to continue to your account</uni-view>
                 <uni-view data-v-2b56ecaf="" class="input-box">
 
@@ -86,10 +89,10 @@ const Login = () => {
 
                   </uni-view>
 
-
+                  <Link to="/ForgotPassword">
                   <uni-view data-v-2b56ecaf="" class="forget">Forget Password?</uni-view>
-
-
+                  </Link>
+ 
 
                   <button data-v-2b56ecaf="" class="login" style={{ width: '100%' }} onClick={handleLogin}>Log in</button>
 
