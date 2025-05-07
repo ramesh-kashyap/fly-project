@@ -12,15 +12,16 @@ const Wallet = () => {
     const backClick = () => {
         navigate(-1); // 👈 Go back to the previous page in history
     };
-    useEffect = () => {
+    useEffect(() => {
         fetchUserDetails();
-    }
+    }, []);
+    
     const fetchUserDetails = async () => {
         try {
             const response = await Api.get('/user', {
 
             });
-            setUserDetails(response.data); // Save the response data in state
+            setUserDetails(response.data || {}); // Save the response data in state
         } catch (error) {
             console.error("Error fetching user details:", error);
         }
