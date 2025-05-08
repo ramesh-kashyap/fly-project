@@ -159,6 +159,17 @@ const Smartrade = () => {
         .sort((a, b) => parseFloat(b[0]) - parseFloat(a[0]));
     };
   
+   // Plan to Image Mapping
+const PLAN_IMAGES = {
+   0: "S1",
+   5: "S2",
+   10: "S3",
+   50: "S4",
+   120: "S5",
+   340: "S6",
+};
+
+const getImageName = (plan) => PLAN_IMAGES[plan] || "S1";
 
 
    return (
@@ -358,7 +369,7 @@ const Smartrade = () => {
                                        {servers.map((item, index) => (
                                           <uni-view data-v-2c1047a8="" key={index} onClick={() => handleServerClick(item.serverhash)}
                                              style={{ cursor: 'pointer' }} class="server-item">
-                                             <img data-v-2c1047a8="" src="/static/img/S1.png" alt={item.plan} />
+                                             <img data-v-2c1047a8="" src={`/static/img/${getImageName(item.plan)}.png`} alt={item.plan} />
                                              <uni-view data-v-2c1047a8="" class="item-no">{item.serverhash}<uni-view data-v-2c1047a8="" class="expired-time">{new Date(item.sdate).toLocaleString()}</uni-view></uni-view>
                                              <uni-view data-v-2c1047a8="" class="idle">
                                              </uni-view>
