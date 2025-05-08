@@ -106,7 +106,7 @@ const NodeDetails = () => {
                 </uni-view>
                 <uni-view data-v-3dcfa33c="" class="email-box">
                   <uni-view data-v-3dcfa33c="" class="title">Email Address</uni-view>
-                  <uni-view data-v-3dcfa33c="" class="value">****kor55@gmail.com</uni-view>
+                  <uni-view data-v-3dcfa33c="" class="value">{userDetails?.email}</uni-view>
                 </uni-view>
                  <Link to="/Refer"style={{ textDecorationLine: 'none' }}>
                 <uni-view data-v-3dcfa33c="" class="invite-box">

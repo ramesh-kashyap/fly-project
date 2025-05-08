@@ -6,8 +6,10 @@ const Assets = () => {
     const [transactions, setTransactions] = useState([]);
     const [users, setUsers] = useState([]);
     const [error, setError] = useState("");
+    const [balance, setBalance] = useState(null);
     useEffect(() => {
         fetchUsers();
+        withavail();
     }, []);
 
     const fetchUsers = async () => {
@@ -33,7 +35,17 @@ const Assets = () => {
             setError(err.response?.data?.error || "Error fetching history");
         }
     };
-
+    const withavail = async () => {
+          try {
+             const response = await Api.get("/availbal");
+             if (response.data) {
+                setBalance(response.data.AvailBalance);
+             }
+          } catch (error) {
+             console.error(error);
+             setError(error);
+          }
+       }
 
     return (
         <div class="uni-body pages-assets-assets">
@@ -57,10 +69,10 @@ const Assets = () => {
                                     </uni-view>
                                     <uni-view data-v-248ca5b8="" class="second">
                                         <uni-view
-                                            data-v-248ca5b8="" translate="no" class="balance-num">0.0000</uni-view>
+                                            data-v-248ca5b8="" translate="no" class="balance-num">{balance ||0}</uni-view>
                                         <uni-view
                                             data-v-248ca5b8="" translate="no" class="profit-num">
-                                            +0.0000
+                                            
                                             <uni-view
                                                 data-v-248ca5b8=""
                                                 class="today">Yesterday</uni-view>
@@ -84,9 +96,8 @@ const Assets = () => {
                                                 src="/static/img/usdtup.png" alt="" /></uni-view>
                                     </uni-view>
                                 </uni-view>
-                                <uni-view
-                                    data-v-248ca5b8="" class="user-title">Earnings in the past 7 days</uni-view>
-                                <uni-view
+                                {/* <uni-view data-v-248ca5b8="" class="user-title">Earnings in the past 7 days</uni-view> */}
+                                {/* <uni-view
                                     data-v-248ca5b8="" class="income-box">
                                     <uni-view data-v-c3c2634e="" data-v-248ca5b8=""
                                         style={{ width: '400px', height: '200px', WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)' }}
@@ -97,9 +108,9 @@ const Assets = () => {
                                                 style={{ position: 'absolute', left: '0px', top: '0px', width: '384px', height: '200px', userSelect: 'none', WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)', padding: '0px', margin: '0px', borderWidth: '0px' }}></canvas>
                                         </div>
                                     </uni-view>
-                                </uni-view>
+                                </uni-view> */}
                                 <uni-view data-v-248ca5b8="" class="user-title"
-                                    style={{ marginTop: '-30px' }}>Funding Details</uni-view>
+                                    style={{ marginTop: '30px' }}>Funding Details</uni-view>
 
 
                                 {['investment', 'income', 'withdraw'].map((type) =>
