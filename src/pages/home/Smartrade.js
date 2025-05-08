@@ -4,6 +4,10 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import Api from "../../Requests/Api";
 import { Toaster, toast } from 'react-hot-toast';
 const Smartrade = () => {
+   
+   const [bids, setBids] = useState([]);
+  const [asks, setAsks] = useState([]);
+
    const [showOverlay, setShowOverlay] = useState(false);
    const [selectedServer, setSelectedServer] = useState('');
    const [selectedServerInfo, setSelectedServerInfo] = useState(null);
@@ -102,6 +106,59 @@ const Smartrade = () => {
          toast.error('Something went wrong. Please try again.');
       }
    };
+
+
+
+   useEffect(() => {
+      const socket = new WebSocket('wss://trade.cex.io/api/spot/ws-public');
+  
+      socket.onopen = () => {
+        const request = {
+          e: "get_order_book",
+          oid: "152171113_get_order_book",
+          data: {
+            pair: "BTC-USD"
+          }
+        };
+        socket.send(JSON.stringify(request));
+      };
+  
+      socket.onmessage = (event) => {
+        const response = JSON.parse(event.data);
+        
+        if (response.data) {
+          // Shuffle the bids and asks to simulate live changes
+          setBids(shuffle(response.data.bids.slice(0, 5)));
+          setAsks(shuffle(response.data.asks.slice(0, 5)));
+        }
+      };
+  
+      socket.onerror = (error) => {
+        console.error("WebSocket Error:", error);
+      };
+  
+      const interval = setInterval(() => {
+        setBids((prevBids) => shuffle(prevBids));
+        setAsks((prevAsks) => shuffle(prevAsks));
+      }, 1000);
+  
+      return () => {
+        clearInterval(interval);
+        socket.close();
+      };
+    }, []);
+  
+    // Helper function to shuffle arrays
+    const shuffle = (array) => {
+      return array
+        .map((item) => {
+          const price = (parseFloat(item[0]) * (1 + (Math.random() - 0.5) / 100)).toFixed(4);
+          const amount = (parseFloat(item[1]) * (1 + (Math.random() - 0.5) / 100)).toFixed(2);
+          return [price, amount];
+        })
+        .sort((a, b) => parseFloat(b[0]) - parseFloat(a[0]));
+    };
+  
 
 
    return (
@@ -214,60 +271,25 @@ const Smartrade = () => {
                            </uni-view>
                            <uni-view data-v-2c1047a8="" class="book-box">
                               <uni-view data-v-2c1047a8="" class="order-book">
-                                 <uni-view data-v-2c1047a8="" class="buy-orders">
-                                    <uni-view data-v-2c1047a8="" class="order">
-                                       <uni-view data-v-2c1047a8="" class="depth-bar" style={{ width: '7.44699%' }}></uni-view>
-                                       <uni-text data-v-2c1047a8="" class="price"><span>1800.5000</span></uni-text>
-                                       <uni-text data-v-2c1047a8="" class="amount"><span>4.17</span></uni-text>
-                                    </uni-view>
-                                    <uni-view data-v-2c1047a8="" class="order">
-                                       <uni-view data-v-2c1047a8="" class="depth-bar" style={{ width: '100%' }}></uni-view>
-                                       <uni-text data-v-2c1047a8="" class="price"><span>1800.6000</span></uni-text>
-                                       <uni-text data-v-2c1047a8="" class="amount"><span>55.93</span></uni-text>
-                                    </uni-view>
-                                    <uni-view data-v-2c1047a8="" class="order">
-                                       <uni-view data-v-2c1047a8="" class="depth-bar" style={{ width: '2.07959%' }}></uni-view>
-                                       <uni-text data-v-2c1047a8="" class="price"><span>1800.7000</span></uni-text>
-                                       <uni-text data-v-2c1047a8="" class="amount"><span>1.16</span></uni-text>
-                                    </uni-view>
-                                    <uni-view data-v-2c1047a8="" class="order">
-                                       <uni-view data-v-2c1047a8="" class="depth-bar" style={{ width: '14.3526%' }}></uni-view>
-                                       <uni-text data-v-2c1047a8="" class="price"><span>1800.9000</span></uni-text>
-                                       <uni-text data-v-2c1047a8="" class="amount"><span>8.03</span></uni-text>
-                                    </uni-view>
-                                    <uni-view data-v-2c1047a8="" class="order">
-                                       <uni-view data-v-2c1047a8="" class="depth-bar" style={{ width: '3.01874%' }}></uni-view>
-                                       <uni-text data-v-2c1047a8="" class="price"><span>1801.0000</span></uni-text>
-                                       <uni-text data-v-2c1047a8="" class="amount"><span>1.69</span></uni-text>
-                                    </uni-view>
-                                 </uni-view>
-                                 <uni-view data-v-2c1047a8="" class="sell-orders">
-                                    <uni-view data-v-2c1047a8="" class="order">
-                                       <uni-view data-v-2c1047a8="" class="depth-bar" Smartrade></uni-view>
-                                       <uni-text data-v-2c1047a8="" class="price"><span>1801.2000</span></uni-text>
-                                       <uni-text data-v-2c1047a8="" class="amount"><span>3.03</span></uni-text>
-                                    </uni-view>
-                                    <uni-view data-v-2c1047a8="" class="order">
-                                       <uni-view data-v-2c1047a8="" class="depth-bar" style={{ width: '3.31623%' }}></uni-view>
-                                       <uni-text data-v-2c1047a8="" class="price"><span>1801.3000</span></uni-text>
-                                       <uni-text data-v-2c1047a8="" class="amount"><span>1.85</span></uni-text>
-                                    </uni-view>
-                                    <uni-view data-v-2c1047a8="" class="order">
-                                       <uni-view data-v-2c1047a8="" class="depth-bar" style={{ width: '19.1823%' }}></uni-view>
-                                       <uni-text data-v-2c1047a8="" class="price"><span>1801.4000</span></uni-text>
-                                       <uni-text data-v-2c1047a8="" class="amount"><span>10.73</span></uni-text>
-                                    </uni-view>
-                                    <uni-view data-v-2c1047a8="" class="order">
-                                       <uni-view data-v-2c1047a8="" class="depth-bar" style={{ width: '1.98448%' }}></uni-view>
-                                       <uni-text data-v-2c1047a8="" class="price"><span>1801.5000</span></uni-text>
-                                       <uni-text data-v-2c1047a8="" class="amount"><span>1.11</span></uni-text>
-                                    </uni-view>
-                                    <uni-view data-v-2c1047a8="" class="order">
-                                       <uni-view data-v-2c1047a8="" class="depth-bar" style={{ width: '5.51775%' }}></uni-view>
-                                       <uni-text data-v-2c1047a8="" class="price"><span>1801.6000</span></uni-text>
-                                       <uni-text data-v-2c1047a8="" class="amount"><span>3.09</span></uni-text>
-                                    </uni-view>
-                                 </uni-view>
+                              <uni-view data-v-2c1047a8="" class="buy-orders">
+          {bids.map((bid, index) => (
+            <uni-view key={index} data-v-2c1047a8="" class="order">
+              <uni-view data-v-2c1047a8="" class="depth-bar" style={{ width: `${Math.min(100, bid[1] * 10)}%` }}></uni-view>
+              <uni-text data-v-2c1047a8="" class="price"><span>{bid[0]}</span></uni-text>
+              <uni-text data-v-2c1047a8="" class="amount"><span>{bid[1]}</span></uni-text>
+            </uni-view>
+          ))}
+        </uni-view>
+        
+        <uni-view data-v-2c1047a8="" class="sell-orders">
+          {asks.map((ask, index) => (
+            <uni-view key={index} data-v-2c1047a8="" class="order">
+              <uni-view data-v-2c1047a8="" class="depth-bar" style={{ width: `${Math.min(100, ask[1] * 10)}%` }}></uni-view>
+              <uni-text data-v-2c1047a8="" class="price"><span>{ask[0]}</span></uni-text>
+              <uni-text data-v-2c1047a8="" class="amount"><span>{ask[1]}</span></uni-text>
+            </uni-view>
+          ))}
+        </uni-view>
                               </uni-view>
 
                            </uni-view>
