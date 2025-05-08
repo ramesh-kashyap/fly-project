@@ -107,7 +107,7 @@ const RechargeFunds = () => {
                           <div className="scanner-image-wrapper" >
                             <QRCodeCanvas
                               value={walletAddress}
-                              size={250}
+                              size={224}
                               bgColor="#ffffff"
                               fgColor="#000000"
                             />

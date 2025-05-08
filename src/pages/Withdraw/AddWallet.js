@@ -12,11 +12,12 @@ const AddWallet = () => {
     const handleClick = (network) => {
         navigate(`/Add-WalletAddress/${network}`); // e.g. /wallet/trc20
       }; 
+      const backClick = () => {
+        navigate(-1); // 👈 Go back to the previous page in history
+    };
+      
     return (
         <div class="uni-body pages-user-addCard">
-
-
-
             <uni-app class="uni-app--maxwidth">
                 <uni-page data-page="pages/user/addCard">
                     <uni-page-wrapper>
@@ -26,10 +27,10 @@ const AddWallet = () => {
                                 <uni-view data-v-b918f992="" class="top-box">
                                     <uni-view data-v-636c600c="" data-v-b918f992="" class="uni-row" style={{ marginLeft: '0px', marginRight: '0px' }}>
                                         <uni-view data-v-35b9a113="" data-v-b918f992="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
-                                            <Link to="/withdrawReq">
-                                                <uni-view data-v-53c5f33f="" class="back"><img data-v-53c5f33f="" src="/static/img/back.png" alt="" style={{ width: '35px' }} /></uni-view>
+                                            
+                                                <uni-view data-v-53c5f33f=""onClick={backClick} class="back"><img data-v-53c5f33f="" src="/static/img/back.png" alt="" style={{ width: '35px' }} /></uni-view>
 
-                                            </Link>                                </uni-view>
+                                                                           </uni-view>
                                         <uni-view data-v-35b9a113="" data-v-b918f992="" class="uni-col uni-col-12" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
                                             <uni-view data-v-b918f992="" class="page-title">Add Wallet</uni-view>
                                         </uni-view>

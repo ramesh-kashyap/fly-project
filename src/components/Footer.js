@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function Footer() {
   const location = useLocation();
   const currentPath = location.pathname;
+   const { t } = useTranslation();
 
   return (
 
@@ -29,7 +31,7 @@ export default function Footer() {
                       lineHeight: 'normal',
                       marginTop: '3px',
                     }}>
-                    Home </div>
+                    {t('Home')} </div>
                 </div>
               </Link>
             </div>
@@ -47,7 +49,7 @@ export default function Footer() {
                       lineHeight: 'normal',
                       marginTop: '3px',
                     }}>
-                    Trade </div>
+                    {t('Trade')} </div>
                 </div>
                 </Link>
             </div>
@@ -65,7 +67,7 @@ export default function Footer() {
                       lineHeight: 'normal',
                       marginTop: '3px',
                     }}>
-                    Assets </div>
+                    {t('Assets')} </div>
                 </div>
               </Link>
             </div>
@@ -83,7 +85,7 @@ export default function Footer() {
                       lineHeight: 'normal',
                       marginTop: '3px',
                     }}>
-                    Server </div>
+                    {t('Server')} </div>
                 </div>
               </Link>
             </div>

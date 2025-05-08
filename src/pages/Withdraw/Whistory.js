@@ -12,7 +12,7 @@ const Whistory = () => {
     useEffect(() => {
         const fetchWithdraws = async () => {
             try {
-               
+
                 const response = await Api.get("/withdraw-history",);
 
                 // Check the response and set the data
@@ -24,7 +24,7 @@ const Whistory = () => {
             } catch (error) {
                 setLoading(false);
                 console.error(error);
-               //  toast.error("Error fetching withdraws!");
+                //  toast.error("Error fetching withdraws!");
             }
         };
 
@@ -50,9 +50,9 @@ const Whistory = () => {
                     {loading ? (
                         <p>Loading...</p>
                     ) : withdraws.length === 0 ? (
-                     // style={{ display: 'none' }} 
-                     <uni-view data-v-b0a5c882="" class="content" ><uni-view data-v-b0a5c882="" class="nodata"><img data-v-b0a5c882="" src="/static/img/nodata.png" alt="" />No Data</uni-view></uni-view>
-                  ) : (
+                        // style={{ display: 'none' }} 
+                        <uni-view data-v-b0a5c882="" class="content" ><uni-view data-v-b0a5c882="" class="nodata"><img data-v-b0a5c882="" src="/static/img/nodata.png" alt="" />No Data</uni-view></uni-view>
+                    ) : (
                         <uni-view data-v-b0a5c882="" class="content">
 
                             {withdraws.map((withdraw, index) => (
@@ -60,7 +60,7 @@ const Whistory = () => {
                                 <uni-view data-v-b0a5c882="" class="item">
                                     <uni-view data-v-b0a5c882="" class="first">
                                         <uni-view data-v-b0a5c882="" class="left">{withdraw.txn_id}</uni-view>
-                                        <uni-view
+                                        <uni-view class="right"
                                             data-v-b0a5c882=""
                                             style={{
                                                 color: withdraw.status === 'Pending' ? 'orange' :

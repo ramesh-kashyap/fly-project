@@ -141,7 +141,7 @@ const Refer = () => {
                                     <uni-view data-v-0f43bbff="" class="title">For the Firefly managed strategy trading, a 30% commission is charged. However, to incentivize promotional cooperation, we will return 21% of the commission as a rebate to the promoters. The specific rebate ratios are as follows:</uni-view>
                                     <uni-view data-v-0f43bbff="" class="layout">
                                         <uni-view data-v-0f43bbff="" class="level"><img data-v-0f43bbff="" src="/static/img/lv1.png" alt=""/>(members you invite)</uni-view>
-                                        <uni-view data-v-0f43bbff="" class="rate">8%</uni-view>
+                                        <uni-view data-v-0f43bbff="" class="rate">10%</uni-view>
                                     </uni-view>
                                     <uni-view data-v-0f43bbff="" class="layout">
                                         <uni-view data-v-0f43bbff="" class="level"><img data-v-0f43bbff="" src="/static/img/lv2.png" alt=""/>(members invited by Lv1)</uni-view>
@@ -149,11 +149,11 @@ const Refer = () => {
                                     </uni-view>
                                     <uni-view data-v-0f43bbff="" class="layout">
                                         <uni-view data-v-0f43bbff="" class="level"><img data-v-0f43bbff="" src="/static/img/lv3.png" alt=""/>(members invited by Lv2)</uni-view>
-                                        <uni-view data-v-0f43bbff="" class="rate">4%</uni-view>
+                                        <uni-view data-v-0f43bbff="" class="rate">5%</uni-view>
                                     </uni-view>
                                     <uni-view data-v-0f43bbff="" class="layout">
                                         <uni-view data-v-0f43bbff="" class="level"><img data-v-0f43bbff="" src="/static/img/lv4.png" alt=""/>(members invited by Lv3)</uni-view>
-                                        <uni-view data-v-0f43bbff="" class="rate">2%</uni-view>
+                                        <uni-view data-v-0f43bbff="" class="rate">3%</uni-view>
                                     </uni-view>
                                     <uni-view data-v-0f43bbff="" class="layout">
                                         <uni-view data-v-0f43bbff="" class="level"><img data-v-0f43bbff="" src="/static/img/lv5.png" alt=""/>(members invited by Lv4)</uni-view>

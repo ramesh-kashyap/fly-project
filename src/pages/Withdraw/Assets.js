@@ -111,20 +111,20 @@ const Assets = () => {
                                                 <uni-view data-v-248ca5b8=""  class="item" >
                                                     <uni-view data-v-248ca5b8=""  class="first">
                                                         <uni-view data-v-248ca5b8=""  class="left">
-                                                            {new Date(item.created_at).toLocaleString()} - {item?.users?.name || 'User'}
+                                                            {new Date(item.created_at).toLocaleString()}
                                                         </uni-view>
                                                         <uni-view data-v-248ca5b8=""
                                                              class="right"
-                                                            style={{ color: type === 'withdraw' ? 'green' : 'rgb(255, 61, 61)' }}
+                                                            style={{ color: type === 'withdraw' ? 'rgb(53, 247, 231)' : 'rgb(255, 61, 61)' }}
                                                         >
-                                                            {type === 'withdraw' ? '+ ' : '- '}{item.amount}
+                                                            {type === 'withdraw' ? '+ ' : '- '}{item.amount ? Number(item.amount).toFixed(4) : '0.0000'}
                                                         </uni-view>
                                                     </uni-view>
 
                                                     <uni-view  data-v-248ca5b8=""  class="layer">
                                                         <uni-view data-v-248ca5b8=""  class="title">Fund Flow</uni-view>
                                                         <uni-view data-v-248ca5b8=""  class="value">
-                                                              {item.remarks || item.source || '—'}
+                                                              {item.remarks || item.source || 'Quantified Order Settlement'}
                                                         </uni-view>
                                                     </uni-view>
                                                 </uni-view>

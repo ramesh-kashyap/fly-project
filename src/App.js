@@ -14,7 +14,7 @@ import ForgotPassword from "./pages/auth/ForgotPassword";
 import Dashboard from "./pages/home/Dashboard";
 import NodeDetails from "./pages/home/NodeDetails";
 import Notice from "./pages/home/Notice";
-import Language from "./pages/home/Langauge";
+import Language from "./components/Langauge";
 import Faq from "./pages/home/Faq";
 
 

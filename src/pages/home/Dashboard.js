@@ -7,6 +7,8 @@ import Collapse from 'react-collapse';
 import { SlArrowRight } from "react-icons/sl";
 import TradingChart from "./TradingChart";
 import { jwtDecode } from 'jwt-decode';
+import { useTranslation } from 'react-i18next';
+
 const symbols = ["dogeusdt", "ethusdt", "dotusdt", "nearusdt"];
 
 
@@ -17,11 +19,11 @@ const Dashboard = () => {
 
    const [isOpen, setIsOpen] = useState(true); // Modal visibility state
 
-    const closeModal = () => {
+   const closeModal = () => {
       setIsOpen(false);
-    };
+   };
 
-    const handleAccept = () => {
+   const handleAccept = () => {
       console.log("Account connected with Telegram!");
       setIsOpen(false); // Close the modal after accepting
    };
@@ -29,7 +31,7 @@ const Dashboard = () => {
    const [binanceSymbols, setBinanceSymbols] = useState([]);
    const [showAll, setShowAll] = useState(false); // toggle state
    const toggleDropdown = () => setIsOpen(!isOpen);
-   
+
 
    useEffect(() => {
       const fetchCrypto = async () => {
@@ -143,6 +145,8 @@ const Dashboard = () => {
       }
    };
 
+   const { t } = useTranslation();
+   
    return (
 
       <div class="uni-body pages-index-index">
@@ -162,9 +166,9 @@ const Dashboard = () => {
 
                            <uni-view data-v-06ae08d2="" class="top-text">
                               <uni-view
-                                 data-v-06ae08d2="" class="name">{userDetails?.name}</uni-view>
+                                 data-v-06ae08d2="" class="name">{t('welcome')}, {userDetails?.name}</uni-view>
                               <uni-view data-v-06ae08d2=""
-                                 class="uid">UID: {userDetails?.username}</uni-view>
+                                 class="uid">{t('UID')}: {userDetails?.username}</uni-view>
 
                            </uni-view>
 
@@ -181,8 +185,8 @@ const Dashboard = () => {
                         </uni-view></uni-view>
                      <uni-view
                         data-v-06ae08d2="" class="balance-card"><uni-view data-v-06ae08d2="" class="first"><uni-view
-                           data-v-06ae08d2="" class="balance-title">Your Balance
-                           (USDT)</uni-view></uni-view><uni-view data-v-06ae08d2="" class="second"><uni-view
+                           data-v-06ae08d2="" class="balance-title">{t('Balance')} 
+                            (USDT)</uni-view></uni-view><uni-view data-v-06ae08d2="" class="second"><uni-view
                               data-v-06ae08d2="" translate="no" class="balance-num">{availbal}</uni-view><uni-view
                                  data-v-06ae08d2="" translate="no" class="profit-num">+0.0000<uni-view
                                     data-v-06ae08d2=""
@@ -191,19 +195,19 @@ const Dashboard = () => {
                            <uni-view data-v-06ae08d2=""
                               class="balance-btn">
                               <Link to="/RechargeFunds" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: '500', fontSize: '16px' }}>
-                                 Deposit
+                                 {t('Deposit')}
                               </Link><img data-v-06ae08d2="" src="/static/img/usdtdown.png"
                                  alt="" /></uni-view>
                            <uni-view data-v-06ae08d2="" class="transfer"><img
                               data-v-06ae08d2="" src="/static/img/transfer.png" alt="" /></uni-view>
 
                            <uni-view
-                              data-v-06ae08d2="" class="balance-btn"> <Link to="/withdrawReq" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: '500', fontSize: '16px' }}>Withdraw </Link><img data-v-06ae08d2=""
+                              data-v-06ae08d2="" class="balance-btn"> <Link to="/withdrawReq" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: '500', fontSize: '16px' }}>{t('Withdraw')} </Link><img data-v-06ae08d2=""
                                  src="/static/img/usdtup.png" alt="" /></uni-view>
 
                         </uni-view></uni-view>
                      <uni-view
-                        data-v-06ae08d2="" class="index-title">My Attention</uni-view>
+                        data-v-06ae08d2="" class="index-title">{t('attention')}</uni-view>
                      <uni-view data-v-06ae08d2=""
                         class="attention-box"> <uni-view data-v-06ae08d2="" class="attention-item"><uni-view
                            data-v-06ae08d2="" class="coin-layer"><img data-v-06ae08d2=""
@@ -235,12 +239,9 @@ const Dashboard = () => {
                                        style={{ position: 'absolute', width: '100%', height: '100%', transform: 'translate(0%, 0px) translateZ(0px)' }}><uni-view
                                           data-v-06ae08d2="" class="banner-item"><img data-v-06ae08d2=""
                                              src="/static/img/Registration.png" alt="" /><uni-view
-                                                data-v-06ae08d2="" class="banner-title">Exclusive For New
-                                             Users</uni-view><uni-view data-v-06ae08d2=""
-                                                class="banner-text">Exclusive for new users – Sign up &amp;
-                                             claim your USD rewards!</uni-view><uni-view data-v-06ae08d2=""
-                                                class="banner-btn">Get
-                                             Rewards</uni-view></uni-view></uni-swiper-item>
+                                                data-v-06ae08d2="" class="banner-title">{t('ExclusiveUsers')}</uni-view><uni-view data-v-06ae08d2=""
+                                                class="banner-text">{t('Exclusiverewards')}</uni-view><uni-view data-v-06ae08d2=""
+                                                class="banner-btn">{t('rewards')}</uni-view></uni-view></uni-swiper-item>
                                     <uni-swiper-item
                                        data-v-06ae08d2=""
                                        style={{ position: 'absolute', width: '100%', height: '100%', transform: 'translate(100%, 0px) translateZ(0px)' }}><uni-view
@@ -273,7 +274,7 @@ const Dashboard = () => {
                         </uni-swiper></uni-view>
 
                      <uni-view data-v-06ae08d2="" class="market-box"><uni-view
-                        data-v-06ae08d2="" class="market-title">Market Quotes</uni-view>
+                        data-v-06ae08d2="" class="market-title">{t('MarketQuotes')}</uni-view>
 
 
                         <div style={{ padding: "2px", color: "#fff", maxWidth: "500px" }}>
@@ -354,7 +355,7 @@ const Dashboard = () => {
                      </uni-view>
                      <uni-view
                         data-v-06ae08d2="" class="market-title"
-                        style={{ marginTop: '10px', marginBottom: '8px' }}>FAQ</uni-view>
+                        style={{ marginTop: '10px', marginBottom: '8px' }}>{t('FAQ')}</uni-view>
                      <uni-view data-v-06ae08d2=""
                         class="content"
                      >
@@ -363,18 +364,16 @@ const Dashboard = () => {
                            data-v-6fe2d4dd="" data-v-06ae08d2="" class="uni-collapse">
                            <uni-view data-v-9da912bc=""
                               data-v-06ae08d2="" class="uni-collapse-item">
-                                    
-                              <uni-view data-v-9da912bc=""  
-                              onClick={toggleDropdown}   
+
+                              <uni-view data-v-9da912bc=""
+                                 onClick={toggleDropdown}
                                  class="uni-collapse-item__title uni-collapse-item-border">
                                  <uni-view
                                     data-v-9da912bc="" class="uni-collapse-item__title-wrap">
                                     <uni-view
                                        data-v-9da912bc="" class="uni-collapse-item__title-box">
                                        <uni-text
-                                          data-v-9da912bc="" class="uni-collapse-item__title-text"><span>How
-                                             to Stay
-                                             Updated?</span>
+                                          data-v-9da912bc="" class="uni-collapse-item__title-text"><span>{t('HowtoStayUpdated')}</span>
                                        </uni-text>
                                     </uni-view>
                                  </uni-view>
@@ -407,31 +406,29 @@ const Dashboard = () => {
                                     class="uni-collapse-item__wrap-content open">
                                     <uni-view data-v-06ae08d2=""
                                        class="content">
-                                       <uni-text data-v-06ae08d2="" class="text"><span>Official
-                                          Website: Check announcements and rule
-                                          updates.</span>
+                                       <uni-text data-v-06ae08d2="" class="text"><span>{t('OfficialWebsite')}</span>
                                        </uni-text>
                                        <uni-text data-v-06ae08d2=""
-                                          class="text"><span>Customer Service: Reach out via online chat or
+                                          class="text">
+                                             {/* <span>Customer Service: Reach out via online chat or
                                              email
-                                             support.</span>
+                                             support.</span> */}
                                        </uni-text>
                                     </uni-view>
                                  </uni-view>
                               </Collapse>
                            </uni-view>
                         </uni-view>
-                       
-                       
+
+
 
                         <uni-view
-                           data-v-06ae08d2="" class="title">Policy</uni-view>
+                           data-v-06ae08d2="" class="title">{t('Policy')}</uni-view>
 
                         <uni-view
-                           data-v-06ae08d2="" class="policy-item">FIREFLY STAR LLC User Agreement<SlArrowRight size={11} style={{ marginLeft: '5px' }} /></uni-view>
+                           data-v-06ae08d2="" class="policy-item">{t('FIREFLYAgreement')}<SlArrowRight size={11} style={{ marginLeft: '5px' }} /></uni-view>
                         <uni-view
-                           data-v-06ae08d2="" class="policy-item">Firefly Star LLC Trading Server Usage
-                           Agreement<SlArrowRight size={11} style={{ marginLeft: '5px' }} /></uni-view>
+                           data-v-06ae08d2="" class="policy-item">{t('FireflyServerUsageAgreement')}<SlArrowRight size={11} style={{ marginLeft: '5px' }} /></uni-view>
                      </uni-view>
 
                   </uni-view>

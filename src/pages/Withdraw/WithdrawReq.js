@@ -85,14 +85,16 @@ const WithdrawReq = () => {
   const handleSuccess = () => {
     navigate("/Add-wallet");
   };
-
+  const backClick = () => {
+    navigate(-1); // 👈 Go back to the previous page in history
+};
   return (
     <div class="uni-body pages-user-withdrawal" > <uni-app class="uni-app--maxwidth"><uni-page data-page="pages/user/withdrawal">   <uni-page-wrapper><uni-page-body><uni-view data-v-53c5f33f="" class="page"><uni-view data-v-53c5f33f="" class="ellipse"></uni-view><uni-view data-v-53c5f33f="" class="top-box"><uni-view data-v-636c600c="" data-v-53c5f33f="" class="uni-row" style={{ marginLeft: '0px', marginRight: '0px' }}><uni-view data-v-35b9a113="" data-v-53c5f33f="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
-      <Link to="/dashboard">
+     
         <Toaster position="top-right" reverseOrder={false} />
-        <uni-view data-v-53c5f33f="" class="back"><img data-v-53c5f33f="" src="/static/img/back.png" alt="" style={{ width: '35px' }} /></uni-view>
+        <uni-view data-v-53c5f33f=""onClick={backClick} class="back"><img data-v-53c5f33f="" src="/static/img/back.png" alt="" style={{ width: '35px' }} /></uni-view>
 
-      </Link>
+      
     </uni-view><uni-view data-v-35b9a113="" data-v-53c5f33f="" class="uni-col uni-col-12" style={{ paddingLeft: '0px', paddingRight: '0px' }}><uni-view data-v-53c5f33f="" class="page-title">Withdrawal</uni-view></uni-view><uni-view data-v-35b9a113="" data-v-53c5f33f="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
         <Link to="/Whistory">
           <uni-view data-v-53c5f33f="" class="records"><img data-v-53c5f33f="" src="/static/img/records.png" alt="" style={{ width: '25px', marginTop: '5px' }} /></uni-view>
