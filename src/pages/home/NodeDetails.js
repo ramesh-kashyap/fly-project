@@ -8,15 +8,31 @@ import Api from "../../Requests/Api";
 import Level from "../../pages/team/Level";
 
 const NodeDetails = () => {
+  const [serverc, setServerC] = useState('');
   const navigate = useNavigate();
   const handleLogout = () => {
     // Remove the token from localStorage
     localStorage.removeItem("authToken");
     navigate("/login");
   };
+  
+  useEffect(()=>{
+    fetchserve();
+  })
+
+  const fetchserve = async () => {
+    try {
+      const response = await Api.get(`/serverc`); // Pass a refid if 
+      console.log(response.data);
+      if (response.data?.success) {
+        setServerC(response.data.totalIncome ||0);      
+      }
+    } catch (error) {
+      console.error("Something went wrong fetching the wallet:", error);
+    }
+  };
 
   const [userDetails, setUserDetails] = useState(null);
-  const token = localStorage.getItem('authToken'); // Retrieve token from localStorage
 
   useEffect(() => {
     fetchUserDetails();
@@ -73,11 +89,10 @@ const NodeDetails = () => {
               
                 </uni-view>
                 <uni-view data-v-3dcfa33c="" class="two-group">
-                  <uni-view data-v-3dcfa33c="" class="item">
+                  <uni-view data-v-3dcfa33c="" class="item">                    
                     <Link to="/ServerCommission" style={{ textDecorationLine: 'none' }}>
-
-                      <uni-view data-v-3dcfa33c="" class="title">Server Commission</uni-view>
-                      <uni-view data-v-3dcfa33c="" translate="no" class="value"><img data-v-3dcfa33c="" src="/static/img/db.png" alt="" />0.0000</uni-view>
+                    <uni-view data-v-3dcfa33c="" class="title">Server Commission</uni-view>
+                    <uni-view data-v-3dcfa33c="" translate="no" class="value"><img data-v-3dcfa33c="" src="/static/img/db.png" alt="" />{serverc}</uni-view>
                     </Link>
 
                   </uni-view>
@@ -91,7 +106,7 @@ const NodeDetails = () => {
                 </uni-view>
                 <uni-view data-v-3dcfa33c="" class="email-box">
                   <uni-view data-v-3dcfa33c="" class="title">Email Address</uni-view>
-                  <uni-view data-v-3dcfa33c="" class="value">****{userDetails?.email}</uni-view>
+                  <uni-view data-v-3dcfa33c="" class="value">****kor55@gmail.com</uni-view>
                 </uni-view>
                  <Link to="/Refer"style={{ textDecorationLine: 'none' }}>
                 <uni-view data-v-3dcfa33c="" class="invite-box">

@@ -4,6 +4,7 @@ const Trade = () => {
   const [activeTab, setActiveTab] = useState("running");
   const [runtrade, setRuntrades] = useState([]);
   const [comtrade, setComtrades] = useState([]);
+  const [tradeIncomes, setTradeIncomes] = useState({}); 
   useEffect(() => {
     runingtrade();
     }, [])
@@ -14,6 +15,21 @@ const Trade = () => {
       if (response.data?.success) { 
         setRuntrades(response.data.runingTrades);
         setComtrades(response.data.expiredTrades);
+
+        const completedTradeIds = response.data.expiredTrades.map(trade => trade.id);
+        if (completedTradeIds.length > 0) {
+          const incomeResponse = await Api.post('/getTradeIncomes', { tradeIds: completedTradeIds });
+          console.log(incomeResponse.data);
+          if (incomeResponse.data?.success) {
+            const incomeData = incomeResponse.data.incomes.reduce((acc, income) => {
+              acc[income.user_id_fk] = income.comm || 0;  // Corrected from 'amount' to 'comm'
+              return acc;
+            }, {});
+            setTradeIncomes(incomeData);
+          }
+        }
+
+
       } else {
         console.error("API did not return success");
       }
@@ -21,6 +37,8 @@ const Trade = () => {
       console.error("Error fetching servers:", error);
     }
   };
+   
+   
 
   function Countdown({ endTime }) {
     const calculateRemaining = () => {
@@ -158,14 +176,14 @@ const Trade = () => {
                           {item.amount||0}
                           </uni-view>
                         </uni-view>
-                        <uni-view data-v-b7dd60dc="" class="text-line">
+                        {/* <uni-view data-v-b7dd60dc="" class="text-line">
                           <uni-view data-v-b7dd60dc="" class="title">
                             Insurance
                           </uni-view>
                           <uni-view data-v-b7dd60dc="" class="value">
                             0.0037
                           </uni-view>
-                        </uni-view>
+                        </uni-view> */}
                         <uni-view
                           data-v-b7dd60dc=""
                           style={{ height: "10px" }}
@@ -213,22 +231,22 @@ const Trade = () => {
                    <uni-view data-v-945761f4="" class="title">Investment Amount</uni-view>
                   <uni-view data-v-945761f4="" class="value">{item.amount||0}</uni-view>
                 </uni-view>
-                <uni-view data-v-945761f4="" class="text-line">
+                {/* <uni-view data-v-945761f4="" class="text-line">
                   <uni-view data-v-945761f4="" class="title">Insurance</uni-view>
                 <uni-view data-v-945761f4="" class="value">0.0038</uni-view>
-                </uni-view>
+                </uni-view> */}
                 <uni-view data-v-945761f4="" class="h-line"></uni-view>
-                    <uni-view data-v-945761f4="" class="text-line">
+                    {/* <uni-view data-v-945761f4="" class="text-line">
                  <uni-view data-v-945761f4="" class="title">Total Profit</uni-view>
                 <uni-view data-v-945761f4="" class="value">0.0612</uni-view>
-              </uni-view>
-                <uni-view data-v-945761f4="" class="text-line">
+              </uni-view> */}
+                {/* <uni-view data-v-945761f4="" class="text-line">
                   <uni-view data-v-945761f4="" class="title">Commission</uni-view>
               <uni-view data-v-945761f4="" class="value red">-0.0183</uni-view>
-             </uni-view>
+             </uni-view> */}
                 <uni-view data-v-945761f4="" class="text-line">
-                <uni-view data-v-945761f4="" class="title">User Income</uni-view>
-                   <uni-view data-v-945761f4="" class="value green">0.0428</uni-view>
+                <uni-view data-v-945761f4="" class="title">Trade Income</uni-view>
+                   <div className="value green">{tradeIncomes[item.id] || "wait.."}</div>
                  </uni-view>
                <uni-view data-v-945761f4="" style={{height: '10px'}}></uni-view>
                 </uni-view>
