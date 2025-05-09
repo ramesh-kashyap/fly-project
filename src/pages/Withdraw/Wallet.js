@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Api from "../../Requests/Api";
 
@@ -23,16 +23,8 @@ const Wallet = () => {
         }
     };
 
-        fetchUserDetails();
-
-        return () => {
-            isMounted = false; // Cleanup on unmount to prevent memory leak
-        };
-    }, []);
-
-
-    const handleCopy = (textToCopy) => {
-        navigator.clipboard.writeText(textToCopy)
+    const handleCopy = () => {
+        navigator.clipboard.writeText(userDetails)
             .then(() => toast.success("Copied to clipboard!"))
             .catch(() => toast.error("Failed to copy"));
     };
@@ -64,29 +56,35 @@ const Wallet = () => {
                                         </Link>
                                     </uni-view>
                                 </uni-view>
- 
-                                 <uni-view data-v-b7bb70a2="" class="wallet-box"style={{ display: 'flex', flexDirection: 'column' }}>
-                                    {walletList.some(item => item.address) ? (
-                                        walletList.map((item, index) => (
-                                            item.address ? (
-                                                <uni-view data-v-b7bb70a2=""key={index} class="wallet-list">
-                                                    <uni-view data-v-b7bb70a2="" class="wallet-item">
-                                                        <uni-view data-v-b7bb70a2="" class="type">{item.type}</uni-view>
-                                                        <uni-view data-v-b7bb70a2="" class="cardNo">{item.address}</uni-view>
-                                                        <uni-view data-v-b7bb70a2="" class="btn-group">
-                                                            <uni-view data-v-b7bb70a2="" class="delete"><img data-v-b7bb70a2="" src="/static/img/delete_red.png" alt="d" /></uni-view>
-                                                            <uni-view data-v-b7bb70a2="" class="copy" onClick={handleCopy}><img data-v-b7bb70a2="" src="/static/img/copy.png" alt="c" /></uni-view>
-                                                        </uni-view>
-                                                    </uni-view>
+                                <uni-view data-v-b7bb70a2="" class="wallet-box">
+                                    {userDetails?.trc20 && (
+
+                                        <uni-view data-v-b7bb70a2="" class="wallet-list">
+                                            <uni-view data-v-b7bb70a2="" class="wallet-item">
+                                                <uni-view data-v-b7bb70a2="" class="type">TRC20</uni-view>
+                                                <uni-view data-v-b7bb70a2="" class="cardNo">{userDetails?.trc20 || 'N/A'}</uni-view>
+                                                <uni-view data-v-b7bb70a2="" class="btn-group">
+                                                    <uni-view data-v-b7bb70a2="" class="delete" ><img data-v-b7bb70a2="" src="/static/img/delete_red.png" alt="d" /></uni-view>
+                                                    <uni-view data-v-b7bb70a2="" class="copy" onClick={handleCopy}><img data-v-b7bb70a2="" src="/static/img/copy.png" alt="c" /></uni-view>
                                                 </uni-view>
-                                            ) : null
-                                        ))
-                                    ) : (
-                                        <uni-view data-v-b7bb70a2="" style={{ display: 'flex', justifyContent: 'end', marginRight: '10px' }}><img data-v-b7bb70a2="" src="/static/img/nocard.png" alt="ad"  /></uni-view>
-
-                                        
+                                            </uni-view>
+                                        </uni-view>
                                     )}
+                                </uni-view>
+                                <uni-view data-v-b7bb70a2="" class="wallet-box">
+                                    {userDetails?.bep20 && (
 
+                                        <uni-view data-v-b7bb70a2="" class="wallet-list">
+                                            <uni-view data-v-b7bb70a2="" class="wallet-item">
+                                                <uni-view data-v-b7bb70a2="" class="type">Bep20</uni-view>
+                                                <uni-view data-v-b7bb70a2="" class="cardNo">{userDetails?.bep20 || 'N/A'}</uni-view>
+                                                <uni-view data-v-b7bb70a2="" class="btn-group">
+                                                    <uni-view data-v-b7bb70a2="" class="delete"><img data-v-b7bb70a2="" src="/static/img/delete_red.png" alt="d" /></uni-view>
+                                                    <uni-view data-v-b7bb70a2="" class="copy" onClick={handleCopy}><img data-v-b7bb70a2="" src="/static/img/copy.png" alt="c" /></uni-view>
+                                                </uni-view>
+                                            </uni-view>
+                                        </uni-view>
+                                    )}
 
                                 </uni-view>
                             </uni-view>
@@ -102,4 +100,5 @@ const Wallet = () => {
 
 export default Wallet;
 
- 
+
+
