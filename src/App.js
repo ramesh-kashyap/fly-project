@@ -56,7 +56,7 @@ function AppContent() {
         "/login",
         "/register",
         "/team",
-        "/history",
+        "/deposit-history",
         "/withdraw-history",
         "/withdraw-req",
         "/smartrade",
@@ -65,14 +65,18 @@ function AppContent() {
         "/add-wallet",
         "/forgot-password",
         "/change-password",
+        "/payment-password",
         "/notice",
         "/server-commission",
         "/refer",
         "/kyc",
         "/wallet",
         "/langauge",
-        "/Faq",
-        "/transaction"
+        "/faq",
+        "/transaction",
+        "/profile",
+        "/level",
+        "/setting"
     ];
 
     // Check if current path matches any of the above OR dynamic TradingChart route
@@ -99,7 +103,7 @@ function AppContent() {
                     <Route path="/notice" element={<ProtectedRoute><Notice /></ProtectedRoute>} />
                     <Route path="/setting" element={<ProtectedRoute><Setting /></ProtectedRoute>} />
                     <Route path="/faq" element={<ProtectedRoute><Faq /></ProtectedRoute>} />
-                    <Route path="/change-wassword" element={<ProtectedRoute><ChangePassword /></ProtectedRoute>} />
+                    <Route path="/change-password" element={<ProtectedRoute><ChangePassword /></ProtectedRoute>} />
                     <Route path="/trade" element={<ProtectedRoute><Trade /></ProtectedRoute>} />
                     <Route path="/assets" element={<ProtectedRoute><Assets /></ProtectedRoute>} />
                     <Route path="/transaction" element={<ProtectedRoute><Transaction /></ProtectedRoute>} />
@@ -113,7 +117,7 @@ function AppContent() {
                     <Route path="/team" element={<ProtectedRoute><Team /></ProtectedRoute>} />
                     
                     <Route path="/withdraw-req" element={<ProtectedRoute><WithdrawReq /></ProtectedRoute>} />
-                    <Route path="/history" element={<ProtectedRoute><History /></ProtectedRoute>} />
+                    <Route path="/deposit-history" element={<ProtectedRoute><History /></ProtectedRoute>} />
                     <Route path="/withdraw-history" element={<ProtectedRoute><Whistory /></ProtectedRoute>} />
                     <Route path="/smartrade" element={<ProtectedRoute><Smartrade /></ProtectedRoute>} />
                     <Route path="/deposit" element={<ProtectedRoute><RechargeFunds /></ProtectedRoute>} />

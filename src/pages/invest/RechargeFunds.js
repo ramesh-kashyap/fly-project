@@ -42,7 +42,9 @@ const RechargeFunds = () => {
         toast.error('Failed to copy wallet address');
       });
   };
-
+  const backClick = () => {
+    navigate(-1); // 👈 Go back to the previous page in history
+};
   return (
     <div class="uni-body pages-user-recharge">
       <uni-app class="uni-app--maxwidth">
@@ -55,13 +57,13 @@ const RechargeFunds = () => {
                 <uni-view data-v-bec7c7ce="" class="top-box">
                   <uni-view data-v-636c600c="" data-v-bec7c7ce="" class="uni-row" style={{ marginLeft: '0px', marginRight: '0px' }}>
                     <uni-view data-v-35b9a113="" data-v-bec7c7ce="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
-                      <Link to="/dashboard" >
-                        <uni-view data-v-53c5f33f="" class="back"><img data-v-53c5f33f="" src="/static/img/back.png" alt="" style={{ width: '35px' }} /></uni-view>
+                     
+                        <uni-view data-v-53c5f33f="" class="back"onClick={backClick}><img data-v-53c5f33f="" src="/static/img/back.png" alt="" style={{ width: '35px' }} /></uni-view>
 
-                      </Link>
+                  
                     </uni-view><uni-view data-v-35b9a113="" data-v-bec7c7ce="" class="uni-col uni-col-12" style={{ paddingLeft: '0px', paddingRight: '0px' }}><uni-view data-v-bec7c7ce="" class="page-title">Deposit</uni-view></uni-view>
                     <uni-view data-v-35b9a113="" data-v-bec7c7ce="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
-                      <Link to="/history">
+                      <Link to="/deposit-history">
                         <uni-view data-v-53c5f33f="" class="records"><img data-v-53c5f33f="" src="/static/img/records.png" alt="" style={{ width: '25px', marginTop: '5px' }} /></uni-view>
 
                       </Link>                                    </uni-view></uni-view></uni-view>
