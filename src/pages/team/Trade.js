@@ -239,8 +239,10 @@ const Trade = () => {
                     {/* <uni-view data-v-945761f4="" class="text-line">
                  <uni-view data-v-945761f4="" class="title">Total Profit</uni-view>
                 <uni-view data-v-945761f4="" class="value">0.0612</uni-view>
-              </uni-view> */}
-                {/* <uni-view data-v-945761f4="" class="text-line">
+              </uni-view>
+                <uni-view data-v-945761f4="" class="text-line">
+
+                  
                   <uni-view data-v-945761f4="" class="title">Commission</uni-view>
               <uni-view data-v-945761f4="" class="value red">-0.0183</uni-view>
              </uni-view> */}
