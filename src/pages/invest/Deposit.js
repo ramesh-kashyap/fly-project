@@ -53,14 +53,14 @@ const Deposit = () => {
                 <uni-view data-v-bec7c7ce="" class="top-box">
                   <uni-view data-v-636c600c="" data-v-bec7c7ce="" class="uni-row" style={{ marginLeft: '0px', marginRight: '0px' }}>
                     <uni-view data-v-35b9a113="" data-v-bec7c7ce="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
-                     
-                        <uni-view data-v-53c5f33f="" class="back"onClick={backClick}><img data-v-53c5f33f="" src="/static/img/back.png" alt="" style={{ width: '35px' }} /></uni-view>
+                      <Link to="/dashboard" >
+                        <uni-view data-v-53c5f33f="" class="back"><img data-v-53c5f33f="" src="/static/img/back.png" alt="" style={{ width: '35px',filter: 'brightness(0) invert(0)' }} /></uni-view>
 
-                    
+                      </Link>
                     </uni-view><uni-view data-v-35b9a113="" data-v-bec7c7ce="" class="uni-col uni-col-12" style={{ paddingLeft: '0px', paddingRight: '0px' }}><uni-view data-v-bec7c7ce="" class="page-title">Deposit</uni-view></uni-view>
                     <uni-view data-v-35b9a113="" data-v-bec7c7ce="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
-                      <Link to="/deposit-history">
-                        <uni-view data-v-53c5f33f="" class="records"><img data-v-53c5f33f="" src="/static/img/records.png" alt="" style={{ width: '25px', marginTop: '5px' }} /></uni-view>
+                      <Link to="/History">
+                        <uni-view data-v-53c5f33f="" class="records"><img data-v-53c5f33f="" src="/static/img/records.png" alt="" style={{ width: '25px', marginTop: '5px',filter: 'brightness(0) invert(0)' }} /></uni-view>
 
                       </Link>                                    </uni-view></uni-view></uni-view>
                 <uni-view data-v-bec7c7ce="" class="recharge-box">
@@ -71,7 +71,7 @@ const Deposit = () => {
                         class="item"
                         onClick={() => setSelected('trc20')}
                         style={{
-                          backgroundColor: selected === 'trc20' ? '#00cc99' : '#f0f0f0',
+                          backgroundColor: selected === 'trc20' ? '#00cc99' : '#fff',
                           padding: '8px 12px',
                           borderRadius: '6px',
                           cursor: 'pointer',
@@ -88,7 +88,7 @@ const Deposit = () => {
                         class="item"
                         onClick={() => setSelected('bep20')}
                         style={{
-                          backgroundColor: selected === 'bep20' ? '#00cc99' : '#f0f0f0',
+                          backgroundColor: selected === 'bep20' ? '#00cc99' : '#fff',
                           padding: '8px 12px',
                           borderRadius: '6px',
                           cursor: 'pointer',
@@ -117,12 +117,12 @@ const Deposit = () => {
                         </div>
 
                       </uni-view>
-                      <uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style={{ bordBEPolor: 'rgba(255, 255, 255, 0.2)', backgroundColor: 'unset', marginTop: '20px' }}>
+                      <uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style={{ boder: '#000', backgroundColor: 'unset', marginTop: '20px' }}>
                         <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style={{ paddingLeft: '10px' }}>
-                          <div class="uni-input-wrapper">
-                            <div class="uni-input-placeholder uni-easyinput__placeholder-class" data-v-30449abe="" data-v-bec7c7ce="">{walletAddress}</div>
+                          <div class="uni-input-wrapper" style={{background:''}}>
+                            <div class="uni-input-placeholder uni-easyinput__placeholder-class" data-v-30449abe="" data-v-bec7c7ce="" style={{color:'#000'}}>{walletAddress}</div>
                             <input maxlength="140" step="" enterkeyhint="done" autocomplete="off" type="" class="uni-input-input" />
-                            <button onClick={copyToClipboard} className="text-xl text-[#ffffff]" style={{ width: "30px", border: "2px", background: "none", color: "#fff", marginLeft: "315px", marginBottom: "10px" }}>
+                            <button onClick={copyToClipboard} className="text-xl text-[#ffffff]" style={{ width: "30px", border: "2px", background: "none", color: "#000", marginLeft: "315px", marginBottom: "10px" }}>
                               <FaRegCopy />
                             </button>
                           </div>

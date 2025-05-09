@@ -64,9 +64,10 @@ const saveAddress = async () => {
                              <uni-view data-v-b918f992="" class="top-box">
                                 <uni-view data-v-636c600c="" data-v-b918f992="" class="uni-row" style={{marginLeft: '0px', marginRight: '0px'}}>
                                     <uni-view data-v-35b9a113="" data-v-b918f992="" class="uni-col uni-col-6" style={{paddingLeft: '0px', paddingRight: '0px'}}>
-                                   
-                                              <uni-view data-v-53c5f33f=""onClick={backClick} class="back"><img data-v-53c5f33f="" src="/static/img/back.png" alt="" style={{width: '35px'}} /></uni-view>
+                                        <Link to="/Add-Wallet">
+                                              <uni-view data-v-53c5f33f="" class="back"><img data-v-53c5f33f="" src="/static/img/back.png" alt="" style={{width: '35px',filter: 'brightness(0) invert(0)'}} /></uni-view>
                                       
+                                            </Link>
                                     </uni-view>
                                     <uni-view data-v-35b9a113="" data-v-b918f992="" class="uni-col uni-col-12" style={{paddingLeft: '0px', paddingRight: '0px'}}>
                                         <uni-view data-v-b918f992="" class="page-title">Add Wallet Address</uni-view>
@@ -78,7 +79,7 @@ const saveAddress = async () => {
                                 <uni-view data-v-b918f992="" class="input-layer">
                                     <uni-view data-v-b918f992="" class="input-title">Wallet Address({ networkType.toUpperCase() })</uni-view>
                                     <uni-view data-v-30449abe="" data-v-b918f992="" class="uni-easyinput" style={{color: 'rgb(255, 255, 255)'}}>
-                                        <uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style={{borderColor: 'rgba(255, 255, 255, 0.2)', backgroundColor: 'unset'}}>
+                                        <uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style={{borderColor: 'rgb(22 191 179)', backgroundColor: 'unset'}}>
                                             <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style={{paddingLeft: '10px'}}>
                                                 <div class="uni-input-wrapper">
                                                     {/* <div class="uni-input-placeholder uni-easyinput__placeholder-class" data-v-30449abe="" data-v-b918f992=""></div> */}
@@ -91,14 +92,14 @@ const saveAddress = async () => {
                                 <uni-view data-v-b918f992="" class="input-layer">
                                     <uni-view data-v-b918f992="" class="input-title">Verification Code</uni-view>
                                     <uni-view data-v-30449abe="" data-v-b918f992="" class="uni-easyinput" style={{color: 'rgb(255, 255, 255)'}}>
-                                        <uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style={{borderColor: 'rgba(255, 255, 255, 0.2)', backgroundColor: 'unset'}}>
+                                        <uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style={{borderColor: 'rgb(22 191 179)', backgroundColor: 'unset'}}>
                                             <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style={{paddingRight: '10px', paddingLeft: '10px'}}>
                                                 <div class="uni-input-wrapper">
                                                     {/* <div class="uni-input-placeholder uni-easyinput__placeholder-class" data-v-30449abe="" data-v-b918f992=""></div> */}
                                                     <input maxlength="140" step="" enterkeyhint="done" autocomplete="off"value={verificationCode} onChange={(e) => setVerificationCode(e.target.value)} type=""placeholder="Please Enter Verification Code" class="uni-input-input"/>
                                                 </div>
                                             </uni-input>
-                                            <uni-view data-v-b918f992="" class="resend"onClick={handleSendRequest}>Send</uni-view>
+                                            <uni-view data-v-b918f992="" class="resend"onClick={handleSendRequest} style={{color:'#000'}}>Send</uni-view>
                                         </uni-view>
                                     </uni-view>
                                 </uni-view>

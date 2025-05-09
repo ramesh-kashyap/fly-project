@@ -70,7 +70,7 @@ const Trade = () => {
         <uni-page data-page="pages/trade/trade">
           <uni-page-wrapper>
             <uni-page-body>
-              <uni-view data-v-7cdca4f6="" class="page">
+              <uni-view data-v-7cdca4f6="" class="page" style={{height: '800px'}}>
                 <uni-view data-v-7cdca4f6="" class="ellipse"></uni-view>
                 <uni-view data-v-7cdca4f6="" class="top-group">
                   <uni-view
@@ -80,10 +80,10 @@ const Trade = () => {
                     style={{
                       backgroundColor:
                         activeTab === "running"
-                          ? "rgb(53, 247, 231)"
-                          : "hsla(0, 0%, 100%, 0.05)",
+                          ? "#15d5c7"
+                          : "#fff",
                       color:
-                        activeTab === "running" ? "#000" : "rgb(255, 255, 255)",
+                        activeTab === "running" ? "#000" : "#000",
                       transition: "all 0.3s ease",
                     }}
                   >
@@ -97,12 +97,12 @@ const Trade = () => {
                     style={{
                       backgroundColor:
                         activeTab === "completed"
-                          ? "rgb(53, 247, 231)"
-                          : "hsla(0, 0%, 100%, 0.05)",
+                          ? "#15d5c7"
+                          : "#fff",
                       color:
                         activeTab === "completed"
                           ? "#000"
-                          : "rgb(255, 255, 255)",
+                          : "#000",
                       transition: "all 0.3s ease",
                     }}
                   >

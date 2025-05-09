@@ -19,7 +19,7 @@ const Notice = () => {
                                         <uni-view data-v-35b9a113="" data-v-c62a6474="" class="uni-col uni-col-6" style={{paddingLeft: '0px', paddingRight: '0px'}}>
                                             <Link to="/dashboard">
                                                 <uni-view data-v-c62a6474="" class="back">
-                                                    <img data-v-c62a6474="" src="/static/img/back.png" alt="" style={{width: '35px'}}/>
+                                                    <img data-v-c62a6474="" src="/static/img/back.png"  alt="" style={{width: '35px',filter: 'brightness(0) invert(0)'}}/>
                                                 </uni-view>
                                             </Link>
                                         </uni-view>

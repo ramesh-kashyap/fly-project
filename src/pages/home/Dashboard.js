@@ -4,6 +4,7 @@ import axios from "axios";
 import Api from "../../Requests/Api";
 import Collapse from 'react-collapse';
 
+
 import { SlArrowRight } from "react-icons/sl";
 import TradingChart from "./TradingChart";
 import { jwtDecode } from 'jwt-decode';
@@ -175,10 +176,10 @@ const Dashboard = () => {
                         </uni-view><uni-view
                            data-v-06ae08d2="" class="right"><uni-view data-v-06ae08d2="" class="notice"><img
                               data-v-06ae08d2="" src="/static/img/rewards.png" alt=""
-                              style={{ width: '28px' }} /></uni-view>
-                           <Link to="/notice">
+                              style={{ width: '28px', filter: 'brightness(0) invert(0)'}}/></uni-view>
+                           <Link to="/Notice">
                               <uni-view data-v-06ae08d2="" class="notice"><img
-                                 data-v-06ae08d2="" src="/static/img/notice.png" alt="" /><uni-view
+                                 data-v-06ae08d2="" src="/static/img/notice.png" alt=""  style={{filter: 'brightness(0) invert(0)'}} /><uni-view
                                     data-v-06ae08d2=""
                                     class="red-point"></uni-view></uni-view>
                            </Link>
@@ -190,20 +191,20 @@ const Dashboard = () => {
                               data-v-06ae08d2="" translate="no" class="balance-num">{availbal}</uni-view><uni-view
                                  data-v-06ae08d2="" translate="no" class="profit-num">+0.0000<uni-view
                                     data-v-06ae08d2=""
-                                    class="today">Yesterday</uni-view></uni-view></uni-view><uni-view
+                                    class="today" style={{color:'#000'}}>Yesterday</uni-view></uni-view></uni-view><uni-view
                                        data-v-06ae08d2="" class="third">
                            <uni-view data-v-06ae08d2=""
                               class="balance-btn">
-                              <Link to="/deposit" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: '500', fontSize: '16px' }}>
-                                 {t('Deposit')}
-                              </Link><img data-v-06ae08d2="" src="/static/img/usdtdown.png"
+                              <Link to="/RechargeFunds" style={{ color: '#000', textDecoration: 'none', fontWeight: '500', fontSize: '16px' }}>
+                                 Deposit
+                              </Link><img data-v-06ae08d2="" src="/static/img/usdtdown.png" style={{filter: 'brightness(0) invert(0)'}}
                                  alt="" /></uni-view>
                            <uni-view data-v-06ae08d2="" class="transfer"><img
-                              data-v-06ae08d2="" src="/static/img/transfer.png" alt="" /></uni-view>
+                              data-v-06ae08d2="" src="/static/img/transfer.png" alt="" style={{filter: 'brightness(0) invert(0)'}}/></uni-view>
 
                            <uni-view
-                              data-v-06ae08d2="" class="balance-btn"> <Link to="/withdraw-req" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: '500', fontSize: '16px' }}>{t('Withdraw')} </Link><img data-v-06ae08d2=""
-                                 src="/static/img/usdtup.png" alt="" /></uni-view>
+                              data-v-06ae08d2="" class="balance-btn"> <Link to="/withdrawReq" style={{ color: '#000', textDecoration: 'none', fontWeight: '500', fontSize: '16px' }}>Withdraw </Link><img data-v-06ae08d2=""
+                                 src="/static/img/usdtup.png" alt=""  style={{filter: 'brightness(0) invert(0)'}} /></uni-view>
 
                         </uni-view></uni-view>
                      <uni-view
@@ -291,7 +292,7 @@ const Dashboard = () => {
                                        display: "flex",
                                        alignItems: "center",
                                        justifyContent: "space-between",
-                                       background: "#1e1e22",
+                                       background: "#fff",
                                        padding: "12px",
                                        borderRadius: "10px",
                                        marginBottom: "10px"
@@ -305,17 +306,20 @@ const Dashboard = () => {
                                              width: "40px",
                                              height: "40px",
                                              borderRadius: "50%",
-                                             marginRight: "10px"
+                                             marginRight: "10px",
+                                             color:"#000"
+
                                           }}
                                        />
+                                       
                                        <div>
-                                          <div style={{ fontWeight: "bold" }}>{coin.symbol}</div>
-                                          <div style={{ fontSize: "12px", color: "#aaa" }}>{coin.volume}</div>
+                                          <div style={{ fontWeight: "bold",color: "#000" }}>{coin.symbol}</div>
+                                          <div style={{ fontSize: "12px", color: "#000" }}>{coin.volume}</div>
                                        </div>
                                     </div>
 
                                     <div style={{ textAlign: "right", marginRight: "10px" }}>
-                                       <div>${coin.price?.toFixed(2)}</div>
+                                       <div style={{color: "#000"}}>${coin.price?.toFixed(2)}</div>
                                        <div style={{ fontSize: "12px", color: isPositive ? "#0f0" : "#f44" }}>
                                           {coin.change?.toFixed(2)}
                                        </div>
@@ -323,8 +327,8 @@ const Dashboard = () => {
 
                                     <div
                                        style={{
-                                          backgroundColor: isPositive ? "#00d0aa" : "#f44336",
-                                          color: "#fff",
+                                          backgroundColor: isPositive ? "rgb(21 213 199)" : "#f44336",
+                                          color: "#000",
                                           padding: "4px 10px",
                                           borderRadius: "12px",
                                           fontSize: "13px",
@@ -345,7 +349,7 @@ const Dashboard = () => {
                               <uni-view data-v-06ae08d2="" onClick={() => setShowAll(!showAll)}
                                  style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', marginTop: '3px' }}> {showAll ? "Hide " : "More "}<img
                                     data-v-06ae08d2="" src="/static/img/Expand.png" alt=""
-                                    style={{ width: '30px', height: '20px' }} /> </uni-view>
+                                    style={{ width: '30px', height: '20px',filter: 'brightness(0) invert(0)' }} /> </uni-view>
                            )}
                         </div>
                         {selectedSymbol && <TradingChart symbol={selectedSymbol} />}

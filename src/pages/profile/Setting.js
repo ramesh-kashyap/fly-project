@@ -46,7 +46,7 @@ const Setting = () => {
             <uni-app class="uni-app--maxwidth"><uni-page data-page="pages/user/settings">  <uni-page-wrapper><uni-page-body><uni-view data-v-c746edd2="" class="page"><uni-view data-v-c746edd2="" class="ellipse"></uni-view><uni-view data-v-c746edd2="" class="top-box"><uni-view data-v-636c600c="" data-v-c746edd2="" class="uni-row" style={{ marginLeft: '0px', marginRight: '0px' }}><uni-view data-v-35b9a113="" data-v-c746edd2="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
                 <Link to="/profile">
 
-                    <uni-view data-v-c746edd2="" class="back"><img data-v-c746edd2="" src="/static/img/back.png" alt="" style={{ width: '35px' }} /></uni-view>
+                    <uni-view data-v-c746edd2="" class="back"><img data-v-c746edd2="" src="/static/img/back.png" alt="" style={{ width: '35px',filter: 'brightness(0) invert(0)' }} /></uni-view>
 
                 </Link>
             </uni-view><uni-view data-v-35b9a113="" data-v-c746edd2="" class="uni-col uni-col-12" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
@@ -61,7 +61,7 @@ const Setting = () => {
 
                         <uni-view data-v-c746edd2="" class="list-item">
 
-                            <uni-view data-v-c746edd2="" class="imgbox"><img data-v-c746edd2="" src="/static/img/pen1.png" alt="" />
+                            <uni-view data-v-c746edd2="" class="imgbox"><img data-v-c746edd2="" src="/static/img/pen1.png" alt=""  style={{filter: 'brightness(0) invert(0)'}}/>
                                 <uni-view data-v-c746edd2="" class="title">Change Password</uni-view>
                             </uni-view><uni-view data-v-c746edd2="" class="right"><img data-v-c746edd2="" src="{{asset('')}}static/img/in.png" alt="" /></uni-view>
 
@@ -73,7 +73,7 @@ const Setting = () => {
                     }}>
 
                         <uni-view data-v-c746edd2="" class="list-item">
-                            <uni-view data-v-c746edd2="" class="imgbox"><img data-v-c746edd2="" src="/static/img/pen1.png" alt="" /><uni-view data-v-c746edd2="" class="title">Change Payment Password</uni-view></uni-view>
+                            <uni-view data-v-c746edd2="" class="imgbox"><img data-v-c746edd2="" src="/static/img/pen1.png" alt=""  style={{filter: 'brightness(0) invert(0)'}}/><uni-view data-v-c746edd2="" class="title">Change Payment Password</uni-view></uni-view>
                             <uni-view data-v-c746edd2="" class="right"><img data-v-c746edd2="" src="{{asset('')}}static/img/in.png" alt="" /></uni-view>
 
                         </uni-view>
@@ -83,8 +83,8 @@ const Setting = () => {
                         color: 'inherit' // ya apna custom color e.g., 'black'
                     }}>
 
-                        <uni-view data-v-c746edd2="" class="list-item"><uni-view data-v-c746edd2="" class="imgbox"><img data-v-c746edd2="" src="/static/img/faq.png" alt="" />
-                            <uni-view data-v-c746edd2="" class="title">FAQ</uni-view></uni-view><uni-view data-v-c746edd2="" class="right"><img data-v-c746edd2="" src="{{asset('')}}static/img/in.png" alt="" /></uni-view></uni-view>
+                        <uni-view data-v-c746edd2="" class="list-item"><uni-view data-v-c746edd2="" class="imgbox"><img data-v-c746edd2="" src="/static/img/faq.png" alt=""  style={{filter: 'brightness(0) invert(0)'}}/>
+                            <uni-view data-v-c746edd2="" class="title">FAQ</uni-view></uni-view><uni-view data-v-c746edd2="" class="right"><img data-v-c746edd2="" src="{{asset('')}}static/img/in.png" alt=""  style={{filter: 'brightness(0) invert(0)'}}/></uni-view></uni-view>
                     </Link>
 
                     <Link to="/langauge" style={{
@@ -92,7 +92,7 @@ const Setting = () => {
                         color: 'inherit' // ya apna custom color e.g., 'black'
                     }}>
 
-                        <uni-view data-v-c746edd2="" class="list-item"><uni-view data-v-c746edd2="" class="imgbox"><img data-v-c746edd2="" src="/static/img/lang.png" alt="" /><uni-view data-v-c746edd2="" class="title">Language</uni-view></uni-view>
+                        <uni-view data-v-c746edd2="" class="list-item"><uni-view data-v-c746edd2="" class="imgbox"><img data-v-c746edd2="" src="/static/img/lang.png" alt=""  style={{filter: 'brightness(0) invert(0)'}}/><uni-view data-v-c746edd2="" class="title">Language</uni-view></uni-view>
                             <uni-view data-v-c746edd2="" class="right"><img data-v-c746edd2="" src="{{asset('')}}static/img/in.png/" alt="" /></uni-view></uni-view>
                     </Link>
 
