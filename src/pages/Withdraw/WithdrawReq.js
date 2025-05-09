@@ -83,7 +83,7 @@ const WithdrawReq = () => {
   };
 
   const handleSuccess = () => {
-    navigate("/Add-wallet");
+    navigate("/add-wallet");
   };
   const backClick = () => {
     navigate(-1); // 👈 Go back to the previous page in history
@@ -96,7 +96,7 @@ const WithdrawReq = () => {
 
       
     </uni-view><uni-view data-v-35b9a113="" data-v-53c5f33f="" class="uni-col uni-col-12" style={{ paddingLeft: '0px', paddingRight: '0px' }}><uni-view data-v-53c5f33f="" class="page-title">Withdrawal</uni-view></uni-view><uni-view data-v-35b9a113="" data-v-53c5f33f="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
-        <Link to="/Whistory">
+        <Link to="/withdraw-history">
           <uni-view data-v-53c5f33f="" class="records"><img data-v-53c5f33f="" src="/static/img/records.png" alt="" style={{ width: '25px', marginTop: '5px' }} /></uni-view>
 
         </Link>

@@ -6,6 +6,8 @@ const Assets = () => {
     const [transactions, setTransactions] = useState([]);
     const [users, setUsers] = useState([]);
     const [error, setError] = useState("");
+    const [availbal, setAvailableBal] = useState();
+
     useEffect(() => {
         fetchUsers();
     }, []);
@@ -33,7 +35,20 @@ const Assets = () => {
             setError(err.response?.data?.error || "Error fetching history");
         }
     };
+    useEffect(() => {
+        withfatch();
+    }, []);
 
+    const withfatch = async () => {
+        try {
+            const response = await Api.get("/availbal");
+            if (response.data?.AvailBalance !== undefined) {
+                setAvailableBal(response.data.AvailBalance);
+            }
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    };
 
     return (
         <div class="uni-body pages-assets-assets">
@@ -57,7 +72,7 @@ const Assets = () => {
                                     </uni-view>
                                     <uni-view data-v-248ca5b8="" class="second">
                                         <uni-view
-                                            data-v-248ca5b8="" translate="no" class="balance-num">0.0000</uni-view>
+                                            data-v-248ca5b8="" translate="no" class="balance-num">{availbal}</uni-view>
                                         <uni-view
                                             data-v-248ca5b8="" translate="no" class="profit-num">
                                             +0.0000
@@ -70,7 +85,7 @@ const Assets = () => {
                                         data-v-248ca5b8="" class="third">
                                         <uni-view data-v-06ae08d2=""
                                             class="balance-btn">
-                                            <Link to="/RechargeFunds" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: '500', fontSize: '16px' }}>
+                                            <Link to="/deposit" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: '500', fontSize: '16px' }}>
                                                 Deposit
                                             </Link><img data-v-06ae08d2="" src="/static/img/usdtdown.png"
                                                 alt="" />
@@ -78,15 +93,15 @@ const Assets = () => {
                                         <uni-view data-v-248ca5b8="" class="transfer"><img
                                             data-v-248ca5b8="" src="/static/img/transfer.png" alt="" /></uni-view>
                                         <uni-view
-                                            data-v-06ae08d2="" class="balance-btn">  <Link to="/WithdrawReq" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: '500', fontSize: '16px' }}>
+                                            data-v-06ae08d2="" class="balance-btn">  <Link to="/withdraw-req" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: '500', fontSize: '16px' }}>
                                                 Withdraw
                                             </Link><img data-v-06ae08d2=""
                                                 src="/static/img/usdtup.png" alt="" /></uni-view>
                                     </uni-view>
                                 </uni-view>
-                                <uni-view
-                                    data-v-248ca5b8="" class="user-title">Earnings in the past 7 days</uni-view>
-                                <uni-view
+                                {/* <uni-view
+                                    data-v-248ca5b8="" class="user-title">Earnings in the past 7 days</uni-view> */}
+                                {/* <uni-view
                                     data-v-248ca5b8="" class="income-box">
                                     <uni-view data-v-c3c2634e="" data-v-248ca5b8=""
                                         style={{ width: '400px', height: '200px', WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)' }}
@@ -97,9 +112,14 @@ const Assets = () => {
                                                 style={{ position: 'absolute', left: '0px', top: '0px', width: '384px', height: '200px', userSelect: 'none', WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)', padding: '0px', margin: '0px', borderWidth: '0px' }}></canvas>
                                         </div>
                                     </uni-view>
-                                </uni-view>
+                                </uni-view> */}
                                 <uni-view data-v-248ca5b8="" class="user-title"
-                                    style={{ marginTop: '-30px' }}>Funding Details</uni-view>
+                                    style={{ marginTop: '30px' }}>Funding Details <Link to="/transaction" style={{ textDecoration: 'none' }}>
+                                    <uni-view style={{ marginRight: '10px' }} class="right">
+                                      <p>View all</p>
+                                    </uni-view>
+                                  </Link>
+                                  </uni-view>
 
 
                                 {['investment', 'income', 'withdraw'].map((type) =>
@@ -107,24 +127,26 @@ const Assets = () => {
                                         transactions[type]
                                             .slice() // create copy
                                             .reverse() // reverse order
+                                            .slice(0, 3) // limit to 10 items
+
                                             .map((item, index) => (
-                                                <uni-view data-v-248ca5b8=""  class="item" >
-                                                    <uni-view data-v-248ca5b8=""  class="first">
-                                                        <uni-view data-v-248ca5b8=""  class="left">
+                                                <uni-view data-v-248ca5b8="" class="item" >
+                                                    <uni-view data-v-248ca5b8="" class="first">
+                                                        <uni-view data-v-248ca5b8="" class="left">
                                                             {new Date(item.created_at).toLocaleString()}
                                                         </uni-view>
                                                         <uni-view data-v-248ca5b8=""
-                                                             class="right"
+                                                            class="right"
                                                             style={{ color: type === 'withdraw' ? 'rgb(53, 247, 231)' : 'rgb(255, 61, 61)' }}
                                                         >
                                                             {type === 'withdraw' ? '+ ' : '- '}{item.amount ? Number(item.amount).toFixed(4) : '0.0000'}
                                                         </uni-view>
                                                     </uni-view>
 
-                                                    <uni-view  data-v-248ca5b8=""  class="layer">
-                                                        <uni-view data-v-248ca5b8=""  class="title">Fund Flow</uni-view>
-                                                        <uni-view data-v-248ca5b8=""  class="value">
-                                                              {item.remarks || item.source || 'Quantified Order Settlement'}
+                                                    <uni-view data-v-248ca5b8="" class="layer">
+                                                        <uni-view data-v-248ca5b8="" class="title">Fund Flow</uni-view>
+                                                        <uni-view data-v-248ca5b8="" class="value">
+                                                            {item.remarks || item.source || 'Quantified Order Settlement'}
                                                         </uni-view>
                                                     </uni-view>
                                                 </uni-view>
@@ -132,7 +154,7 @@ const Assets = () => {
                                     ) : null
                                 )}
 
-{/* <uni-view data-v-248ca5b8="" class="item">
+                                {/* <uni-view data-v-248ca5b8="" class="item">
                                         <uni-view data-v-248ca5b8="" class="first">
                                             <uni-view data-v-248ca5b8="" class="left">2025-04-21 14:48:49</uni-view>
 

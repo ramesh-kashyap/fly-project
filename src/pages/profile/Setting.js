@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { useAuth } from "../../components/AuthContext";
 
 import Api from "../../Requests/Api";
-import Level from "../../pages/team/Level";
+import Level from "./Level";
 
 const Setting = () => {
     const navigate = useNavigate();
@@ -44,7 +44,7 @@ const Setting = () => {
 
         <div class="uni-body pages-user-settings" >
             <uni-app class="uni-app--maxwidth"><uni-page data-page="pages/user/settings">  <uni-page-wrapper><uni-page-body><uni-view data-v-c746edd2="" class="page"><uni-view data-v-c746edd2="" class="ellipse"></uni-view><uni-view data-v-c746edd2="" class="top-box"><uni-view data-v-636c600c="" data-v-c746edd2="" class="uni-row" style={{ marginLeft: '0px', marginRight: '0px' }}><uni-view data-v-35b9a113="" data-v-c746edd2="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
-                <Link to="/NodeDetails">
+                <Link to="/profile">
 
                     <uni-view data-v-c746edd2="" class="back"><img data-v-c746edd2="" src="/static/img/back.png" alt="" style={{ width: '35px' }} /></uni-view>
 
@@ -54,7 +54,7 @@ const Setting = () => {
                 <uni-view data-v-c746edd2="" class="list-box">
 
 
-                    <Link to="/ChangePassword" style={{
+                    <Link to="/change-password" style={{
                         textDecoration: 'none',
                         color: 'inherit'
                     }}>
@@ -67,7 +67,7 @@ const Setting = () => {
 
                         </uni-view>
                     </Link>
-                    <Link to="/PaymentPassword" style={{
+                    <Link to="/payment-password" style={{
                         textDecoration: 'none',
                         color: 'inherit' // ya apna custom color e.g., 'black'
                     }}>
@@ -78,7 +78,7 @@ const Setting = () => {
 
                         </uni-view>
                     </Link>
-                    <Link to="/Faq" style={{
+                    <Link to="/faq" style={{
                         textDecoration: 'none',
                         color: 'inherit' // ya apna custom color e.g., 'black'
                     }}>

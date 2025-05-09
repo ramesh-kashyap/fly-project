@@ -69,7 +69,7 @@ const saveAddress = async () => {
                                       
                                     </uni-view>
                                     <uni-view data-v-35b9a113="" data-v-b918f992="" class="uni-col uni-col-12" style={{paddingLeft: '0px', paddingRight: '0px'}}>
-                                        <uni-view data-v-b918f992="" class="page-title">Add Wallet</uni-view>
+                                        <uni-view data-v-b918f992="" class="page-title">Add Wallet Address</uni-view>
                                     </uni-view>
                                     <uni-view data-v-35b9a113="" data-v-b918f992="" class="uni-col uni-col-6" style={{paddingLeft: '0px', paddingRight: '0px'}}></uni-view>
                                 </uni-view>

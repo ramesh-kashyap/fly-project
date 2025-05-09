@@ -10,7 +10,7 @@ const AddWallet = () => {
     // };
 
     const handleClick = (network) => {
-        navigate(`/Add-WalletAddress/${network}`); // e.g. /wallet/trc20
+        navigate(`/add-walletAddress/${network}`); // e.g. /wallet/trc20
       }; 
       const backClick = () => {
         navigate(-1); // 👈 Go back to the previous page in history
