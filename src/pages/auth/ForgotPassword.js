@@ -75,7 +75,7 @@ const ForgotPassword = () => {
                 <uni-view data-v-34a1f189="" class="top-box">
                   <uni-view data-v-636c600c="" data-v-34a1f189="" class="uni-row" style={{ marginLeft: '0px', marginRight: '0px' }}><uni-view data-v-35b9a113="" data-v-34a1f189="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
                     <Link to="/Setting">
-                      <uni-view data-v-34a1f189="" class="back"><img data-v-34a1f189="" src="/static/img/back.png" alt="" style={{ width: '35px' }} /></uni-view>
+                      <uni-view data-v-34a1f189="" class="back"><img data-v-34a1f189="" src="/static/img/back.png" alt="" style={{ width: '35px',filter: 'brightness(0) invert(0)' }} /></uni-view>
                     </Link>
                   </uni-view>
                     <uni-view data-v-35b9a113="" data-v-34a1f189="" class="uni-col uni-col-12" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
@@ -86,13 +86,13 @@ const ForgotPassword = () => {
                 <uni-view data-v-0c515aee="" class="input-layer">
                      <uni-view data-v-0c515aee="" class="input-title">Email Address</uni-view>
                      <uni-view data-v-30449abe="" data-v-0c515aee="" class="uni-easyinput" style={{color: 'rgb(255, 255, 255)'}}>
-                        <uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style={{borderColor: 'rgba(255, 255, 255, 0.2)', backgroundColor: 'unset'}}>
+                        <uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style={{borderColor: 'rgb(22 191 179)', backgroundColor: 'unset'}}>
                            <uni-view data-v-30449abe="" class="content-clear-icon"><img data-v-30449abe="" src="/static/img/email-fill.png" alt=""/></uni-view>
                              
                            <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style={{paddingLeft: '10px'}}>
                               <div class="uni-input-wrapper">
                                  <div class="uni-input-placeholder uni-easyinput__placeholder-class" data-v-30449abe="" data-v-0c515aee="" style={{display: 'none'}}>Please Enter Email Address</div>
-                                 <input maxlength="140" step="" enterkeyhint="done"  type="email"value={email}
+                                 <input maxlength="140" step="" enterkeyhint="done"   placeholder=" Enter Email Address"type="email"value={email}
                                   onChange={(e) => setEmail(e.target.value)} class="uni-input-input"/>  
                               </div>
                            </uni-input>
@@ -103,7 +103,7 @@ const ForgotPassword = () => {
                   </uni-view>
                   <uni-view data-v-34a1f189="" class="input-layer">
                     <uni-view data-v-34a1f189="" class="input-title">New Password</uni-view>
-                    <uni-view data-v-30449abe="" data-v-34a1f189="" class="uni-easyinput" style={{ color: 'rgb(255, 255, 255)' }}><uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style={{ borderColor: 'rgba(255, 255, 255, 0.2)', backgroundColor: 'unset' }}> <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style={{ paddingLeft: '10px' }}>
+                    <uni-view data-v-30449abe="" data-v-34a1f189="" class="uni-easyinput" style={{ color: 'rgb(255, 255, 255)' }}><uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style={{ borderColor: 'rgb(22 191 179)', backgroundColor: 'unset' }}> <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style={{ paddingLeft: '10px' }}>
                       <div class="uni-input-wrapper">
                         <input maxlength="140" step="" enterkeyhint="done" autocomplete="off" type="password" class="uni-input-input" value={password}
                           onChange={(e) => setPassword(e.target.value)} placeholder="Please enter new password" />
@@ -114,7 +114,7 @@ const ForgotPassword = () => {
                   </uni-view>
                   <uni-view data-v-34a1f189="" class="input-layer">
                     <uni-view data-v-34a1f189="" class="input-title">Confirm Password</uni-view>
-                    <uni-view data-v-30449abe="" data-v-34a1f189="" class="uni-easyinput" style={{ color: 'rgb(255, 255, 255)' }}><uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style={{ borderColor: 'rgba(255, 255, 255, 0.2)', backgroundColor: 'unset' }}> <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style={{ paddingLeft: '10px' }}>
+                    <uni-view data-v-30449abe="" data-v-34a1f189="" class="uni-easyinput" style={{ color: 'rgb(255, 255, 255)' }}><uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style={{ borderColor: 'rgb(22 191 179)', backgroundColor: 'unset' }}> <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style={{ paddingLeft: '10px' }}>
                       <div class="uni-input-wrapper">
                         <input maxlength="140" step="" enterkeyhint="done" autocomplete="off" type="password" class="uni-input-input" value={passwordConfirmation}
                           onChange={(e) => setPasswordConfirmation(e.target.value)} placeholder="Please enter your new password again" />
@@ -125,14 +125,14 @@ const ForgotPassword = () => {
                   <uni-view data-v-b918f992="" class="input-layer">
                     <uni-view data-v-b918f992="" class="input-title">Verification Code</uni-view>
                     <uni-view data-v-30449abe="" data-v-b918f992="" class ="uni-easyinput" style={{ color: 'rgb(255, 255, 255)' }}>
-                      <uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style={{ borderColor: 'rgba(255, 255, 255, 0.2)', backgroundColor: 'unset' }}>
+                      <uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style={{ borderColor: 'rgb(22 191 179)', backgroundColor: 'unset' }}>
                         <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style={{ paddingRight: '10px', paddingLeft: '10px' }}>
                           <div class="uni-input-wrapper">
                             {/* <div class="uni-input-placeholder uni-easyinput__placeholder-class" data-v-30449abe="" data-v-b918f992=""></div> */}
                             <input maxlength="140" step="" enterkeyhint="done" autocomplete="off" value={verificationCode} onChange={(e) => setVerificationCode(e.target.value)} type="" placeholder="Please Enter Verification Code" class="uni-input-input" />
                           </div>
                         </uni-input>
-                        <uni-view data-v-b918f992="" class="resend" onClick={handleSendRequest}>Send</uni-view>
+                        <uni-view data-v-b918f992="" class="resend" onClick={handleSendRequest} style={{color:'#000'}}>Send</uni-view>
                       </uni-view>
                     </uni-view>
                   </uni-view>

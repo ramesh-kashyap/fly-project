@@ -40,9 +40,9 @@ const TradingChart = () => {
                             <uni-view data-v-ae626946="" class="page">
                                 <uni-view data-v-ae626946="" class="ellipse"></uni-view>
                                 <uni-view data-v-ae626946="" class="top-box"><uni-view data-v-ae626946="" style={{ display: 'flex', alignItems: 'center' }}>
-                            <uni-view data-v-1011963f="" class="back"onClick={backClick}><img data-v-1011963f="" src="/static/img/back.png" alt="" style={{ width: '35px' }} /></uni-view>
+                            <uni-view data-v-1011963f="" class="back"onClick={backClick}><img data-v-1011963f="" src="/static/img/back.png" alt="" style={{ width: '35px',filter: 'brightness(0) invert(0)' }} /></uni-view>
                                         <uni-view data-v-ae626946="" class="coin-box">
-                                        <img data-v-ae626946="" src={`/static/coin/${symbol.toLowerCase().replace("usdt", "")}.png`} alt="{symbol}" /><uni-view data-v-ae626946="" class="coin-name">{symbol.toUpperCase()}<uni-view data-v-ae626946="" class="coin">{symbol.toUpperCase().replace("USDT", "")}</uni-view></uni-view></uni-view></uni-view><uni-view data-v-ae626946="" class="focus"><img data-v-ae626946="" src="/static/img/focus3.png" alt="" style={{ width: '20px' }} /></uni-view></uni-view>
+                                        <img data-v-ae626946="" src={`/static/coin/${symbol.toLowerCase().replace("usdt", "")}.png`} alt="{symbol}" /><uni-view data-v-ae626946="" class="coin-name">{symbol.toUpperCase()}<uni-view data-v-ae626946="" class="coin">{symbol.toUpperCase().replace("USDT", "")}</uni-view></uni-view></uni-view></uni-view><uni-view data-v-ae626946="" class="focus"><img data-v-ae626946="" src="/static/img/focus3.png" alt="" style={{ width: '20px',filter: 'brightness(0) invert(0)' }} /></uni-view></uni-view>
                                 <div style={{ marginTop: "20px", width: "100%", height: "400px" }}>
                                     <TradingViewWidget
                                         symbol={`BINANCE:${symbol}`}

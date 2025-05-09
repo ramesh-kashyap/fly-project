@@ -102,7 +102,7 @@ const Level = () => {
                     <uni-view data-v-35b9a113="" data-v-1011963f="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
  <Link to="/Team">   
-                        <uni-view data-v-1011963f="" class="back"><img data-v-1011963f="" src="/static/img/back.png" alt="" style={{ width: '35px' }} /></uni-view>
+                        <uni-view data-v-1011963f="" class="back"><img data-v-1011963f="" src="/static/img/back.png" alt="" style={{ width: '35px',filter: 'brightness(0) invert(0)'}} /></uni-view>
                    </Link>
 
                     </uni-view>
@@ -128,7 +128,7 @@ const Level = () => {
                           <uni-view data-v-b7dd60dc="" class="left">
                             <img
                               data-v-b7dd60dc=""
-                              src="/static/img/team-people.png"
+                              src="/static/img/team-people.png" style={{filter: 'brightness(0) invert(0)'}}
                               alt=""
                             />
                             {user.name|| "user"}
@@ -198,8 +198,7 @@ const Level = () => {
                       <img
                         data-v-7cdca4f6=""
                         src="/static/img/nodata.png"
-                        alt=""
-                      />
+                        alt="" style={{filter: 'brightness(0) invert(0)'}}/>
                       No Data
                     </uni-view>
                   </uni-view>

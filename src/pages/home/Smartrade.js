@@ -130,7 +130,7 @@ const Smartrade = () => {
                         <uni-view data-v-2c1047a8="" class="top-box">
                            <uni-view data-v-636c600c="" data-v-2c1047a8="" class="uni-row" style={{ marginLeft: '0px', marginRight: '0px' }}>
                               <uni-view data-v-35b9a113="" data-v-2c1047a8="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
-                                 <uni-view data-v-2c1047a8="" class="back" onClick={backClick}><img data-v-2c1047a8="" src="/static/img/back.png" alt="" style={{ width: '35px' }} /></uni-view>
+                                 <uni-view data-v-2c1047a8="" class="back" onClick={backClick}><img data-v-2c1047a8="" src="/static/img/back.png" alt="" style={{ width: '35px',filter:'brightness(0) invert(0)'}} /></uni-view>
                               </uni-view>
                               <uni-view data-v-35b9a113="" data-v-2c1047a8="" class="uni-col uni-col-12" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
                                  <uni-view data-v-2c1047a8="" class="page-title">Smart Trade</uni-view>
@@ -143,7 +143,7 @@ const Smartrade = () => {
                               <uni-view data-v-2c1047a8="" class="input-item">
                                  <uni-view data-v-2c1047a8="" class="input-title">Trading Currency</uni-view>
                                  <uni-view data-v-30449abe="" data-v-2c1047a8="" class="uni-easyinput" style={{ color: 'rgb(255, 255, 255)' }}>
-                                    <uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border is-disabled " style={{ borderColor: 'rgba(255, 255, 255, 0.2)', backgroundColor: 'unset' }}>
+                                    <uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border is-disabled " style={{ borderColor: 'rgb(22 191 179)', backgroundColor: 'unset' }}>
 
                                        <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style={{ paddingLeft: '10px' }}>
                                           <div class="uni-input-wrapper">
@@ -160,7 +160,7 @@ const Smartrade = () => {
                                  <uni-view data-v-2c1047a8="" class="server-click" onClick={() => setShowOverlay(true)}>
                                     <uni-view data-v-2c1047a8="" class="click-layer"></uni-view>
                                     <uni-view data-v-30449abe="" data-v-2c1047a8="" class="uni-easyinput" style={{ color: 'rgb(255, 255, 255)' }}>
-                                       <uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style={{ borderColor: 'rgba(255, 255, 255, 0.2)', backgroundColor: 'unset' }}>
+                                       <uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style={{ borderColor: 'rgb(22 191 179)', backgroundColor: 'unset' }}>
 
                                           <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style={{ paddingLeft: '10px' }}>
                                              <div class="uni-input-wrapper">
@@ -174,7 +174,7 @@ const Smartrade = () => {
                               <uni-view data-v-2c1047a8="" class="input-item">
                                  <uni-view data-v-2c1047a8="" class="input-title">Amount</uni-view>
                                  <uni-view data-v-30449abe="" data-v-2c1047a8="" class="uni-easyinput" style={{ color: 'rgb(255, 255, 255)' }}>
-                                    <uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style={{ borderColor: 'rgba(255, 255, 255, 0.2)', backgrounColor: 'unset' }}>
+                                    <uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border " style={{ borderColor: 'rgb(22 191 179)', backgrounColor: 'unset' }}>
                                        <uni-input data-v-30449abe="" class="uni-easyinput__content-input" style={{ paddingLeft: '10px' }}>
                                           <div class="uni-input-wrapper">
                                              {/* <div class="uni-input-placeholder uni-easyinput__placeholder-class" data-v-30449abe="" data-v-2c1047a8="">500</div> */}
@@ -199,20 +199,20 @@ const Smartrade = () => {
                                  <uni-view data-v-2c1047a8="" class="input-title">Period (Hour)</uni-view>
                                  {selectedServerInfo && (
                                     <uni-view data-v-2c1047a8="" class="period-box">
-                                       <uni-view data-v-2c1047a8="" class="period-item" style={{ backgroundColor: selectedPeriod === selectedServerInfo.period ? '#35f7e7' : '' }} onClick={() => setSelectedPeriod(selectedServerInfo.period)}>{selectedServerInfo.period}</uni-view>
-                                       <uni-view data-v-2c1047a8="" class="period-item" style={{ backgroundColor: selectedPeriod === selectedServerInfo.period_end ? '#35f7e7' : '' }} onClick={() => setSelectedPeriod(selectedServerInfo.period_end)}>{selectedServerInfo.period_end}</uni-view>
+                                       <uni-view data-v-2c1047a8="" class="period-item" style={{ backgroundColor: selectedPeriod === selectedServerInfo.period ? '#15d5c7' : '#15d5c7' }} onClick={() => setSelectedPeriod(selectedServerInfo.period)}>{selectedServerInfo.period}</uni-view>
+                                       <uni-view data-v-2c1047a8="" class="period-item" style={{ backgroundColor: selectedPeriod === selectedServerInfo.period_end ? '#15d5c7' :'#15d5c7' }} onClick={() => setSelectedPeriod(selectedServerInfo.period_end)}>{selectedServerInfo.period_end}</uni-view>
                                     </uni-view>
                                  )}
                               </uni-view>
                               <uni-view data-v-2c1047a8="" class="input-item">
                                  <uni-view data-v-2c1047a8="" class="input-title">Buy Insurance </uni-view>
                                  <uni-view data-v-2c1047a8="" class="period-box">
-                                    <uni-view data-v-2c1047a8="" class="period-item" style={{ backgroundColor: agreeOrReject === 'agree' ? '#35f7e7' : '' }} onClick={() => setAgreeOrReject('agree')}>Agree</uni-view>
-                                    <uni-view data-v-2c1047a8="" class="period-item" style={{ backgroundColor: agreeOrReject === 'reject' ? '#35f7e7' : '' }} onClick={() => setAgreeOrReject('reject')}>Reject</uni-view>
+                                    <uni-view data-v-2c1047a8="" class="period-item" style={{ backgroundColor: agreeOrReject === 'agree' ? 'green' : 'green' }} onClick={() => setAgreeOrReject('agree')}>Agree</uni-view>
+                                    <uni-view data-v-2c1047a8="" class="period-item" style={{ backgroundColor: agreeOrReject === 'reject' ? 'red' : 'red' }} onClick={() => setAgreeOrReject('reject')}>Reject</uni-view>
                                  </uni-view>
                               </uni-view>
                            </uni-view>
-                           <uni-view data-v-2c1047a8="" class="book-box">
+                           <uni-view data-v-2c1047a8="" class="book-box" style={{backgroundColor:'#fff'}}>
                               <uni-view data-v-2c1047a8="" class="order-book">
                                  <uni-view data-v-2c1047a8="" class="buy-orders">
                                     <uni-view data-v-2c1047a8="" class="order">

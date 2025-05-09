@@ -16,7 +16,7 @@ return(
               <uni-view data-v-636c600c data-v-6b62b81d  class="uni-row" style={{marginLeft: 0, marginRight: 0}}>
                 <uni-view data-v-35b9a113 data-v-6b62b81d  class="uni-col uni-col-6" style={{paddingLeft: 0, paddingRight: 0}}>
                     <Link to="/dashboard">
-                    <uni-view data-v-6b62b81d  class="back"><img data-v-6b62b81d src="/static/img/back.png" alt style={{width: 35}} /></uni-view>
+                    <uni-view data-v-6b62b81d  class="back"><img data-v-6b62b81d src="/static/img/back.png" alt style={{width: 35,filter: 'brightness(0) invert(0)' }} /></uni-view>
 
                     </Link>
                 </uni-view>

@@ -4,6 +4,8 @@ import { Link, useLocation } from 'react-router-dom';
 export default function Footer() {
   const location = useLocation();
   const currentPath = location.pathname;
+  const activeFilter = 'invert(78%) sepia(24%) saturate(1531%) hue-rotate(124deg) brightness(85%) contrast(100%)';
+  const activeColor = '#15d5c7';
 
   return (
 
@@ -14,17 +16,26 @@ export default function Footer() {
 
         <uni-tabbar
           class="uni-tabbar-bottom" >
-          <div class="uni-tabbar" style={{ backgroundColor: 'rgb(68, 67, 70)', backdropFilter: 'none',width: '100%' }}>
+          <div class="uni-tabbar" style={{ backgroundColor: '#fff', backdropFilter: 'none',width: '100%' }}>
             <div class="uni-tabbar-border" style={{ backgroundColor: 'rgba(255, 255, 255, 0.12)' }}></div>
             <div class="uni-tabbar__item">
             <Link to="/dashboard"style={{ textDecoration: "none", color: "inherit",cursor: "none"  }}>
                 <div class="uni-tabbar__bd" style={{ height: '65px' }}>
-                  <div class="uni-tabbar__icon" style={{ width: '24px', height: '24px' }}><img
-                    src="/static/tabbar/home.png" /></div>
+                  <div class="uni-tabbar__icon" style={{ width: '24px', height: '24px' }}>
+                    
+                  <img
+                      src="/static/tabbar/home.png"
+                      style={{
+                        filter: currentPath === '/dashboard' ? activeFilter : 'brightness(0) invert(0)',
+                      }}
+                      alt="Home"
+                    />
+                    
+                    </div>
                   <div  className="uni-tabbar__label"
                     style={{
                       color:
-                        currentPath === '/dashboard' ? 'rgb(53, 247, 231)' : 'rgba(255, 255, 255, 0.5)',
+                        currentPath === '/dashboard' ? '#15d5c7' : '#000',
                       fontSize: '13px',
                       lineHeight: 'normal',
                       marginTop: '3px',
@@ -37,12 +48,22 @@ export default function Footer() {
             <Link to="/trade"style={{ textDecoration: "none", color: "inherit",cursor: "none" }}>
 
                 <div class="uni-tabbar__bd" style={{ height: '65px' }}>
-                  <div class="uni-tabbar__icon" style={{ width: '24px', height: '24px' }}><img
-                    src=" /static/tabbar/trade.png" /></div>
+                  <div class="uni-tabbar__icon" style={{ width: '24px', height: '24px' }}>
+                    
+                  <img
+                      src="/static/tabbar/trade.png"
+                      style={{
+                        filter: currentPath === '/trade' ? activeFilter : 'brightness(0) invert(0)',
+                      }}
+                      alt="Trade"
+                    />
+                    
+                    
+                    </div>
                   <div  className="uni-tabbar__label"
                     style={{
                       color:
-                        currentPath === '/trade' ? 'rgb(53, 247, 231)' : 'rgba(255, 255, 255, 0.5)',
+                        currentPath === '/trade' ? '#15d5c7' : '#000',
                       fontSize: '13px',
                       lineHeight: 'normal',
                       marginTop: '3px',
@@ -55,12 +76,23 @@ export default function Footer() {
             <Link to="/assets"style={{ textDecoration: "none", color: "inherit", cursor: "none" }}>
 
                 <div class="uni-tabbar__bd" style={{ height: '65px' }}>
-                  <div class="uni-tabbar__icon" style={{ width: '24px', height: '24px' }}><img
-                    src=" /static/tabbar/assets.png" /></div>
+                  <div class="uni-tabbar__icon" style={{ width: '24px', height: '24px' }}>
+                    
+                    
+                  <img
+                      src="/static/tabbar/assets.png"
+                      style={{
+                        filter: currentPath === '/assets' ? activeFilter : 'brightness(0) invert(0)',
+                      }}
+                      alt="Assets"
+                    />
+                    
+                    
+                    </div>
                   <div  className="uni-tabbar__label"
                     style={{
                       color:
-                        currentPath === '/assets' ? 'rgb(53, 247, 231)' : 'rgba(255, 255, 255, 0.5)',
+                        currentPath === '/assets' ? '#15d5c7' : '#000',
                       fontSize: '13px',
                       lineHeight: 'normal',
                       marginTop: '3px',
@@ -73,12 +105,22 @@ export default function Footer() {
             <Link to="/server"style={{ textDecoration: "none", color: "inherit",cursor: "none" }}>
 
                 <div class="uni-tabbar__bd" style={{ height: '65px' }}>
-                  <div class="uni-tabbar__icon" style={{ width: '24px', height: '24px' }}><img
-                    src=" /static/tabbar/server.png" /></div>
+                  <div class="uni-tabbar__icon" style={{ width: '24px', height: '24px' }}>
+                    
+                    
+                  <img
+                      src="/static/tabbar/server.png"
+                      style={{
+                        filter: currentPath === '/server' ? activeFilter : 'brightness(0) invert(0)',
+                      }}
+                      alt="Server"
+                    />
+                    
+                    </div>
                   <div className="uni-tabbar__label"
                     style={{
                       color:
-                        currentPath === '/server' ? 'rgb(53, 247, 231)' : 'rgba(255, 255, 255, 0.5)',
+                        currentPath === '/server' ? '#15d5c7' : '#000',
                       fontSize: '13px',
                       lineHeight: 'normal',
                       marginTop: '3px',

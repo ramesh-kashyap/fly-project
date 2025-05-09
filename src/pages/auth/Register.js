@@ -67,14 +67,14 @@ const Register = () => {
                     data-v-45a6b600=""
                     data-v-2b56ecaf=""
 
-                    style={{ color: "rgb(53, 247, 231)", fontSize: "20px" }}
+                    style={{ color: "#000", fontSize: "20px" }}
                   ></uni-text>
                 </uni-view>
                 <uni-view data-v-2b56ecaf="" class="language">
                   <img
                     data-v-2b56ecaf=""
                     src="/static/img/icon-lang.png"
-                    alt=""
+                    alt=""  style={{filter: 'brightness(0) invert(0)'}} 
                   />
                 </uni-view>
                 <uni-view data-v-2b56ecaf="" class="welcome">
@@ -97,7 +97,7 @@ const Register = () => {
                         data-v-30449abe=""
                         class="uni-easyinput__content is-input-border "
                         style={{
-                          borderColor: "rgba(255, 255, 255, 0.2)",
+                          borderColor: "rgb(22 191 179)",
                           backgroundColor: "unset",
                         }}
                       >
@@ -155,7 +155,7 @@ const Register = () => {
                         data-v-30449abe=""
                         class="uni-easyinput__content is-input-border "
                         style={{
-                          borderColor: "rgba(255, 255, 255, 0.2)",
+                          borderColor: "rgb(22 191 179)",
                           backgroundColor: "unset",
                         }}
                       >
@@ -215,7 +215,7 @@ const Register = () => {
                         data-v-30449abe=""
                         class="uni-easyinput__content is-input-border "
                         style={{
-                          borderColor: "rgba(255, 255, 255, 0.2)",
+                          borderColor: "rgb(22 191 179)",
                           backgroundColor: "unset",
                         }}
                       >
@@ -287,7 +287,7 @@ const Register = () => {
                         data-v-30449abe=""
                         class="uni-easyinput__content is-input-border "
                         style={{
-                          borderColor: "rgba(255, 255, 255, 0.2)",
+                          borderColor: "rgb(22 191 179)",
                           backgroundColor: "unset",
                         }}
                       >
@@ -346,7 +346,7 @@ const Register = () => {
                         data-v-30449abe=""
                         class="uni-easyinput__content is-input-border "
                         style={{
-                          borderColor: "rgba(255, 255, 255, 0.2)",
+                          borderColor: "rgb(22 191 179)",
                           backgroundColor: "unset",
                         }}
                       >
@@ -406,7 +406,7 @@ const Register = () => {
                         data-v-30449abe=""
                         class="uni-easyinput__content is-input-border "
                         style={{
-                          borderColor: "rgba(255, 255, 255, 0.2)",
+                          borderColor: "rgb(22 191 179)",
                           backgroundColor: "unset",
                         }}
                       >
@@ -491,11 +491,11 @@ const Register = () => {
                           </span>
                         </uni-text>
                         <uni-text data-v-90aab294="" class="agreement">
-                          <span>"AML/CFT Policy"</span>
+                          <span style={{color:'rgb(22 191 179)'}}>"AML/CFT Policy"</span>
                         </uni-text>
                         ,
                         <uni-text data-v-90aab294="" class="agreement">
-                          <span>"FIREFLY STAR LLC User Agreement"</span>
+                          <span style={{color:'rgb(22 191 179)'}}>"FIREFLY STAR LLC User Agreement"</span>
                         </uni-text>
                       </uni-label>
                     </uni-checkbox-group>
@@ -512,7 +512,7 @@ const Register = () => {
 
                   <uni-view data-v-2b56ecaf="" class="register">
                     Don't have an account?
-                    <Link to="/login" style={{ textDecorationLine: 'none' }}><uni-view data-v-2b56ecaf="" class="create">Log in</uni-view></Link>
+                    <Link to="/login" style={{ textDecorationLine: 'none' }}><uni-view data-v-2b56ecaf="" class="create" style={{color:'rgb(22 191 179)'}}>Log in</uni-view></Link>
                   </uni-view>
                 </uni-view>
               </uni-view>

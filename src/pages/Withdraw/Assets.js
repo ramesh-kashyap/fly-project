@@ -70,18 +70,18 @@ const Assets = () => {
                                         data-v-248ca5b8="" class="third">
                                         <uni-view data-v-06ae08d2=""
                                             class="balance-btn">
-                                            <Link to="/RechargeFunds" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: '500', fontSize: '16px' }}>
+                                            <Link to="/RechargeFunds" style={{ color: '#000', textDecoration: 'none', fontWeight: '500', fontSize: '16px' }}>
                                                 Deposit
                                             </Link><img data-v-06ae08d2="" src="/static/img/usdtdown.png"
-                                                alt="" />
+                                                alt=""  style={{filter: 'brightness(0) invert(0)'}}/>
                                         </uni-view>
                                         <uni-view data-v-248ca5b8="" class="transfer"><img
-                                            data-v-248ca5b8="" src="/static/img/transfer.png" alt="" /></uni-view>
+                                            data-v-248ca5b8="" src="/static/img/transfer.png" alt="" style={{filter: 'brightness(0) invert(0)'}} /></uni-view>
                                         <uni-view
-                                            data-v-06ae08d2="" class="balance-btn">  <Link to="/WithdrawReq" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: '500', fontSize: '16px' }}>
+                                            data-v-06ae08d2="" class="balance-btn">  <Link to="/WithdrawReq" style={{ color: '#000', textDecoration: 'none', fontWeight: '500', fontSize: '16px' }}>
                                                 Withdraw
                                             </Link><img data-v-06ae08d2=""
-                                                src="/static/img/usdtup.png" alt="" /></uni-view>
+                                                src="/static/img/usdtup.png"   style={{filter: 'brightness(0) invert(0)'}}alt="" /></uni-view>
                                     </uni-view>
                                 </uni-view>
                                 <uni-view

@@ -49,7 +49,7 @@ const Team = () => {
                     <uni-view data-v-35b9a113="" data-v-1011963f="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
                       <Link to="/NodeDetails">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
 
-                        <uni-view data-v-1011963f="" class="back"><img data-v-1011963f="" src="/static/img/back.png" alt="" style={{ width: '35px' }} /></uni-view>
+                        <uni-view data-v-1011963f="" class="back"><img data-v-1011963f="" src="/static/img/back.png" alt="" style={{ width: '35px',filter: 'brightness(0) invert(0)' }} /></uni-view>
                       </Link>
 
                     </uni-view>
@@ -64,12 +64,12 @@ const Team = () => {
               
                 <uni-view data-v-1011963f="" class="four-group">
                   <uni-view data-v-1011963f="" class="item">
-                    <img data-v-1011963f="" src="/static/img/team-people.png" alt="" />
+                    <img data-v-1011963f="" src="/static/img/team-people.png"  style={{filter: 'brightness(0) invert(0)'}} alt="" />
                     <uni-view data-v-1011963f="" class="value">{income.data?.totalTeam}<span data-v-1011963f="" style={{ fontSize: '14px' }}></span></uni-view>
                     <uni-view data-v-1011963f="" class="title">Team Members</uni-view>
                   </uni-view>
                   <uni-view data-v-1011963f="" class="item">
-                    <img data-v-1011963f="" src="/static/img/team-money.png" alt="" />
+                    <img data-v-1011963f="" src="/static/img/team-money.png" style={{filter: 'brightness(0) invert(0)'}} alt="" />
                     <uni-view data-v-1011963f="" class="value">{income.data?.ActivetotalTeam}</uni-view>
                     <uni-view data-v-1011963f="" class="title">Total Valid</uni-view>
                   </uni-view>

@@ -48,14 +48,14 @@ const NodeDetails = () => {
                     <uni-view data-v-35b9a113="" data-v-3dcfa33c="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
                       <Link to="/dashboard"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           >
 
-                        <uni-view data-v-1011963f="" class="back"><img data-v-1011963f="" src="/static/img/back.png" alt="" style={{ width: '35px' }} /></uni-view>
+                        <uni-view data-v-1011963f="" class="back"><img data-v-1011963f="" src="/static/img/back.png" alt="" style={{ width: '35px',filter: 'brightness(0) invert(0)'}} /></uni-view>
                       </Link>                    </uni-view>
                     <uni-view data-v-35b9a113="" data-v-3dcfa33c="" class="uni-col uni-col-12" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
                       <uni-view data-v-3dcfa33c="" class="page-title">User</uni-view>
                     </uni-view>
                     <uni-view data-v-35b9a113="" data-v-3dcfa33c="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
                       <Link to="/Setting">
-                        <uni-view data-v-3dcfa33c="" class="set"><img data-v-3dcfa33c="" src="/static/img/setting.png" alt="" style={{ width: '35px' }} /></uni-view>
+                        <uni-view data-v-3dcfa33c="" class="set"><img data-v-3dcfa33c="" src="/static/img/setting.png" alt="" style={{ width: '35px',filter: 'brightness(0) invert(0)' }} /></uni-view>
 
                       </Link>
                     </uni-view>
@@ -77,20 +77,20 @@ const NodeDetails = () => {
                     <Link to="/ServerCommission" style={{ textDecorationLine: 'none' }}>
 
                       <uni-view data-v-3dcfa33c="" class="title">Server Commission</uni-view>
-                      <uni-view data-v-3dcfa33c="" translate="no" class="value"><img data-v-3dcfa33c="" src="/static/img/db.png" alt="" />0.0000</uni-view>
+                      <uni-view data-v-3dcfa33c="" translate="no" class="value"><img data-v-3dcfa33c="" src="/static/img/db.png" alt="" style={{filter: 'brightness(0) invert(0)'}}/>0.0000</uni-view>
                     </Link>
 
                   </uni-view>
 
                   <uni-view data-v-3dcfa33c="" class="item"> <Link to="/Team" style={{ textDecorationLine: 'none' }}>
                     <uni-view data-v-3dcfa33c="" class="title">My Team</uni-view>
-                    <uni-view data-v-3dcfa33c="" class="value"><img data-v-3dcfa33c="" src="/static/img/people.png" alt="" />0<span data-v-3dcfa33c="" style={{ fontSize: '14px', fontWeight: '400', marginLeft: '3px' }}>(0Activated)</span></uni-view>
+                    <uni-view data-v-3dcfa33c="" class="value"><img data-v-3dcfa33c="" src="/static/img/people.png" alt="" style={{filter: 'brightness(0) invert(0)'}} />0<span data-v-3dcfa33c="" style={{ fontSize: '14px', fontWeight: '400', marginLeft: '3px' }}>(0Activated)</span></uni-view>
                   </Link>
 
                   </uni-view>
                 </uni-view>
                 <uni-view data-v-3dcfa33c="" class="email-box">
-                  <uni-view data-v-3dcfa33c="" class="title">Email Address</uni-view>
+                  <uni-view data-v-3dcfa33c="" class="title" style={{color:'#000'}}>Email Address</uni-view>
                   <uni-view data-v-3dcfa33c="" class="value">****kor55@gmail.com</uni-view>
                 </uni-view>
                  <Link to="/Refer"style={{ textDecorationLine: 'none' }}>

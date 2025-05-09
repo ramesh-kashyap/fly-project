@@ -113,7 +113,7 @@ const Server = () => {
                           data-v-7542ab04="" class="page-title">Server</uni-view>
                        <uni-view data-v-7542ab04=""
                           class="top-card">
-                          <img data-v-7542ab04="" src="/static/img/server-icon.png" alt=""/>
+                          <img data-v-7542ab04=""  style={{filter: 'brightness(0) invert(0)'}} src="/static/img/server-icon.png" alt=""/>
                           <uni-view
                              data-v-7542ab04="" class="title">Start Trading Now!</uni-view>
                           <uni-view
@@ -129,10 +129,10 @@ const Server = () => {
                     style={{
                       backgroundColor:
                         activeTab === "running"
-                          ? "rgb(53, 247, 231)"
-                          : "hsla(0, 0%, 100%, 0.05)",
+                          ? "#15d5c7"
+                          : "#fff",
                       color:
-                        activeTab === "running" ? "#000" : "rgb(255, 255, 255)",
+                        activeTab === "running" ? "#000" : "#000;",
                       transition: "all 0.3s ease",
                     }}
                   >
@@ -146,12 +146,12 @@ const Server = () => {
                     style={{
                       backgroundColor:
                         activeTab === "completed"
-                          ? "rgb(53, 247, 231)"
-                          : "hsla(0, 0%, 100%, 0.05)",
+                          ? "#15d5c7"
+                          : "#fff",
                       color:
                         activeTab === "completed"
                           ? "#000"
-                          : "rgb(255, 255, 255)",
+                          : "#000",
                       transition: "all 0.3s ease",
                     }}
                   >
@@ -170,7 +170,7 @@ const Server = () => {
                                       style={{width: '100%', height: '340px', transform: 'translate(0%, 0px) translateZ(0px)'}}>
                                     
                                     <uni-swiper-item
-   data-v-7542ab04=""class="product-card" style={{marginTop:'10px',borderRadius:'10px', backgroundColor:'hsla(0, 0%, 100%, .101960784313725'}} 
+   data-v-7542ab04=""class="product-card" style={{marginTop:'10px',borderRadius:'10px', backgroundColor:'#fff'}} 
    >
    <Slider {...settings}>
       {slides.map((slide, index) => (
@@ -211,7 +211,7 @@ const Server = () => {
                      <img
                      data-v-b19b400c="" src="/static/img/check.png"
                      alt=""
-                     style={{width: '20px', marginRight: '5px'}}/>
+                     style={{width: '20px', marginRight: '5px',filter: 'brightness(0) invert(0)'}}/>
                      <uni-text
                         data-v-b19b400c=""
                         class="benefit-text"><span>{slide.text}</span>
@@ -226,7 +226,7 @@ const Server = () => {
                      <img
                      data-v-b19b400c="" src="/static/img/check.png"
                      alt=""
-                     style={{width: '20px', marginRight: '5px'}}/>
+                     style={{width: '20px', marginRight: '5px',filter: 'brightness(0) invert(0)'}}/>
                      <uni-text
                         data-v-b19b400c=""
                         class="benefit-text"><span>{slide.text1}- {slide.text2}</span>
@@ -282,7 +282,7 @@ const Server = () => {
    <uni-view data-v-7542ab04="" class="list-box">
    {servers.map((server, index) => (
   <uni-view key={index} data-v-7542ab04="" class="server-item">
-    <img data-v-7542ab04="" src={`/static/img/S${(index % 4) + 1}.png`} alt="" />
+    <img data-v-7542ab04=""  style={{filter: 'brightness(0) invert(0)'}}  src={`/static/img/S${(index % 4) + 1}.png`} alt="" />
     ${server.amount}
     <uni-view data-v-7542ab04="" class="item-no">
       {server.serverhash}
