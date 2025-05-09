@@ -154,7 +154,7 @@ const Dashboard = () => {
                      <uni-view data-v-06ae08d2="" class="ellipse"></uni-view>
                      <uni-view
                         data-v-06ae08d2="" class="top-box"><uni-view data-v-06ae08d2="" class="left">
-                           <Link to="/NodeDetails">
+                           <Link to="/profile">
                               <uni-view
                                  data-v-06ae08d2="" class="ava"><img data-v-06ae08d2="" src="/static/ava/ava4.jpg"
                                     alt="" /></uni-view>
@@ -172,7 +172,7 @@ const Dashboard = () => {
                            data-v-06ae08d2="" class="right"><uni-view data-v-06ae08d2="" class="notice"><img
                               data-v-06ae08d2="" src="/static/img/rewards.png" alt=""
                               style={{ width: '28px' }} /></uni-view>
-                           <Link to="/Notice">
+                           <Link to="/notice">
                               <uni-view data-v-06ae08d2="" class="notice"><img
                                  data-v-06ae08d2="" src="/static/img/notice.png" alt="" /><uni-view
                                     data-v-06ae08d2=""
@@ -183,14 +183,17 @@ const Dashboard = () => {
                         data-v-06ae08d2="" class="balance-card"><uni-view data-v-06ae08d2="" class="first"><uni-view
                            data-v-06ae08d2="" class="balance-title">Your Balance
                            (USDT)</uni-view></uni-view><uni-view data-v-06ae08d2="" class="second"><uni-view
-                              data-v-06ae08d2="" translate="no" class="balance-num">{availbal}</uni-view><uni-view
+                              data-v-06ae08d2="" translate="no" class="balance-num">$ {availbal}</uni-view>
+                              <uni-view
                                  data-v-06ae08d2="" translate="no" class="profit-num">+0.0000<uni-view
                                     data-v-06ae08d2=""
-                                    class="today">Yesterday</uni-view></uni-view></uni-view><uni-view
+                                    class="today">
+                                       Yesterday</uni-view>
+                                       </uni-view></uni-view><uni-view
                                        data-v-06ae08d2="" class="third">
                            <uni-view data-v-06ae08d2=""
                               class="balance-btn">
-                              <Link to="/RechargeFunds" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: '500', fontSize: '16px' }}>
+                              <Link to="/deposit" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: '500', fontSize: '16px' }}>
                                  Deposit
                               </Link><img data-v-06ae08d2="" src="/static/img/usdtdown.png"
                                  alt="" /></uni-view>
@@ -198,7 +201,7 @@ const Dashboard = () => {
                               data-v-06ae08d2="" src="/static/img/transfer.png" alt="" /></uni-view>
 
                            <uni-view
-                              data-v-06ae08d2="" class="balance-btn"> <Link to="/withdrawReq" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: '500', fontSize: '16px' }}>Withdraw </Link><img data-v-06ae08d2=""
+                              data-v-06ae08d2="" class="balance-btn"> <Link to="/withdraw-req" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: '500', fontSize: '16px' }}>Withdraw </Link><img data-v-06ae08d2=""
                                  src="/static/img/usdtup.png" alt="" /></uni-view>
 
                         </uni-view></uni-view>

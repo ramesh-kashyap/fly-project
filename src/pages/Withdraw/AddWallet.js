@@ -26,7 +26,7 @@ const AddWallet = () => {
                                 <uni-view data-v-b918f992="" class="top-box">
                                     <uni-view data-v-636c600c="" data-v-b918f992="" class="uni-row" style={{ marginLeft: '0px', marginRight: '0px' }}>
                                         <uni-view data-v-35b9a113="" data-v-b918f992="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
-                                            <Link to="/withdrawReq">
+                                            <Link to="/withdraw-req">
                                                 <uni-view data-v-53c5f33f="" class="back"><img data-v-53c5f33f="" src="/static/img/back.png" alt="" style={{ width: '35px' }} /></uni-view>
 
                                             </Link>                                </uni-view>

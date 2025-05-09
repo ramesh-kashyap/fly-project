@@ -89,7 +89,7 @@ const Login = () => {
 
                   </uni-view>
 
-                  <Link to="/ForgotPassword">
+                  <Link to="/forgot-password">
                   <uni-view data-v-2b56ecaf="" class="forget">Forget Password?</uni-view>
                   </Link>
  

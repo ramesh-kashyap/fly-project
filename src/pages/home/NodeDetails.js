@@ -70,7 +70,7 @@ const NodeDetails = () => {
                       <uni-view data-v-3dcfa33c="" class="page-title">User</uni-view>
                     </uni-view>
                     <uni-view data-v-35b9a113="" data-v-3dcfa33c="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
-                      <Link to="/Setting">
+                      <Link to="/setting">
                         <uni-view data-v-3dcfa33c="" class="set"><img data-v-3dcfa33c="" src="/static/img/setting.png" alt="" style={{ width: '35px' }} /></uni-view>
 
                       </Link>
@@ -90,16 +90,16 @@ const NodeDetails = () => {
                 </uni-view>
                 <uni-view data-v-3dcfa33c="" class="two-group">
                   <uni-view data-v-3dcfa33c="" class="item">                    
-                    <Link to="/ServerCommission" style={{ textDecorationLine: 'none' }}>
+                    <Link to="/server-commission" style={{ textDecorationLine: 'none' }}>
                     <uni-view data-v-3dcfa33c="" class="title">Server Commission</uni-view>
-                    <uni-view data-v-3dcfa33c="" translate="no" class="value"><img data-v-3dcfa33c="" src="/static/img/db.png" alt="" />{serverc}</uni-view>
+                    <uni-view data-v-3dcfa33c="" translate="no" class="value"><img data-v-3dcfa33c="" src="/static/img/db.png" alt="" />$ {serverc}</uni-view>
                     </Link>
 
                   </uni-view>
 
-                  <uni-view data-v-3dcfa33c="" class="item"> <Link to="/Team" style={{ textDecorationLine: 'none' }}>
+                  <uni-view data-v-3dcfa33c="" class="item"> <Link to="/team" style={{ textDecorationLine: 'none' }}>
                     <uni-view data-v-3dcfa33c="" class="title">My Team</uni-view>
-                    <uni-view data-v-3dcfa33c="" class="value"><img data-v-3dcfa33c="" src="/static/img/people.png" alt="" />0<span data-v-3dcfa33c="" style={{ fontSize: '14px', fontWeight: '400', marginLeft: '3px' }}>(0Activated)</span></uni-view>
+                    <uni-view data-v-3dcfa33c="" class="value"><img data-v-3dcfa33c="" src="/static/img/people.png" alt="" />View Team<span data-v-3dcfa33c="" style={{ fontSize: '14px', fontWeight: '400', marginLeft: '3px' }}></span></uni-view>
                   </Link>
 
                   </uni-view>
@@ -108,7 +108,7 @@ const NodeDetails = () => {
                   <uni-view data-v-3dcfa33c="" class="title">Email Address</uni-view>
                   <uni-view data-v-3dcfa33c="" class="value">{userDetails?.email}</uni-view>
                 </uni-view>
-                 <Link to="/Refer"style={{ textDecorationLine: 'none' }}>
+                 <Link to="/refer"style={{ textDecorationLine: 'none' }}>
                 <uni-view data-v-3dcfa33c="" class="invite-box">
 
                   <img data-v-3dcfa33c="" src="/static/img/giftbox.png" alt="" />
@@ -125,7 +125,7 @@ const NodeDetails = () => {
                   <uni-view data-v-3dcfa33c="" class="go-kyc">Verify Now</uni-view>
                   </Link>
                 </uni-view> */}
-               <Link to="/Wallet" style={{ textDecorationLine: 'none' }}>
+               <Link to="/wallet" style={{ textDecorationLine: 'none' }}>
                 <uni-view data-v-3dcfa33c="" class="invite-box">
                   <img data-v-3dcfa33c="" src="/static/img/wallet.png" alt="" />
                   <uni-view data-v-3dcfa33c="" class="invite">

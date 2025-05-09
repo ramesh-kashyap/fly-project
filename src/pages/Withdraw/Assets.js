@@ -17,16 +17,19 @@ const Assets = () => {
             const response = await Api.get("/getUserHistory");
 
             if (response.data && response.data.success) {
+                console.log(response.data);
                 setTransactions({
                     investment: response.data.investment || [],
                     income: response.data.income || [],
-                    withdraw: response.data.withdraw || []
+                    withdraw: response.data.withdraw || [],
+                    buyfund: response.data.buyfund || []
                 });
             } else {
                 setTransactions({
                     investment: [],
                     income: [],
-                    withdraw: []
+                    withdraw: [],
+                    buyfund: [],
                 });
             }
 
@@ -46,6 +49,17 @@ const Assets = () => {
              setError(error);
           }
        }
+       const getAmountColor = (type) => {
+        return type === 'buyfund' || type === 'income' ? 'green' : 'rgb(255, 61, 61)';
+    };
+
+    const getAmountPrefix = (type) => {
+        return type === 'buyfund' || type === 'income' ? '+ ' : '- ';
+    };
+    const getAmount = (type, item) => {
+        return type === 'income' ? item.comm : item.amount;
+    };
+    
 
     return (
         <div class="uni-body pages-assets-assets">
@@ -59,6 +73,7 @@ const Assets = () => {
                                 <uni-view data-v-248ca5b8="" class="ellipse"></uni-view>
                                 <uni-view
                                     data-v-248ca5b8="" class="page-title">Asset Management</uni-view>
+                                    
                                 <uni-view
                                     data-v-248ca5b8="" class="balance-card">
                                     <uni-view data-v-248ca5b8="" class="first">
@@ -69,7 +84,7 @@ const Assets = () => {
                                     </uni-view>
                                     <uni-view data-v-248ca5b8="" class="second">
                                         <uni-view
-                                            data-v-248ca5b8="" translate="no" class="balance-num">{balance ||0}</uni-view>
+                                            data-v-248ca5b8="" translate="no" class="balance-num">$ {balance ||0}</uni-view>
                                         <uni-view
                                             data-v-248ca5b8="" translate="no" class="profit-num">
                                             
@@ -82,7 +97,7 @@ const Assets = () => {
                                         data-v-248ca5b8="" class="third">
                                         <uni-view data-v-06ae08d2=""
                                             class="balance-btn">
-                                            <Link to="/RechargeFunds" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: '500', fontSize: '16px' }}>
+                                            <Link to="/deposit" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: '500', fontSize: '16px' }}>
                                                 Deposit
                                             </Link><img data-v-06ae08d2="" src="/static/img/usdtdown.png"
                                                 alt="" />
@@ -90,7 +105,7 @@ const Assets = () => {
                                         <uni-view data-v-248ca5b8="" class="transfer"><img
                                             data-v-248ca5b8="" src="/static/img/transfer.png" alt="" /></uni-view>
                                         <uni-view
-                                            data-v-06ae08d2="" class="balance-btn">  <Link to="/WithdrawReq" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: '500', fontSize: '16px' }}>
+                                            data-v-06ae08d2="" class="balance-btn">  <Link to="/withdraw-req" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: '500', fontSize: '16px' }}>
                                                 Withdraw
                                             </Link><img data-v-06ae08d2=""
                                                 src="/static/img/usdtup.png" alt="" /></uni-view>
@@ -110,30 +125,32 @@ const Assets = () => {
                                     </uni-view>
                                 </uni-view> */}
                                 <uni-view data-v-248ca5b8="" class="user-title"
-                                    style={{ marginTop: '30px' }}>Funding Details</uni-view>
-
-
-                                {['investment', 'income', 'withdraw'].map((type) =>
+                                    style={{ marginTop: '30px' }}>Funding Details <uni-view data-v-248ca5b8=""
+                                        class="right"
+                                       
+                                    >
+                                        <Link to="/transaction"   style={{ textDecoration: 'none', color: '#ffffff' }}><p>View all</p></Link>
+                                    </uni-view></uni-view>
+                                {['investment', 'income', 'withdraw', 'buyfund'].map((type) =>
                                     transactions[type] && transactions[type].length > 0 ? (
                                         transactions[type]
                                             .slice() // create copy
                                             .reverse() // reverse order
+                                            .slice(0, 2) 
                                             .map((item, index) => (
                                                 <uni-view data-v-248ca5b8=""  class="item" >
                                                     <uni-view data-v-248ca5b8=""  class="first">
                                                         <uni-view data-v-248ca5b8=""  class="left">
-                                                            {new Date(item.created_at).toLocaleString()} - {item?.users?.name || 'User'}
+                                                            {new Date(item.created_at).toLocaleString()}
                                                         </uni-view>
                                                         <uni-view data-v-248ca5b8=""
-                                                             class="right"
-                                                            style={{ color: type === 'withdraw' ? 'green' : 'rgb(255, 61, 61)' }}
-                                                        >
-                                                            {type === 'withdraw' ? '+ ' : '- '}{item.amount}
+                                                             class="right"style={{ color: getAmountColor(type) }}>
+                                                            {getAmountPrefix(type)}$ {getAmount(type, item)}
                                                         </uni-view>
                                                     </uni-view>
 
                                                     <uni-view  data-v-248ca5b8=""  class="layer">
-                                                        <uni-view data-v-248ca5b8=""  class="title">Fund Flow</uni-view>
+                                                        <uni-view data-v-248ca5b8=""  class="title">Remarks</uni-view>
                                                         <uni-view data-v-248ca5b8=""  class="value">
                                                               {item.remarks || item.source || '—'}
                                                         </uni-view>

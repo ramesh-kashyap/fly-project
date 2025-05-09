@@ -26,6 +26,7 @@ import Whistory from "./pages/Withdraw/Whistory";
 import History from "./pages/invest/History";
 import Trade from "./pages/team/Trade";
 import Assets from "./pages/Withdraw/Assets";
+import Transaction from "./pages/Withdraw/Transaction";
 import Wallet from "./pages/Withdraw/Wallet";
 import Server from "./pages/profile/Server";
 import ServerCommission from "./pages/profile/ServerCommission";
@@ -54,24 +55,24 @@ function AppContent() {
         "/",                // Login default
         "/login",
         "/register",
-        "/Team",
-        "/History",
-        "/Whistory",
-        "/WithdrawReq",
-        "/Smartrade",
-        "/NodeDetails",
-        "/RechargeFunds",
-        "/AddWalletAddress",
-        "/AddWallet",
-        "/ForgotPassword",
-        "/ChangePassword",
-        "/Notice",
-        "/ServerCommission",
-        "/Refer",
-        "/Kyc",
-        "/Wallet",
+        "/team",
+        "/history",
+        "/withdraw-history",
+        "/withdraw-req",
+        "/smartrade",
+        "/deposit",
+        "/add-walletAddress",
+        "/add-wallet",
+        "/forgot-password",
+        "/change-password",
+        "/notice",
+        "/server-commission",
+        "/refer",
+        "/kyc",
+        "/wallet",
         "/langauge",
-        "/Faq"
+        "/Faq",
+        "/transaction"
     ];
 
     // Check if current path matches any of the above OR dynamic TradingChart route
@@ -89,35 +90,36 @@ function AppContent() {
                     <Route path="/" element={<PublicRoute><Login /></PublicRoute>} />
                     <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
                     <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
-                    <Route path="/ForgotPassword" element={<PublicRoute><ForgotPassword /></PublicRoute>} />
+                    <Route path="/forgot-password" element={<PublicRoute><ForgotPassword /></PublicRoute>} />
                     <Route path="/langauge" element={<Language />} />
  
                     {/* Protected Routes */}
                     <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-                    <Route path="/NodeDetails" element={<ProtectedRoute><NodeDetails /></ProtectedRoute>} />
-                    <Route path="/Notice" element={<ProtectedRoute><Notice /></ProtectedRoute>} />
-                    <Route path="/Setting" element={<ProtectedRoute><Setting /></ProtectedRoute>} />
-                    <Route path="/Faq" element={<ProtectedRoute><Faq /></ProtectedRoute>} />
-                    <Route path="/ChangePassword" element={<ProtectedRoute><ChangePassword /></ProtectedRoute>} />
+                    <Route path="/profile" element={<ProtectedRoute><NodeDetails /></ProtectedRoute>} />
+                    <Route path="/notice" element={<ProtectedRoute><Notice /></ProtectedRoute>} />
+                    <Route path="/setting" element={<ProtectedRoute><Setting /></ProtectedRoute>} />
+                    <Route path="/faq" element={<ProtectedRoute><Faq /></ProtectedRoute>} />
+                    <Route path="/change-wassword" element={<ProtectedRoute><ChangePassword /></ProtectedRoute>} />
                     <Route path="/trade" element={<ProtectedRoute><Trade /></ProtectedRoute>} />
                     <Route path="/assets" element={<ProtectedRoute><Assets /></ProtectedRoute>} />
+                    <Route path="/transaction" element={<ProtectedRoute><Transaction /></ProtectedRoute>} />
                     <Route path="/server" element={<ProtectedRoute><Server /></ProtectedRoute>} />
-                    <Route path="/Wallet" element={<ProtectedRoute><Wallet /></ProtectedRoute>} />
-                    <Route path="/Refer" element={<ProtectedRoute><Refer /></ProtectedRoute>} />
-                    <Route path="/Kyc" element={<ProtectedRoute><Kyc /></ProtectedRoute>} />
-                    <Route path="/ServerCommission" element={<ProtectedRoute><ServerCommission /></ProtectedRoute>} />
-                    <Route path="/PaymentPassword" element={<ProtectedRoute><PaymentPassword /></ProtectedRoute>} />
-                    <Route path="/Level" element={<ProtectedRoute><Level/></ProtectedRoute>}/>
-                    <Route path="/Team" element={<ProtectedRoute><Team /></ProtectedRoute>} />
+                    <Route path="/wallet" element={<ProtectedRoute><Wallet /></ProtectedRoute>} />
+                    <Route path="/refer" element={<ProtectedRoute><Refer /></ProtectedRoute>} />
+                    <Route path="/kyc" element={<ProtectedRoute><Kyc /></ProtectedRoute>} />
+                    <Route path="/server-commission" element={<ProtectedRoute><ServerCommission /></ProtectedRoute>} />
+                    <Route path="/payment-password" element={<ProtectedRoute><PaymentPassword /></ProtectedRoute>} />
+                    <Route path="/level" element={<ProtectedRoute><Level/></ProtectedRoute>}/>
+                    <Route path="/team" element={<ProtectedRoute><Team /></ProtectedRoute>} />
                     
-                    <Route path="/WithdrawReq" element={<ProtectedRoute><WithdrawReq /></ProtectedRoute>} />
-                    <Route path="/History" element={<ProtectedRoute><History /></ProtectedRoute>} />
-                    <Route path="/Whistory" element={<ProtectedRoute><Whistory /></ProtectedRoute>} />
-                    <Route path="/Smartrade" element={<ProtectedRoute><Smartrade /></ProtectedRoute>} />
-                    <Route path="/RechargeFunds" element={<ProtectedRoute><RechargeFunds /></ProtectedRoute>} />
+                    <Route path="/withdraw-req" element={<ProtectedRoute><WithdrawReq /></ProtectedRoute>} />
+                    <Route path="/history" element={<ProtectedRoute><History /></ProtectedRoute>} />
+                    <Route path="/withdraw-history" element={<ProtectedRoute><Whistory /></ProtectedRoute>} />
+                    <Route path="/smartrade" element={<ProtectedRoute><Smartrade /></ProtectedRoute>} />
+                    <Route path="/deposit" element={<ProtectedRoute><RechargeFunds /></ProtectedRoute>} />
                     <Route path="/dashboard/TradingChart/:symbol" element={<ProtectedRoute><TradingChart /></ProtectedRoute>} />
                     <Route path="/add-wallet" element={<ProtectedRoute><AddWallet /></ProtectedRoute>} />
-                    <Route path="/Add-WalletAddress/:networkType" element={  <ProtectedRoute><AddWalletAddress /></ProtectedRoute>} />
+                    <Route path="/Add-walletAddress/:networkType" element={  <ProtectedRoute><AddWalletAddress /></ProtectedRoute>} />
                 </Routes>
 
                 {/* Footer only if route not in hidden list */}

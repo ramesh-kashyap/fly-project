@@ -25,10 +25,11 @@ const Team = () => {
     const fetchteam = async () => {        
         try {            
             const response =await Api.get('/team');
+            console.log(response.data)
             if(response.data){
               setIncome(response.data);
             } 
-            // console.log(response.data)
+            
         } catch (err) {
             setError(err.response?.data?.error || "Error fetching income");
         }
@@ -47,7 +48,7 @@ const Team = () => {
                 <uni-view data-v-1011963f="" class="top-box">
                   <uni-view data-v-636c600c="" data-v-1011963f="" class="uni-row" style={{ marginLeft: '0px', marginRight: '0px' }}>
                     <uni-view data-v-35b9a113="" data-v-1011963f="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
-                      <Link to="/NodeDetails">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+                      <Link to="/profile">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
 
                         <uni-view data-v-1011963f="" class="back"><img data-v-1011963f="" src="/static/img/back.png" alt="" style={{ width: '35px' }} /></uni-view>
                       </Link>

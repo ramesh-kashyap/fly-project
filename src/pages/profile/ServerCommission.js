@@ -16,7 +16,7 @@ const ServerCommission = () => {
                                 <uni-view data-v-cc630f0a="" class="top-box">
                                     <uni-view data-v-636c600c="" data-v-cc630f0a="" class="uni-row" style={{ marginLeft: '0px', marginRight: '0px' }}>
                                         <uni-view data-v-35b9a113="" data-v-cc630f0a="" class="uni-col uni-col-6" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
-                                            <Link to="/NodeDetails">
+                                            <Link to="/profile">
                                                 <uni-view data-v-cc630f0a="" class="back"><img data-v-cc630f0a="" src="/static/img/back.png" alt="" style={{ width: '35px' }} /></uni-view>
 
                                             </Link>

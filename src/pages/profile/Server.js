@@ -16,25 +16,31 @@ const Server = () => {
      }, []);
      const fetchwallet = async () => {
       try {
-        const response = await Api.get("/fetchserver");
-    
-        if (response.data?.success && Array.isArray(response.data.server)) {
-          const serverSlides = response.data.server.map((item, index) => ({
-            title: `S${index + 1}-IntelliCalc Edition`,
-            heading: "Benefits",
-            text: `Amount that can be invested: ${item.invest_amount}`,
-            text1: `Optional investment period (hours): ${item.period}`,
-            text2:   `To: ${item.period_end}`,
-            price: item.plan === "Free" ? "Free" : item.plan,
-            days: item.days,
-          }));
-    
-          setSlides(serverSlides);
-        }
+          const response = await Api.get("/fetchserver");
+          
+          if (response.data?.success && Array.isArray(response.data.server)) {
+              const { server, plans } = response.data;
+              const purchasedPlans = plans.map(plan => plan.plan); // Get all purchased plan names
+  
+              const serverSlides = server.map((item, index) => ({
+                  title: `S${index + 1}-IntelliCalc Edition`,
+                  heading: "Benefits",
+                  text: `Amount that can be invested: $ ${item.invest_amount}`,
+                  text1: `Optional investment period (hours): ${item.period}`,
+                  text2: `To: ${item.period_end}`,
+                  price: item.plan === "Free" ? "Free" : item.plan,
+                  days: item.days,
+                  purchased: purchasedPlans.includes(item.plan) // Check if this plan is purchased
+              }));
+  
+              setSlides(serverSlides);
+          }
       } catch (error) {
-        console.error("Error fetching plans:", error);
+          console.error("Error fetching plans:", error);
       }
-    };
+  };
+  
+
 
     const handleBuyClick = async (slideData) => {
       try {
@@ -49,8 +55,8 @@ const Server = () => {
           toast.success("Purchase successful", response.data.message); 
           // console.log("Purchase successful");
         } else {
-          toast.error("Purchase failed", response.data.message); 
-          // console.error("Purchase failed");
+          toast.error(response.data.message); 
+          console.error(response.data);
         }
       } catch (error) {
         toast.error("Error making purchase:", error);
@@ -61,6 +67,7 @@ const Server = () => {
     const fetchrenew = async () => {
       try {
         const response = await Api.get('/fetchrenew');
+        console.log(response.data);
         if (response.data?.success) {
           setServers(response.data.server); // or .servers if you update backend
         } else {
@@ -87,7 +94,15 @@ const Server = () => {
       }
     };
  
-    
+    const PLAN_IMAGES = {
+      0: "S1",
+      5: "S2",
+      10: "S3",
+      50: "S4",
+      120: "S5",
+      340: "S6",
+   };
+   const getImageName = (plan) => PLAN_IMAGES[plan] || "S1";
 
     const settings = {
       dots: true,
@@ -255,7 +270,7 @@ const Server = () => {
                   data-v-b19b400c="" class="card-footer">
                   <uni-button
                      data-v-b19b400c=""
-                     class="subscribe-button"  onClick={() => handleBuyClick(slide)}>Buy</uni-button>
+                     class={` ${slide.purchased ? 'unsubscribe-button' : 'subscribe-button'}`}  onClick={() => handleBuyClick(slide)}>{slide.purchased ? "Purchased" : "Buy"}</uni-button>
                </uni-view>
             </uni-view>
             <uni-view
@@ -282,7 +297,7 @@ const Server = () => {
    <uni-view data-v-7542ab04="" class="list-box">
    {servers.map((server, index) => (
   <uni-view key={index} data-v-7542ab04="" class="server-item">
-    <img data-v-7542ab04="" src={`/static/img/S${(index % 4) + 1}.png`} alt="" />
+    <img data-v-7542ab04="" src={`/static/img/${getImageName(server.amount)}.png`}  alt="" />
     ${server.amount}
     <uni-view data-v-7542ab04="" class="item-no">
       {server.serverhash}
@@ -290,7 +305,7 @@ const Server = () => {
     </uni-view>
     <uni-view
       data-v-7542ab04=""
-      class={`renew ${index % 2 === 0 ? 'unrenew' : ''}`}
+      class={`renew`}
       onClick={() => handleRenew(server.serverhash, server.amount)}
     >
       Renewal

@@ -17,7 +17,7 @@ const Notice = () => {
                                 <uni-view data-v-c62a6474="" class="top-box">
                                     <uni-view data-v-636c600c="" data-v-c62a6474="" class="uni-row" style={{marginLeft: '0px',marginRight: '0px'}}>
                                         <uni-view data-v-35b9a113="" data-v-c62a6474="" class="uni-col uni-col-6" style={{paddingLeft: '0px', paddingRight: '0px'}}>
-                                            <Link to="/Dashboard">
+                                            <Link to="/dashboard">
                                                 <uni-view data-v-c62a6474="" class="back">
                                                     <img data-v-c62a6474="" src="/static/img/back.png" alt="" style={{width: '35px'}}/>
                                                 </uni-view>
