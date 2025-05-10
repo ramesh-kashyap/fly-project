@@ -115,78 +115,58 @@ const Level = () => {
 
 
 
-                {activeTab === "running" ? (
+                  {activeTab === "running" ? (
                   <uni-view data-v-b7dd60dc="" class="history-box">
-                     {users.map((user, index) => (
-                    <uni-view data-v-b7dd60dc="" class="item-box"  key={index}>
-                      <uni-view data-v-b7dd60dc="" class="history-item">
-                        <uni-view data-v-b7dd60dc="" class="first">
-                          <uni-view data-v-b7dd60dc="" class="left">
-                            <img
-                              data-v-b7dd60dc=""
-                              src="/static/img/team-people.png"
-                              alt=""
-                            />
-                            {user.name|| "Status"}
+                    {users.map((user, index) => (
+ 
+                      <uni-view data-v-10f20c32="" class="member-item" key={index}>
+ 
+                        <uni-view data-v-10f20c32="" class="first">
+                          <uni-view data-v-10f20c32="" class="left">
+                            <uni-view data-v-10f20c32="" class="ava-box">
+                              <img data-v-10f20c32="" src="/static/ava/ava4.jpg" alt="" />
+                              <uni-view data-v-10f20c32="" class="name-box">
+                                <uni-view data-v-10f20c32="" class="name">{user.name|| "User"}</uni-view>
+                                <uni-view data-v-10f20c32="" class="uid">{user.username}
+                                </uni-view>
+                              </uni-view>
+                            </uni-view>
+                            <uni-view data-v-10f20c32="" class="time">{formatDate(user.jdate)}
+                            </uni-view>
                           </uni-view>
-                          <uni-view data-v-b7dd60dc="" class="right">
-                          {user.active_status}
-                          </uni-view>
-                        </uni-view>
-
-                        <uni-view data-v-b7dd60dc="" class="h-line"></uni-view>
-                        <uni-view
-                          data-v-542626a5=""
-                          data-v-b7dd60dc=""
-                          class="count-down"
-                        >
-                          <img
-                            data-v-542626a5=""
-                            src="/static/img/time.png"
-                            alt=""
-                          />
-                        </uni-view>
-                        <uni-view data-v-b7dd60dc="" class="text-line">
-                          <uni-view data-v-b7dd60dc="" class="title">
-                          User ID
-                          </uni-view>
-                          <uni-view data-v-b7dd60dc="" class="value">
-                          {user.username}                           </uni-view>
-                        </uni-view>
-                        <uni-view data-v-b7dd60dc="" class="text-line">
-                          <uni-view data-v-b7dd60dc="" class="title">
-                            Join Date
-                          </uni-view>
-                          <uni-view data-v-b7dd60dc="" class="value">
-                          {formatDate(user.jdate)}
+                          <uni-view data-v-10f20c32="" class="right">
+                            <uni-view data-v-10f20c32="" class="value">${Number(user.package,).toFixed(2)}
+                            </uni-view>
+                            <uni-view data-v-10f20c32="" class="title">Available Balance</uni-view>
+                            <uni-view data-v-10f20c32="" class="value">${user.available_balance ? user.available_balance.toFixed(2) : "0.00"}</uni-view>
+                            <uni-view data-v-10f20c32="" class="title">Trade Amount</uni-view>
                           </uni-view>
                         </uni-view>
-                      
-                        <uni-view data-v-b7dd60dc="" class="text-line">
-                          <uni-view data-v-b7dd60dc="" class="title">
-                            Investment Amount
-                          </uni-view>
-                          <uni-view data-v-b7dd60dc="" class="value">
-                         $ {Number(user.package,).toFixed(2)}
-                          </uni-view>
+                        <uni-view data-v-10f20c32="" class="h-line"></uni-view>
+                        {/* <uni-view data-v-10f20c32="" class="layout">
+                          <uni-view data-v-10f20c32="" class="title">Number of Invitees</uni-view>
+                          <uni-view data-v-10f20c32="" class="value">0(0)</uni-view>
+                        </uni-view> */}
+                        <uni-view data-v-10f20c32="" class="layout">
+                          <uni-view data-v-10f20c32="" class="title">Yesterday's Commission(Trade)</uni-view>
+                          <uni-view data-v-10f20c32="" class="value">${user.available_balance ? user.available_balance.toFixed(2) : "0.00"}</uni-view>
                         </uni-view>
-                       
-                        <uni-view
-                          data-v-b7dd60dc=""
-                          style={{ height: "10px" }}
-                        ></uni-view>
+                        <uni-view data-v-10f20c32="" class="layout">
+                          <uni-view data-v-10f20c32="" class="title">Yesterday's Commission(Server)</uni-view>
+                          <uni-view data-v-10f20c32="" class="value">{user.server_income.toFixed(6) || "0.00"}</uni-view>
+                        </uni-view>
+                        <uni-view data-v-10f20c32="" class="layout">
+                          <uni-view data-v-10f20c32="" class="title">Total Commission(Trade)</uni-view>
+                          <uni-view data-v-10f20c32="" class="value">{user.totalTradeIncome.toFixed(6) || "0.00"}</uni-view>
+                        </uni-view>
+                        <uni-view data-v-10f20c32="" class="layout">
+                          <uni-view data-v-10f20c32="" class="title">Total Commission(Server)</uni-view>
+                          <uni-view data-v-10f20c32="" class="value">{user.totalServerIncome.toFixed(6) || "0.00"}</uni-view>
+                        </uni-view>
+ 
                       </uni-view>
-                    </uni-view>
-
-
-
-
-))}
-
-
-
-
-
+                    ))}
+ 
                   </uni-view>
                 ) : (
                   <uni-view data-v-7cdca4f6="" class="history-box">
@@ -200,6 +180,7 @@ const Level = () => {
                     </uni-view>
                   </uni-view>
                 )}
+ 
               </uni-view>
             </uni-page-body>
           </uni-page-wrapper>
